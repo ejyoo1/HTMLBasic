@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Link Button</title>
+	<style>
+	   /*unvisited link(a:link) 방문 안했을 때*/
+	   /*visited link(a:visited) - 방문했을 때*/
+	   a:link, a:visited {
+	       background-color: #f44336;
+	       color: white;
+	       padding: 14px 25px;
+	       text-align: center;
+	       text-decoration: none;
+	       display: inline-block;
+	   }
+	   
+	   /*mouse over link(a:hover) - 마우스 올려뒀을 때*/
+	   /*selected link(a:active) - 클릭 드래그 시 확인 가능*/
+	   a.hover, a:active {
+	       background-color: red;
+	   }
+	</style>
+</head>
+	<body>
+	   <h2>Link button</h2>
+	   <p>A link styled as a button:</p>
+	   <a href="https://www.w3schools.com" target="_blank">This is a link</a>
+	</body>
+</html>

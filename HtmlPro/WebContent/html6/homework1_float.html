@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>화면 구성 설계</title>
+	<style>
+	   /*공통으로 하는것은 같이쓰고 개별적용은 따로 하는것이 좋음.*/
+	   div {
+	       border: 3px dotted red;
+	       overflow: auto;
+	       height: 300px;
+	       width: calc(50% - 11px);
+	   }
+	   
+	   div.left {
+	       float: left;
+	   }
+	   
+	   div.right {
+	       float: right;
+	   }
+	   
+	   /*이미지도 width값을 지정해 주는 것이 좋다. 컨테이너 기준*/
+	   img {
+	       width: 100%;
+	       height: 100px;
+	   }
+	   
+	   h1 {
+	       background-color: lightpink;
+	   }
+	   
+	   span {
+	       background-color: aqua;
+	   }
+	   
+	   span.red {
+	       color: red;
+	   }
+	   
+	   span.blue {
+	       color: blue;
+	   }
+	   
+	</style>
+</head>
+<body>
+    <div class="left">
+        <h1>사자</h1>
+        <img src="../images/lion.png" alt="사자이미지" />
+        <p>동물 고양잇과의 포유류. 
+                몸의 길이는 2미터, 꼬리는 90cm, 어깨의 높이는 1미터 정도이며, 보통 엷은 갈색이고 새끼는 어두운 갈색의 반점이 있다. 
+                머리는 크고 몸통은 작은데 수컷은 뒷머리와 앞가슴에 긴 갈기가 있다. 
+                사냥은 주로 암컷이 한다. 
+        <span class="red">백수의 왕</span>
+                으로 불리고 나무가 없는 초원에서 4~6마리가 무리 지어 사는데 아프리카와 인도의 초원에 분포한다.</p>
+    </div>
+    
+    <div class="right">
+        <h1>호랑이</h1>
+        <img src="../images/tiger.png" alt="호랑이이미지" />
+        <p>동물 <span class="blue">고양잇과의 포유류.</span> 
+              몸의 길이는 2미터 정도이며, 등은 누런 갈색이고 검은 가로무늬가 있으며 배는 흰색이다.
+              꼬리는 길고 검은 줄무늬가 있다. 
+              삼림이나 대숲에 혼자 또는 암수 한 쌍이 같이 사는데 시베리아 남부에서 인도, 자바 등지에 분포한다.</p>
+    </div>
+</body>
+</html>

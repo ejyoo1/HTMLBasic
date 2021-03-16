@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>쇼핑카트 페이지</title>
+	<link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- input요소들의 type적합하게 사용하기 -->
+<div id="shopCartDIV">
+	<div class="container">
+	    <div id="shopCart">Shopping Cart</div>
+		<form action="./main.html" method="post" id="shoppingCart">
+		    <table class="table table-hover">
+		        <thead>
+			        <tr>
+			            <th>품목</th>
+			            <th>가격</th>
+			            <th>수량</th>
+			            <th>합계</th>
+			        </tr>
+		        </thead>
+		        <tbody>
+			        <tr>
+			            <td>컴퓨터 세트</td>
+			            <td>2,000,000원</td>
+			            <td><input type="number" id="com" min="1" max="100" step="1" title="컴퓨터수량" /></td>
+			            <td><input type="text" id="totalCom" name="totalCom" title="컴퓨터합계" readonly /></td>
+			        </tr>
+			        <tr>
+			            <td>티셔츠</td>
+			            <td>50,000원</td>
+			            <td><input type="number" id="clo" min="1" max="100" step="1" title="티셔츠수량" /></td>
+			            <td><input type="text" id="totalClo" name="totalClo" title="티셔츠합계" readonly /></td>
+			        </tr>
+			        <tr>
+			            <td>음악파일</td>
+			            <td>1,000원</td>
+			            <td><input type="number" id="Mus" min="1" max="100" step="1" title="음악파일수량" /></td>
+			            <td><input type="text" id="totalMus" name="totalMus" title="음악파일합계" readonly /></td>
+			        </tr>
+			        <tr>
+			            <td>영화파일</td>
+			            <td>5,000원</td>
+			            <td><input type="number" id="mov" min="1" max="100" step="1" title="영화파일수량" /></td>
+			            <td><input type="text" id="totalmov" name="totalmov" title="영화파일합계" readonly /></td>
+			        </tr>
+		        </tbody>
+		    </table>
+		    <button type="button" class="btn btn-primary" title="계산버튼" onclick="calc();">계산</button><!-- btn btn-primary : 버튼 스타일 추가 -->
+		    <input type="submit" class="btn btn-primary" value="구매" title="구매버튼" />
+		    <input type="reset" class="btn btn-primary" value="초기화" title="초기화버튼" />
+		    <button type="button" class="btn btn-primary" value="홈으로" onclick="location.href='./main.html'">홈으로</button>
+		</form>
+	</div>
+</div>
+<a href="./main.html" id="backToHome" title="홈으로이동">Back to Home</a>
+    
+<script>
+    function calc(){
+        var totalCom = document.getElementById("com").value;
+        console.log(totalCom*2000000);
+        var totalClo = document.getElementById("clo").value;
+        console.log(totalClo*50000);
+        var totalMus = document.getElementById("Mus").value;
+        console.log(totalMus*1000);
+        var totalmov = document.getElementById("mov").value;
+        console.log(totalmov*5000);
+       
+        document.getElementById("totalCom").value = totalCom*2000000; 
+        document.getElementById("totalClo").value = totalClo*50000;
+        document.getElementById("totalMus").value = totalMus*1000;
+        document.getElementById("totalmov").value = totalmov*5000;
+    }
+</script>
+    
+    
+</body>
+</html>

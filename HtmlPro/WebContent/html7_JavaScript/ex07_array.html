@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>배열</title>
+</head>
+<body>
+    <script type="text/javascript">
+    //배열 정의 방법(속도 측면에서 이 방법이 제일 좋음.)
+    var fruits1 = ["사과", "배", "포도"];
+    //배열 먼저 생성 후 정의는 나중에
+    var fruits2 = new Array();
+    fruits2[0] = "Apple";
+    fruits2[1] = "Banana";
+    fruits2[2] = "Orange";
+    
+    //배열 생성과 동시에 정의함.
+    var fruits3 = new Array("사과", "배", "포도");
+    
+    for(var i = 0 ; i < fruits3.length ; i++){
+    	document.write(fruits3[i] + "<br>");
+    }
+    
+    for(var x in fruits3){
+    	document.write(fruits3[x] + "<br>");
+    }
+    </script>
+</body>
+</html>

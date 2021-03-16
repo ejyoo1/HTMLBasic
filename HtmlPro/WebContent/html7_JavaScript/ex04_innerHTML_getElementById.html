@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML 요소에 접근하기</title>
+</head>
+<body>
+		<h1 style="color:red;" id="test">This is a heading.</h1>
+		<script>
+		function func(){
+			var obj = document.getElementById("test"); //obj에 <h1>이 할당됨.
+			obj.style.color = "blue";
+			obj.style.border = "1px dotted green";
+		}
+		</script>
+		
+		
+		<button type="button" 
+		        onclick="func();">클릭하세요!</button>
+		        
+		<hr>
+		
+	   <h1>덧셈 계산기</h1>
+	    첫번쨰 정수 : <input type="text" id="num1"><br>
+	    두번쨰 정수 : <input type="text" id="num2"><br>
+	    합계 : <input type="text" id="sumResult"><br>
+	  <button type="button" onclick="sum();">계산</button>
+	  <script>
+	   function sum(){
+		   //정수 가져오기
+		   var num1 = document.getElementById("num1");
+		   var x = num1.value;
+		   
+		   var num2 = document.getElementById("num2");
+		   var y = num2.value;
+		   //축약 가능 
+		   //var y = document.getElementById("num2").value;
+		   
+		   //더하기
+		   var sum = parseInt(x) + parseInt(y); //문자로 되기 때문에 parseInt로 변경해야 됨.
+		   //합계에 세팅
+		   document.getElementById("sumResult").value = sum;
+	   }
+	  </script>
+</body>
+</html>

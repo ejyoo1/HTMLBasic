@@ -1,0 +1,23 @@
+<!DOCTYPE heml>
+<html>
+    <head>
+        <title>iframe 예제</title>
+    </head>
+    <h1>커피메뉴</h1>
+    <a>아메리카노</a><a>카페라떼</a><a>카푸치노</a>
+    <h1>멀티미디어</h1>
+    <p>
+        <a href="https://www.google.com">오디오</a>
+        <a href="./14.table.html" target="sample">비디오</a>
+    </p>
+    <!--웹 표준으로 인하여 title은 필수임.-->
+    <!--슬래시 역슬래시의 차이는 없지만 HTML에서 역슬래시를 사용함.
+    만약에 역슬래시를 사용하여 경로를 설정하였을 때 이미지가 제대로 표시되지 않으면 역슬래시를 붙여준다.-->
+    <!--href에서 해당 frame으로 링크를 열리고자 하는 경우 ifram에 name값을 입력한후
+        링크할 a 태그에 target으로 넣어준다..-->
+        <!--보안 문제가 있음.-->
+    <iframe src="./thumbnail.html" 
+            width="1000" height="1000" 
+            title="iframe 영역" name="sample">
+    </iframe>
+</html>

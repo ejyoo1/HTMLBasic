@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>하이퍼링크 연습</title>
+    </head>
+    <body>
+        <p>하이퍼링크 태그 : &lt; a &gt;</p>
+        <!--타겟을 넣지 않으면 기본값은 '_self' : 현재창-->
+        <!--_blank : 새창-->
+        <!--_parent : 부모창(프레임을 나눴을때 사용함)-->
+        <!--_top : 창전체에서 새로운 페이지를 적재함-->
+        <p>
+            <a href="https://www.google.com" target="_parent">구글링크</a>
+        </p>
+
+        <hr>
+
+        <!--위키백과처럼 클릭 시 해당하는 위치로 이동할 수 있게 설정 가능함.-->
+        <!--id는 유일해야함. id에 공백을 포함하면 안된다.-->
+        <p>
+            <a href="#sample1"> 여기를 클릭하세요 </a>
+        </p>
+
+        <p>
+            <a id="sample1">참고사항</a>
+        </p>
+    </body>
+</html>

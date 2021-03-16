@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>자바스크립트 과제</title>
+</head>
+<body>
+    <div>
+        <p>[공통]1부터 10까지 합 구하기</p>
+        <script>
+		    var total = 0, count = 1;
+		    while(count <= 10) {
+		        total += count; 
+		        count += 1;
+		    }
+		    document.write(total);
+	    </script>
+    </div>
+    <div>
+        <p>[공통]1부터 200까지 짝수의 합을 구함. continue를 이용</p>
+        <script>
+		    var sum = 0;
+		    
+		    for(var i=1; i<=200; i++){
+		        if(i%2==0){
+		            sum += i;
+		        }else{
+		        	continue;
+		        }
+		    }
+		    document.write("합: " + sum + "<br>");
+	    </script>
+    </div>
+    <div>
+        <p>[4번]다중 for문을 이용해서 1~10까지 중 i와 k의 더한 합이 3배수 일때만 출력 continue이용</p>
+        <script>
+		    var i = 0;
+		    var n = 0;
+		    for(var i = 1 ; i <= 10 ; i++){
+		        for(var k = 1 ; k <= 10 ; k++){
+		            if((i+k) % 3 == 0){
+		                  document.write(i + "+" + k + " : " + (i+k) + "<br>");
+		            }else{
+		            	continue;
+		            }
+		        }
+		    }
+	    </script>
+    </div>
+
+</body>
+</html>

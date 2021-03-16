@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>회원가입 폼</title>
+    </head>
+    <body>
+        <form   action="./emailProc.html"
+                style="width: 400px; border: 1px solid #ccc;"
+        >
+            <caption>회원가입 폼</caption>
+            <!--이름,주소,이메일,성별(라디오),send(전송),원래대로-->
+
+            <!--이름-->
+            <div style="margin-top: 1em;">
+                <label  for="name"
+                        style="display: inline-block; width: 90px; text-align: left"
+                >이름 : </label>
+                <input type="text" id="name" required/>
+            </div>
+
+            <!--주소-->
+            <div style="margin-top: 1em;">
+                <label  for="addr"
+                        style="display: inline-block; width: 90px; text-align: left"
+                >주소 : </label>
+                <input type="text" id="addr" required/>
+            </div>
+
+            <!--이메일-->
+            <div style="margin-top: 1em;">
+                <label  for="mail"
+                        style="display: inline-block; width: 90px; text-align: left"
+                >이메일 : </label>
+                <input type="email" id="mail" required/>
+            </div>
+
+            <!--성별-->
+            <div style="margin-top: 1em;">
+                <input type="radio" name="gender" value="M" id="genderMail" />
+                <label for="genderMail">M</label>
+                <input type="radio" name="gender" value="F" id="genderFemale" checked />
+                <label for="genderFemale">F</label>
+            </div>
+
+            <div style="margin-top: 1em;">
+                <input type="submit" value="전송" />
+                <input type="reset">원래대로</input>
+            </div>
+        </form>
+    </body>
+</html>

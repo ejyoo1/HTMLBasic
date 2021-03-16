@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+    <style type="text/css">
+        p, div {
+            width: 200px;
+            height: 100px;
+        }
+        
+        #box1 {
+            background-color: aqua;
+        }
+        #box2 {
+            background-color: yellow;
+            /*static porition : 변화없음. 위치가 얼마만큼 이동할건지 지정해야됨.*/
+            /*relative porition : 웹 위치에서 지정
+                (블럭 2공간이 있으면서 블럭 2 에서 이동)
+            */
+            /*absolute porition : 웹 윈도우 0(왼쪽 맨위) 기준에서 지정
+                        감싸고 있는 컨테이너 위치에서 이동(절대적인 위치 : 다른 박스에는 영향을 주지않음(없다고 생각함.-블럭2의 공간이 없어짐.)
+            */
+            /*
+                fixed : 브라우저 윈도우를 기준으로 고정 - 스크롤을 이동해도 위치 고정
+                (Top으로 이동, 하단으로 이동, 바로가기 버튼 만들 수있을 것 같음.)
+                
+            */
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+        #box3 {
+            background-color: green;
+        }
+        
+        #container {
+            background-color: maroon;
+        }
+        
+        img {
+            width: 500px;
+            position: absolute;
+            top: 500px;
+            z-index: -1;
+        }
+        /*img.p:img 태그인데 클래스 명 p인것*/
+        /*img p : img 의 자식 p*/
+        /*바로 뒤에오는 형제요소*/
+        img+p {
+            color: yellow;
+        }
+        
+        #pbackground {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>position 연습</h1>
+    <p id="box1">블럭1</p>
+    <div id="container">
+        <div id="box2">블럭2 (position)</div>
+    </div>
+    <p id="box3">블럭3</p>
+    
+    <hr>
+    <h1>z index 연습</h1>
+    <img src="../images/img5.png" alt="커피">
+    <p id="pbackground">커피 마시자커피 마시자커피 마시자커피 마시자커피 마시자커피 마시자커피 마시자커피 마시자</p>
+</body>
+</html>

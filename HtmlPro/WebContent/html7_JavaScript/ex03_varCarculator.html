@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>자료형 연산</title>
+</head>
+<body>
+    <script type="text/javascript">
+    var str1 = "Welcome to";
+    var str2 = "JavaScript";
+    var str3 = str1 + str2; //Welcome toJavaScript
+    var str4 = str1 + " " + str2; //Welcome to JavaScript
+    document.write(str4);
+    document.write("<br>");
+    
+    //숫자와 문자를 연결
+    var no1 = 10;
+    var no2 = 20;
+    var no3 = no1 + no2;
+    document.write(no3);
+    document.write("<br>");
+    var str5 = "홍길동";
+    document.write(no3 + str5);
+    document.write("<br>");
+    
+    document.write(no1 + str5 + no2); //숫자 + 글자 + 숫자
+    document.write("<br>");
+    document.write(no1 + no2 + str5); //숫자 + 숫자 + 글자
+    document.write("<br>");
+    document.write(no1 + no2 + str5 + no1 + no2); //숫자 + 숫자 + 글자 + 숫자 + 숫자
+    document.write("<br>");
+    
+    document.write("<hr>");
+    
+    var input; //작업 순서대로 변수를 선언하는것이 좋다.
+    var x, y;
+    
+    input = prompt("정수를 입력하시오", "정수로"); //입력받는 메시지 박스(출력텍트스, 기본값);
+    x = parseInt(input);//입력받은것을 int로 변경
+    input = prompt("정수를 입력하시오", "정수로"); //입력받는 메시지 박스(출력텍트스, 기본값);
+    y = parseInt(input);//입력받은것을 int로 변경
+    
+    document.write(x + y);
+    
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+    <style>
+        /*코드 구성 시 스타일 적용 횟수도 생각해야한다.*/
+        table,td {
+            border: 5px solid red;
+        }
+        
+        table {
+            border-collapse: collapse;
+            /*테이블에 가로 크기 넣는게 더 직관적임. width: 100%; 하면 창 크기에 맞춰 크기가 조절됨.*/
+            width: 100%;
+        }
+        
+        tr {
+            height: 50px;
+        }
+        
+        td {
+            
+            text-align: center;
+        }
+        
+        /* case1) 클래스 직접 지정하는 방법*/
+        .tdYellow {
+            background-color: rgb(255,255,0);
+        }
+        
+        .tdGreen {
+            background-color: rgb(144,238,144);
+        }
+        /* case2) 가상 클래스*/
+        /*첫번째 자식을 잡아라. 테이블 명 명시할 것.*/
+        /*tr: 첫번째 tr에 조건을 건다. 그러면 첫번째 tr에 있는 모든 td들을 뽑아낸다.*/
+        table tr:first-child {
+            background-color: yellow;        
+        }
+        
+        /*n번째 자식을 갖고와라. 1,3,5에만 초록으로 표시할것이다. => '2n+1' / 
+        tr:nth-child(2n) {~} => 짝수(2부터)
+        tr:nth-child(2n+1) {~} => 홀수(1부터 2n)
+        tr:nth-child(2n+2) {~} => 홀수(2부터 2n)
+        tr:nth-child(2n+3) {~} => 홀수(3부터 2n)
+        tr:nth-child(2n+4) {~} => 홀수(4부터 2n)
+        tr:nth-child(2n+5) {~} => 홀수(5부터 2n)
+        tr:nth-child(even) {~} => 짝수
+        tr:nth-child(odd) {~} => 홀수
+        tr:nth-child(5) {~} => 5번째
+        
+        */
+        table tr:nth-child(2n+3) {
+            background-color: green;
+        }
+        
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>알라딘</td>
+            <td>임꺽정</td>
+            <td>개나리</td>
+            <td>홍길동</td>
+        </tr>
+        <tr>
+            <td>패밀리</td>
+            <td>스타일</td>
+            <td>텍스트</td>
+            <td>볼드체</td>
+        </tr>
+        <tr>
+            <td>선택자</td>
+            <td>인라인</td>
+            <td>패밀리</td>
+            <td>요소들</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+<!--  
+    <table>
+        <tr class="tdYellow">
+            <td>알라딘</td>
+            <td>임꺽정</td>
+            <td>개나리</td>
+            <td>홍길동</td>
+        </tr>
+        <tr class="tdGreen">
+            <td>패밀리</td>
+            <td>스타일</td>
+            <td>텍스트</td>
+            <td>볼드체</td>
+        </tr>
+        <tr>
+            <td>선택자</td>
+            <td>인라인</td>
+            <td>패밀리</td>
+            <td>요소들</td>
+        </tr>
+        <tr class="tdGreen">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+-->
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>페이지 구성</title>
+	<style>
+	   body {
+	       margin: 0;
+	   }
+	   header {
+	       width: 100%;
+	       height:100px;
+	       background-color: rgb(4,207,92);
+	       font-weight: bold;
+	   }
+	   
+	   header h1 {
+	       margin: 0;
+	       text-align: center;
+	       line-height: 100px;
+	   }
+	   
+	   nav {
+	       float: left;
+	       width: 20%;
+	       height:calc(100vh - 200px);
+	       overflow: auto;
+	       background-color: rgb(20,150,92);
+	   }
+	   
+	   nav img {
+            width: 60%;
+            margin-left: 20%;
+       }
+	   
+	   nav h2 {
+           text-align: center;
+       }
+       
+       .menu:hover, .menu.active {
+           background-color: red;
+       }
+       
+       .menubar {
+           padding: 0;
+           margin: 0;
+           line-width: 20%;
+       }
+       
+       .menubar li {
+           list-style: none;
+           
+           margin: 0;
+       }
+       
+       /*unvisited link(a:link) 방문 안했을 때*/
+       /*visited link(a:visited) - 방문했을 때*/
+       /*a태그만 가능*/
+       
+       a {
+            width: 100%;
+            text-decoration: none;
+            display: block;
+       }
+       
+       a:link {
+            color: white;
+       }
+       
+       a:visited {
+            color: yellow;
+       }
+       
+       figcaption {
+            padding: 1em;
+            font-weight: bold;
+            text-align: center;
+       }
+	   
+	   section {
+	       float: right;
+	       width: 80%;
+	       height:calc(100vh - 200px);
+	       background-color: rgb(100,180,100);
+	       overflow: auto;
+	   }
+	   
+	   section h3, p {
+	       padding: 0 10px;
+	       word-break: keep-all;
+	   }
+	   
+	   footer {
+	       clear: both;
+	       width: 100%;
+	       height:100px;
+	       background-color: DarkSalmon;
+	       color: white;
+	   }
+	   
+	   footer p {
+	       margin: 0;
+	       padding: 0;
+           text-align: center;
+           line-height: 100px;
+           font-weight: bold;
+       }
+       
+	</style>
+</head>
+<body>
+    <header>
+        <h1>My Blog Page</h1>
+    </header>
+    <nav>
+        <h2>Links</h2>
+        <ul class="menubar">
+            <li class="menu"><a href="http://www.naver.com">W3</a></li>
+            <li class="menu"><a href="http://www.daum.net">MOZILLA</a></li>
+            <li class="menu"><a href="#">HTML Dogs</a></li>
+        </ul>
+        <figure>
+            <img src="../images/W3School.png" />
+            <figcaption>CSS3 LOGO</figcaption>
+        </figure>
+    </nav>
+    <section>
+        <!-- 각 요소가 따로따로 있어도 문제되지 않도록 그룹화 하는 것이 좋다. -->
+        <article>
+	        <h3>Semantic Tags</h3>
+	        <p>시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의미나 목적을 명확하게 알려주는 요소이다.</p>
+        </article>
+        <article> 
+	        <h3>div와 span</h3>
+	        <p>div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데 사용되는 태그이다. 
+	        span 요소는 인라인 요소로서 텍스트를 위한 컨테이너로 사용할 수 있다.</p>
+        </article>
+    </section>
+    <footer>
+        <p>Copyright (c) 2013 Hong</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>회원가입</title>
+	<link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <script>
+    function func(){
+    	alert("회원가입이 성공적으로 이루어졌습니다.");
+    }
+    </script>
+    <fieldset id="signFieldset">
+        <legend>회원 정보 입력</legend>
+        <form action="./main.html" method="post">
+	        <p><!-- 아이디 -->
+	        <label for="userId">아이디</label><!-- form-control : 입력영역 활성화 시 이벤트 부여 -->
+	        <input type="text" id="userId" class="form-control" name="userId" size="5" maxlength="10" title="아이디 정보" required/> 
+	        <button type="button" class="btn btn-primary">중복검사</button>
+	        </p>
+	        
+	        <p><!-- 비밀번호 -->
+	        <label for="userPw">패스워드</label><!-- form-control : 입력영역 활성화 시 이벤트 부여 -->
+	        <input type="password" id="userPw" class="form-control" name="userPw" title="비밀번호" required />
+	        </p>
+	        <p><!-- 비밀번호 확인 -->
+	        <label for="userPwCheck">패스워드 확인</label><!-- form-control : 입력영역 활성화 시 이벤트 부여 -->
+	        <input type="password" id="userPwCheck" class="form-control" name="userPwCheck" title="비밀번호확인" required />
+	        </p>
+	        
+	        <p><!-- 이름 -->
+	        <label for="userName">이름</label>
+	        <input type="text" id="userName" class="form-control" name="userName" size="5" title="이름" required/>
+	        </p>
+	        
+	        <p><!-- 휴대폰 번호 -->
+	        <label for="userTel">휴대폰 번호</label>
+	        <input type="text" id="userTel" class="form-control" name="userTel" size="15" title="휴대폰번호" required/>
+	        </p>
+	        
+	        <p><!-- 이메일 -->
+	        <label for="userEmail">이메일</label>
+	        <input type="text" id="userEmail" class="form-control" name="userEmail" title="이메일" required/>
+	        </p>
+	        
+	        <p><!-- 생일 -->
+	        <label for="userBirth">생일</label>
+	        <input type="date" id="userBirth" class="form-control" name="userBirth" title="생일" />
+	        </p>
+	        
+	        <p><!-- 홈페이지 -->
+	        <label for="userHome">홈페이지</label>
+	        <input type="text" id="userHome" class="form-control" name="userHome" title="홈페이지" />
+	        </p>
+	        
+	        <p>
+	        <!-- 남자라디오버튼 -->
+	        <input type="radio" name="gender" value="M" id="genderMail" title="남자" />
+	        <label for="genderMail">남자</label>
+	        <!-- 여자라디오버튼 -->
+	        <input type="radio" name="gender" value="F" id="genderFemale" title="여자" checked />
+	        <label for="genderFemale">여자</label>
+	        </p> <!-- btn btn-primary : 버튼 스타일 추가 -->
+	        <input type="submit" class="btn btn-primary" value="제출" title="제출버튼" onclick="func()" />
+	        <input type="reset" class="btn btn-primary" value="초기화" title="초기화버튼"/>
+	        <button type="button" class="btn btn-primary" value="홈으로" onclick="location.href='./main.html'">홈으로</button>
+        </form>
+        
+    
+    </fieldset>            
+</body>
+</html>

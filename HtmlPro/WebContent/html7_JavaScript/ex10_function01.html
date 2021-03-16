@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>덧셈 계산기</title>
+</head>
+<body>
+    <h1>덧셈 계산기</h1>
+    <div>
+        첫번째 정수 : <input type="text" id="value1"><br>
+        두번째 정수 : <input type="text" id="value2"><br>
+        합계 : <input type="text" id="sum" readonly><br>
+    </div>
+    <button type="button" onclick="calc();">계산</button>
+    <div>
+    <!-- 텍스트 영역을 잡아줄 때 span을 쓸 것 -->
+        첫번째 값 : <span id="result1"></span>
+        두번째 값 : <span id="result2"></span>
+        합계 : <span id="result3"></span>
+    </div>
+    
+    <!-- 스크립트는 html 어디에 들어가든 상관없다. -->
+    <script type="text/javascript">
+    function calc(){
+    	//첫번째 값, 두번째 값을 더해서 합계(input)에 표시하고
+    	var value1 = document.getElementById("value1") //<input type="text" id="value1">
+    	.value;
+    	var value2 = document.getElementById("value2").value;
+        var sum = parseInt(value1) + parseInt(value2);
+        
+        document.getElementById("sum").value = sum ;
+    	//첫번째 값, 두번째 값, 결과 텍스트에 표시하고
+    	document.getElementById("result1").innerHTML = value1; //안쪽에 있는 html을 갖고온다.
+    	document.getElementById("result2").innerHTML = value2; //안쪽에 있는 html을 갖고온다.
+    	document.getElementById("result3").innerHTML = sum; //안쪽에 있는 html을 갖고온다.
+    }
+    </script>
+    
+    <hr>
+    
+    <button type="button" onclick="greeting('홍길동','과장');">눌러보세요</button>
+    
+    <script type="text/javascript">
+    function greeting(name, position){
+    	alert("안녕하세요. 반갑습니다.");
+    	alert(name + position + "님 안녕하세요. 반갑습니다.");
+    	
+    }
+    </script>
+</body>
+</html>

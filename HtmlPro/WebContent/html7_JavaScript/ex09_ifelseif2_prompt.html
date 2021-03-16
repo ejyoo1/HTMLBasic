@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+    <script>
+	    var user1 = prompt("첫번째 가위바위보 입력", "가위,바위,보");
+	    var user2 = prompt("두번째 가위바위보 입력", "가위,바위,보");
+	    
+	    document.write("첫번째 사람 : " + user1 + "<br>");
+        document.write("두번째 사람 : " + user2 + "<br>");
+	    if( user1=="가위" && user2=="바위" ||
+	    		user1=="바위" && user2=="보" ||
+	    		user1=="보" && user2=="가위"){
+	    	document.write("결과 : 두번째사람 승!!!");
+	    }else if( user1=="바위" && user2=="가위" ||
+                user1=="보" && user2=="바위" ||
+                user1=="가위" && user2=="보"){
+            document.write("결과 : 첫번째사람 승!!!");
+        }
+    </script>
+</body>
+</html>

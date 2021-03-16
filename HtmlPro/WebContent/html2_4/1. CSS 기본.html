@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+            스타일 우선순위
+            1위 : 인라인 스타일 적용(태그 내에 직접 적용)
+            2위 : 내부 스타일 시트 적용
+            3위 : 외부 스타일 시트 적용
+        -->
+        <!--
+            외부 스타일 시트 첨부 영역(페이지가 많은 경우 사용하면 좋음)
+            * rel : relation
+        -->
+        <link type="text/css" rel="stylesheet" href="../css/1. CSS 기본_css파일.css">
+        <!--
+            내부 스타일 시트 영역 작성
+        -->
+        <style>
+            p {
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div>
+            <h1>외부 스타일 시트 적용 영역입니다.</h1>
+            <p>외부 스타일 시트는 html 파일 외에 css 파일을 별도로 생성한 뒤, link 태그를 사용하여 css를 연결합니다.</p>
+        </div>
+
+        <div>
+            <h1>내부 스타일 시트 적용 영역입니다.</h1>
+            <p>내부 스타일 시트는 html 태그 내에 style 태그를 사용합니다.</p>
+        </div>
+
+        <div>
+            <!--style 속성 내 세미콜론을 작성하는 습관을 들이자!-->
+            <h1 style="color:yellow;">인라인 스타일 태그 적용 영역입니다.</h1>
+            <p>인라인 스타일 시트는 태그 내에 직접 style 속성을 추가하여 사용합니다.</p>
+        </div>
+
+    </body>
+</html>

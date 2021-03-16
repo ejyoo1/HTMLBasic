@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+    <p id="a"></p>
+    <script>
+    function sub(a,b){
+    	return a+b;
+    }
+    
+    //창이 로드되면 수행하겠다.
+    window.onload = function(){
+    	document.getElementById("a").innerHTML = sub(4,5);
+    
+        var result = confirm("컨펌 메시지 입니다. ");
+        document.getElementById("tmp1").innerHTML = result;
+    }
+    </script>
+    
+    <p id="tmp"></p>
+</body>
+</html>

@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+/*
+* 공통 CSS
+*/
+* {
+    box-sizing: border-box; /*박스 사이즈를 패딩과 여백 포함설정함.*/
+    margin: 0; /*마진 0으로 시작*/
+    padding: 0; /*패딩 0으로 시작*/
+}
+
+body {
+    min-width: 700px; /*바디 최소 크기 설정 - 커질수록 가운데 영역 스크롤 생성됨.*/
+    background-color: #f1f1f1; /*배경색 설정*/
+}
+
+ul {
+    list-style: none; /*li 영역 앞 점 제거*/
+}
+      
+
+
+
+/***main.html***/
+/*
+* 웹접근성 관련
+*/
+.sr-only { /* 웹접근성 관련 hidden 처리 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0px, 0px, 0px, 0px);
+    overflow: hidden;
+}
+
+
+/*
+* 컨텐츠 영역 설정
+*/
+
+header {
+    background-color: rgb(255, 255, 255); /*헤더영역 배경색 지정*/
+    line-height: 50px; /*header크기에 맞추어 중간으로 설정*/
+    text-align : center; /*텍스트 위치를 중간으로 설정*/
+}
+        
+header img { 
+    width: 50px; /*상단 이미지의 가로 크기 설정*/
+    height: 50px; /*상단 이미지의 세로 크기 설정*/
+    vertical-align: middle; /*텍스트 정렬 중간으로 설정*/
+}
+
+nav {
+    overflow: hidden; /*넘어갈 시 숨김*/
+    position: relative; /*nav 안의 요소들 자리를 만들어 줌*/
+    background-color: #0069d9;/*메뉴 색 지정*/
+    padding: 11px 270px 11px 270px; /*위 오 아 왼*/
+}
+
+nav li {
+    float: left; /*메뉴 일자 정렬*/
+    font-size: 18px; /*메뉴 글자 크기 설정*/
+    line-height: 30px; /*텍스트의 위 아래 여백 30으로 하여 중간 맞춤*/
+    font-weight: 700; /*텍스트 두께*/
+    letter-spacing: 1.7px; /*자간 설정*/
+    margin-left: 25px; /*왼쪽여백 15 설정*/
+}
+
+nav a, #left a, header a {
+    text-decoration: none; /*a태그 밑줄 없앰*/
+}        
+
+nav a {
+    color: #f2f2f2; /*링크 글씨 색깔 지정*/
+    text-align: center; /*메뉴 중간 정렬*/
+}
+
+#menubar { /*nav 메뉴 가운데 정렬*/
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#left { /*카테고리 영역 설정*/
+    width: 10%; /*왼쪽 길이 20% 설정*/
+    background-color: aliceblue; /*왼쪽 카테고리 메뉴 색 설정*/
+    overflow: hidden; /*웹 사이즈 크기 안맞는 경우 숨김처리*/
+}
+
+#left h4, #left li {
+    padding: 15px; /*왼쪽 카테고리 메뉴 여백 설정*/
+}
+
+section {
+    width: 72%; /*가운데 길이 60% 설정*/
+}
+        
+#contents { /*가운데 컨텐츠 영역 정렬 및 border 설정*/
+    height: calc(100vh - 90px); /*컨텐츠 영역은 왼쪽 오른쪽 영역기준으로 설정함.*/
+    overflow: hidden;/*웹 사이즈 크기 안맞는 경우 숨김처리*/
+}
+        
+#contents .child{
+    float: left; /*컨텐츠 영역 가로 정렬*/
+    height: 100%; /*컨텐츠 영역 세로 설정*/
+}
+
+/*
+* 중간영역
+*/
+.column {
+    float: left; /*정렬 왼쪽으로*/
+    width: 29%; /*비율 3등분*/
+    padding: 10px; /*여백 10px*/
+    overflow: hidden; /*웹 사이즈 크기 안맞는 경우 숨김처리*/
+    border: 1px solid #ccc; /*컨텐츠 3개 영역 선 설정*/
+    border-radius: 16px; /*컨텐츠 3개 영역 둥글게 설정*/
+    margin: 15px;
+}
+        
+.column img {
+    width: 100px; /*가운데 이미지 영역 가로사이즈 설정*/
+    display: block; /*이미지를 블럭화 함 - 그래야 가운데 정렬을 함.*/
+    margin: 0px auto; /*마진을 주어 가운데 정렬함.*/
+}
+
+.column h5 {
+	padding: 15px;
+}
+
+/*
+* 오른쪽
+*/
+#right {
+    width: 18%; /*오른쪽 길이 20% 설정*/
+    background-color: rgb(215, 215, 215); /*오른쪽 영역 색 설정*/
+    overflow: hidden; /*웹 사이즈 크기 안맞는 경우 숨김처리*/
+    padding-left: 15px;
+}        
+        
+#right h2, #right h4 {
+    padding: 15px 0px;/*오른쪽 제목태그 여백주기*/
+}
+        
+#right .rbuttonpadding { /*태그 구조로 인하여 오른쪽 영역의 p태그와 form태그에 여백을 적용함.*/
+    margin-bottom: 5px;
+}
+
+#contentsCenter { /*iframe 크기를 설정하기 위해 section하위에 div를 생성하여 설정*/
+    width: 100%; /*#contents에 맞추어 100%설정 왼쪽 오른쪽 고정 메뉴가 존재하여 나머지 길이인 100%해도 문제없음.*/
+    height: 100%; /*#contents에 맞추어 100%설정*/
+    overflow: hidden;
+}
+        
+#contentsCenter iframe  {
+    width: 100%; /*article에 맞추어 100%설정*/
+    height: 100%; /*article에 맞추어 100%설정*/
+}
+        
+footer {
+    clear: left;
+    line-height: 40px;
+    background-color: #333; /*하단 색 지정*/
+    text-align: center;
+    color: white;
+}
+        
+/*shopcart*/
+#shopCart {
+    color: red; /*쇼핑카트페이지 글자색상*/
+    text-align: center; /*글자 정렬*/
+}
+    
+#shopCartDIV {
+    display: inline-block; /*이거 왜있는지 모르겠음;*/
+}
+    
+table {
+    width: 100%;
+    border:3px solid #333333;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+       
+td {
+    padding: 10px;
+    border: 1px solid #333333;
+}
+       
+#shoppingCart {
+    margin-bottom: 10px; /*테이블 아래 여백 설정*/
+}   
+
+#backToHome {
+    display: block; /*Back to Home을 단독 블럭으로 빼기 위해 설정*/
+}     
+        
+
+/*
+* movie.html
+*/
+.row img {
+    width: 100%;
+    cursor: pointer; /*마우스 포인터 변경*/
+}
+       
+video {
+    width: 100%;
+}
+
+/*
+* resister.html
+*/
+#signFieldset { 
+	width: 500px; /*회원정보입력 크기 지정*/
+}
+
+#signFieldset form, legend {
+	margin-left: 100px; /*회원가입 여백 지정*/
+}
+
+/*
+* music.html
+*/
+audio {
+    width: 100%; /*오디오 가로영역*/
+}

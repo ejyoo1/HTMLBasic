@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>이미지 위에 텍스트가 고정되도록</title>
+	<style>
+	   #parentDIV {
+	   /*감싸고 있는 부모들 기준으로 position이 설정되어 있는 것에 적용됨*/
+	       position: relative; /*p태그의 상대 경로를 결정하기 위해 부모 태그의 position을 relative로 결정*/
+	   }
+	   
+	   #backgroundDIV {
+	       width: 100%; /*width 값만 100%설정하면 이미지 비율에 맞게 들어감.*/
+	       z-index: 0; /*z-index를 텍스트보다 밑으로 설정하기 위해 0으로 설정함.*/
+	   }
+	   
+	   #parentDIV p {
+	       width: 200px; /*텍스트 길이를 제어할 p태그 크기 결정*/
+	       word-break: keep-all; /*텍스트가 크기를 벗어날 경우, 문단별로 Enter를 먹임*/
+	       z-index: 1;/*image 보다 위로 가야함.*/
+	       color: yellow;
+	       padding-left: 10px;
+	       position: absolute;/*이미지를 기준으로 절대 경로를 넣기 위해 사용*/
+	       top: 10px;/*위에서 10정도 간격을 줌*/
+	   }
+	</style>
+</head>
+<body>
+    <h1>Image Text</h1>
+    <h1>Image Text</h1>
+    <h1>Image Text</h1>
+    <h1>Image Text</h1>
+    <h1>Image Text</h1>
+    <h1>Image Text</h1>
+    <h1>Image Text</h1>
+    <h1>Image Text</h1>
+    <div id="parentDIV">
+        <img id="backgroundDIV" src="../images/nasa1.png" alt="nasa이미지"/>
+        <p>창 크기가 변해도 본 텍스트는 사진상에 동일한 위치(top 10, left 20)에 있습니다.</p>
+    </div>
+</body>
+</html>

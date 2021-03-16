@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        header, body, h1, h2, h3, h4, h5, h6, p {
+            margin: 0px;
+        }
+        body {
+            min-width: 1000px;
+        }
+        
+        header {
+            background-color: pink;
+            line-height: 80px;
+            text-align: center;
+        }
+        
+        nav, section {
+            height: calc(100vh - 120px);
+        }
+        
+        nav {
+            background-color: green;
+            float: left;
+            width: calc(30% - 10px);/*왼쪽 10*/
+            padding-left: 10px;
+        }
+        
+        section {
+            background-color: yellow;
+            float: right;
+            width: 70%;
+        }
+        
+        footer{
+            background-color: navy;
+            color: white;
+            clear: both;
+            line-height: 40px;
+            text-aligh: center;  
+        }
+        
+        article {
+            padding: 10px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <!-- 머리글 : 헤드라인 필요 -->
+    <header>
+        <h1>My Blog Page</h1>
+    </header>
+    <div><!-- nav와 section 사이즈를 고정시키기 위함. -->
+	    <!-- 네비 -->
+	    <nav>
+	        <h2>Links</h2>
+	        <ul>
+	            <li><a href="https://www.google.com" target="_blank">W3C</a></li><!-- 링크 새창열기 -->
+	            <li><a href="https://www.google.com" target="_blank">MOZILLA</a></li>
+	            <li><a href="https://www.google.com" target="_blank">HTML</a></li>
+	        </ul>
+	        <img alt="" src="../images/W3School.png">
+	        <p>홍길동</p>
+	    </nav>
+	    <!-- 본문 -->
+	    <section>
+	        <!-- 시멘틱태그 -->
+	        <article>
+	            <h3>Semantic tags</h3>
+	            <p>시멘틱 요소들은 브라우저에게 요소의 의미나 목적을 명확하게 알려주는 요소이다.</p>
+	        </article>
+	        <!-- div 내용 -->
+	        <article>
+	            <h3>div와 span</h3>
+	            <p>div는 divide의 약자로서 대한민국 만세 만세 만만세
+	        </article>
+	    </section>
+    </div>
+    <!-- 바닥글 -->
+    <footer>
+        <p>Copyright (c) 2021 Hong</p>
+    </footer>
+</body>
+</html>
