@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+<script>
+/*split을 가지고 사이에 존재하는 문자를 변경할수도 있음.*/
+s = "one,Two,Three,Four,Five";
+array = s.split(',');//배열로 반환함
+document.writeln("split 결과 : " + array + "<br>");
+document.writeln("split 결과로 반환된 배열 길이 : " + array.length + "<br>");
+for(i = 0 ; i < array.length; i++){
+    document.writeln(i + '-' + array[i] + '<br>');
+}
+</script>
+
+</body>
+</html>
