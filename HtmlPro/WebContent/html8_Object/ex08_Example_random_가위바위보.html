@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+    <script>
+//     var randomNo = Math.random();//0~0.99999
+//     var randomNo = parseInt(Math.random() * 100 + 1);//1~100.9999 => parseInt 1~100
+     
+
+    
+    function test(){
+    	var val = document.getElementById("user").value;
+    	var arr = ["가위","바위","보"];
+        var randomNo = Math.floor(Math.random() * 3 + 1);//1~100
+    	
+    	if(val == arr[randomNo-1]){//비겼을 때
+    		alert("정답입니다.");
+    	} else if(val == "가위" && arr[randomNo-1] == "바위" ||
+    		   	val == "바위" && arr[randomNo-1] == "보" ||
+    		   	val == "보" && arr[randomNo-1] == "가위"
+    		   ){
+    		alert("나 : " + val + " 컴퓨터 : " + arr[randomNo-1] + " 졌어요");
+    	} else if(val == "가위" && arr[randomNo-1] == "보" ||
+                val == "바위" && arr[randomNo-1] == "가위" ||
+                val == "보" && arr[randomNo-1] == "바위"
+               ){
+    		alert("나 : " + val + " 컴퓨터 : " + arr[randomNo-1] + " 이겼어요");
+    	}else{
+    		alert("비교불가!!! 입력값 : " + val);
+    	}
+    }
+    </script>
+    <p>가위바위보를 입력하세요</p>
+    <input id="user" type="text">
+    <button type="button" onclick="test()">대결!</button>
+    <p id="message"></p>
+</body>
+</html>
