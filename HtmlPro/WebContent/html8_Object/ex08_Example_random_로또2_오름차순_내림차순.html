@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+    <h3>로또 번호 생성기</h3>
+    <button type="button" onclick="getLotto();">시작</button>
+    <hr>
+    <h1>출력위치</h1>
+    <p>결과: <span id="lottoResult"></span></p>
+    
+    <script>
+    function getLotto(){
+    	//1~45까지 중복없이 랜덤으로 6개 숫자 생성
+    	var arr = [];
+    	
+    	//arr이 6개가 될때까지 돌아야되므로 while문으로 함
+    	while(arr.length < 6){
+    		//arr.push();
+//     		Math.random() + 1 * 45 // 45~89.9999999;
+//     	    Math.random() * 45 + 1 // 1~45.999999
+    	    var no = Math.floor(Math.random() * 45 + 1); // 1 ~ 45
+    	    //배열에 담기 전에 중복값이 있는지 체크 (indexOf 에서 값이 없으면 -1이 나옴)
+    	    if(arr.indexOf(no) == -1){
+    	    	arr.push(no);
+    	    }
+    	}
+    	/* 정상 동작 */
+    	arr.sort(function(a, b) { // 오름차순
+    	    return a - b;
+    	    // 1, 2, 3, 4, 10, 11
+    	});
+
+//     	arr.sort(function(a, b) { // 내림차순
+//     	    return b - a;
+//     	    // 11, 10, 4, 3, 2, 1
+//     	});
+        
+//      문자로 정렬
+//      arr.sort();
+    	
+    	document.getElementById("lottoResult").innerHTML = arr;
+    }
+    </script>
+</body>
+</html>
