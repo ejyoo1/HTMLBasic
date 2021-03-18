@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>OnClick 이벤트 처리 방식</title>
+</head>
+<body>
+    <p id="demo1">현재시간 P 태그에 표시</p>
+    <button onclick="document.getElementById('demo1').innerHTML=Date()">
+    The time is?
+    </button>
+    
+    <h2>버튼에 시간 표시</h2>
+    <button onclick="this.innerHTML=Date()">The time is?</button>
+    
+    <h2>Script로 빼서 사용</h2>
+    <p id="demo2"></p>
+    <button onclick="displayDate()">The time is?</button>
+    <script>
+    function displayDate(){
+    	document.getElementById("demo2").innerHTML = Date();
+    }
+    </script>
+</body>
+</html>
