@@ -111,7 +111,7 @@ function proc2(){
     
     if(true){
         var arr_ssn = [];
-		var compare = [2,3,4,5,6,7,8,9,2,3,4,5];
+		var compare = [2,3,4,5,6,7,8,9];
 		var sum = 0;
 		
 		//110326-4432618
@@ -123,7 +123,14 @@ function proc2(){
 		
 		//1. 총 합을 구한다.
 		for(var i = 0; i < 12 ; i++){
-			sum = sum + (arr_ssn[i] * compare[i]);
+			
+			if(i < 8){
+				//compare index 0~7
+				sum = sum + (arr_ssn[i] * compare[i]);
+			} else{
+				//index 8~14
+				sum = sum + (arr_ssn[i] * compare[i-8]);
+			}
 		}
 	
 		
