@@ -9,5 +9,22 @@
 <button onclick="document.getElementById('myImg').src='../images/pic_bulbon.gif'">전원 켜기</button>
 <button onclick="document.getElementById('myImg').src='../images/pic_bulboff.gif'">전원 끄기</button>
 
+<img id="oneButtonMyImg" src="../images/pic_bulboff.gif">
+<button onclick="changeImage()">이미지 변경하기</button>
+<script>
+function changeImage(){
+    var orgSrc = document.getElementById("oneButtonMyImg").src;
+    
+    var newSrc;
+    if(orgSrc.indexOf("pic_bulboff") > -1){
+        newSrc = "../images/pic_bulbon.gif";
+    }else{
+        newSrc = "../images/pic_bulboff.gif";
+    }
+    
+    document.getElementById("oneButtonMyImg").src = newSrc;
+}
+</script>
+
 </body>
 </html>
