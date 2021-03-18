@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+<p id="test1" name="test1"></p>
+
+<!--
+    getElementsByName || TagName : 배열로 반환하는 형식 
+    document.getElementsByTagName("button") : 버튼 목록을 가져옴
+    document.getElementsByTagName("button")[1] : 버튼 목록 중 첫번째 값 가져옴.
+    document.getElementsByName("userName");
+    document.getElementsByName("userName")[0];
+ -->
+    <form>
+    <!-- 태그명과 id 또는 name 을 동일하게 사용하면 좋지 않음. -->
+        <input type="text" id="target" name="userName">
+        <button type="button" onclick="proc()">제출</button>
+        
+        <div>무궁화 꽃이 피었습니다.</div>
+        <button type="button" onclick="get()">내용 가져오기</button>
+        <button type="button" onclick="set('반갑습니다.')">내용 바꾸기</button>
+        
+        <div>
+        <img id="image1" alt="커피" src="../images/tiger.png" width="100">
+        <button type="button" onclick="changeImage()">이미지</button>
+        </div>
+        
+        <div>
+        <p id="p1" style="border: 1px solid red">안녕하세요</p>
+        <button type="button" onclick="changeStyle()">이미지</button>
+        </div>
+        
+    </form> 
+    <script>
+    function proc(){
+    	var obj = document.getElementById("target");
+    	
+    	alert(obj);//[object HTMLInputElement] : 요소를 선택했구나 알면 됨.
+    	alert(obj.value);// 사용자 입력값 출력됨
+    }
+    
+    function get(){
+    	document.getElementsByTagName("div"); //배열로 반환
+    	var obj = document.getElementsByTagName("div")[0];//0번째 객체를 가져옴
+    	alert(obj.innerHTML);//안에 존재하는 내용을 모두 가져옴
+    }
+    
+    /*메시지 하드코딩
+    function set(){
+        document.getElementsByTagName("div")[0].innerHTML = "안녕하세요";
+    }
+    */
+    
+    function set(param){
+        document.getElementsByTagName("div")[0].innerHTML = param;
+    }
+    
+    function changeImage(){
+    	document.getElementById("image1").src = "../images/nasa3.png";
+    }
+    
+    function changeStyle(){
+    	document.getElementById("p1").style.color = "red";
+    	//자바스크립트에서 사용할 때는 -를 쓰지않고 카멜표기법을 사용한다.
+    	document.getElementById("p1").style.fontStyle = "italic";
+    }
+    
+    </script>
+</body>
+</html>
