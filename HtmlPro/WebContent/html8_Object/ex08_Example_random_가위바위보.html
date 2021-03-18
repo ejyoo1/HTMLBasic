@@ -8,12 +8,11 @@
     <script>
 //     var randomNo = Math.random();//0~0.99999
 //     var randomNo = parseInt(Math.random() * 100 + 1);//1~100.9999 => parseInt 1~100
-     
-
     
-    function test(){
+    function test1(){
     	var val = document.getElementById("user").value;
-    	var arr = ["가위","바위","보"];
+    	var arr = ["가위","바위","보"];//0,1,2
+    	//parseInt(Math.random()*3);
         var randomNo = Math.floor(Math.random() * 3 + 1);//1~3
     	
     	if(val == arr[randomNo-1]){//비겼을 때
@@ -32,10 +31,63 @@
     		alert("비교불가!!! 입력값 : " + val);
     	}
     }
+    
+    
+    
+    //방법 2
+    //메시지 창은 변수에 담아 뒤에 한번에 하는 것이 좋다.
+    function test2(){
+        var arrGbb = ["가위","바위","보"];//0,1,2
+        //parseInt(Math.random()*3);
+        var comIdx = Math.floor(Math.random() * 3);//1~3
+        var comGbb = arrGbb[comIdx];
+        console.log(comGbb);
+        
+        var userGbb = document.getElementById("gbb").value;//가위,바위,보
+        var userIdx = arrGbb.indexOf(userGbb);
+        
+        //가위 바위 보 비교
+        if(comIdx == userIdx){//비겼을 때
+            alert("비겼습니다. \n " 
+            	    + "컴퓨터 : " + comGbb + "\n"
+            	    + "사용자 : " + userGbb + "\n"
+            );
+        } else if(comIdx < userIdx){// 0,1 0,2 1,2
+        	// 사용자가 이긴 경우 
+        	// => (컴,사) : (0,1), (0,2), (1,2)
+        	if(comIdx == 0 && userIdx == 2){//컴퓨터가 이긴 경우 ()
+        		alert("졌습니다. \n " 
+                        + "컴퓨터 : " + comGbb + "\n"
+                        + "사용자 : " + userGbb + "\n"
+                );
+        	}else{//사용자가 이긴 경우
+        		alert("이겼습니다. \n " 
+                        + "컴퓨터 : " + comGbb + "\n"
+                        + "사용자 : " + userGbb + "\n"
+                );
+        	}
+        } else if(comIdx > userIdx){// 1,0 2,0 2,1
+        	// 사용자가 이김
+            // => (컴,사) : (1,0), (2,0), (2,1)
+            if(comIdx == 2 && userIdx == 0){//사용자가 이긴 경우 
+                alert("이겼습니다. \n " 
+                        + "컴퓨터 : " + comGbb + "\n"
+                        + "사용자 : " + userGbb + "\n"
+                );
+            }else{//컴퓨터가 이긴 경우
+                alert("졌습니다. \n " 
+                        + "컴퓨터 : " + comGbb + "\n"
+                        + "사용자 : " + userGbb + "\n"
+                );
+            }
+        }
+    }
+    
     </script>
     <p>가위바위보를 입력하세요</p>
-    <input id="user" type="text">
-    <button type="button" onclick="test()">대결!</button>
+    <input id="gbb" type="text">
+    <button type="button" onclick="test1()">대결!(코드1)</button>
+    <button type="button" onclick="test2()">대결!(코드2)</button>
     <p id="message"></p>
 </body>
 </html>
