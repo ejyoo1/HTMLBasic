@@ -13,7 +13,6 @@
 <body>
 
 <script>
-/*색 랜덤 설정*/
 function changeimg(){
 	var arrImgs = document.getElementsByTagName("img");
 	if(arrImgs.length > 0){
@@ -36,9 +35,8 @@ function changeimg(){
     var arrGbb = ["가위","바위","보"];
     
     //값 설정
-    var userInput = document.getElementById("gbb").value;
-    var userIdx = arrGbb.indexOf(userInput);
-    var userVal = arrGbb[userIdx];
+    var userVal = document.getElementById("gbb").value;
+    var userIdx = arrGbb.indexOf(userVal);
     var comIdx = Math.floor(Math.random() * 3); //0,1,2
     var comVal = arrGbb[comIdx];
         
