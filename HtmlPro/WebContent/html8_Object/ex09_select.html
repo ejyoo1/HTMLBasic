@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>셀렉트 객체 예제</title>
+</head>
+</head>
+<body>
+<div>
+		<form style="width:300px; display:inline; float:left;">
+		    <select multiple id="mySelect1" size="8" style="width:300px">
+		        <option value="Apple">Apple</option>
+		        <option value="Pear">Pear</option>
+		        <option value="Banana">Banana</option>
+		        <option value="Orange">Orange</option>
+		    </select>
+		</form>
+	<div style="margin:0px 20px; display:inline; float:left;">
+        <button type="button" onclick="myFunction2()" style="display:block;"> > </button>
+        <button type="button" onclick="myFunction3()" style="display:block;"> < </button>
+        <button type="button" onclick="myFunction4()" style="display:block;"> >> </button>
+        <button type="button" onclick="myFunction5()" style="display:block;"> << </button>
+    </div>
+		<form style="width:300px; display:inline; float:left;"> 
+		    <select multiple id="mySelect2" size="8" style="width:300px">
+		        <option value="Apple">Apple</option>
+		        <option value="Pear">Pear</option>
+		        <option value="Banana">Banana</option>
+		        <option value="Orange">Orange</option>
+		    </select>
+		</form>
+</div>
+
+<footer style="clear:left;">
+<input id="userInput" type="text"> 
+<button type="button" onclick="myFunction1()"> Insert Option</button>
+</footer>
+
+<script>
+
+function createdOption(userInput, obj){
+	//옵션을 생성
+    var option = document.createElement("option");
+	
+  //옵션에 유저가 입력한 값과 value를 넣음
+    option.text = userInput;
+    option.value = userInput;
+    //셀렉트 객체에 옵션을 추가함
+    obj.add(option);
+}
+
+//추가
+function myFunction1(){
+	alert("데이터를 추가합니다.");
+	//셀렉트 객체를 가져옴
+	var obj = document.getElementById("mySelect1");
+	
+	//유저가 입력한 입력값을 가져옴
+    var userInput = document.getElementById("userInput").value;
+	
+	//옵션을 생성하는 메서드 호출
+	createdOption(userInput, obj);
+}
+
+//오른쪽으로 이동
+function myFunction2(){
+	alert("선택된 항목을 오른쪽으로 이동합니다.");
+	//왼쪽에 있는 셀렉트 객체를 가져옴
+    var action_list1 = document.getElementById("mySelect1");
+	//오른쪽에 있는 셀렉트 객체를 가져옴
+	var action_list2 = document.getElementById("mySelect2");
+	//선택된 옵션을 저장할 배열 생성함
+	var is_selected = [];
+	for(var i = 0 ; i < action_list1.options.length; ++i){
+		//왼쪽에 있는 셀렉트 객체에서 선택된 값이 있으면 배열에 저장함
+		is_selected[i] = action_list1.options[i].selected;
+	}
+	//왼쪽에 있는 셀렉트 객체의 옵션 길이를 가져옴
+	i = action_list1.options.length;
+	//뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
+	while(i--){
+		//배열에 값이 존재하면 
+		if(is_selected[i]){
+			//유저가 선택한 옵션 변수에 넣음
+			var userInput = action_list1.options[i].value
+			//옵션을 생성하는 메서드 호출(유저가 선택한 옵션, 추가할 셀렉트 객체)
+		    createdOption(userInput, action_list2);
+			
+			//왼쪽 목록에서 삭제
+			action_list1.remove(i);
+		}
+	}
+}
+
+//왼쪽으로 이동
+function myFunction3(){
+	alert("선택된 항목을 왼쪽으로 이동합니다.");
+    //왼쪽에 있는 셀렉트 객체를 가져옴
+    var action_list1 = document.getElementById("mySelect1");
+    //오른쪽에 있는 셀렉트 객체를 가져옴
+    var action_list2 = document.getElementById("mySelect2");
+    //선택된 옵션을 저장할 배열 생성함
+    var is_selected = [];
+    for(var i = 0 ; i < action_list2.options.length; ++i){
+        //왼쪽에 있는 셀렉트 객체에서 선택된 값이 있으면 배열에 저장함
+        is_selected[i] = action_list2.options[i].selected;
+    }
+    //왼쪽에 있는 셀렉트 객체의 옵션 길이를 가져옴
+    i = action_list2.options.length;
+    //뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
+    while(i--){
+        //배열에 값이 존재하면 
+        if(is_selected[i]){
+        	//유저가 선택한 옵션 변수에 넣음
+            var userInput = action_list2.options[i].value;
+            //옵션을 생성하는 메서드 호출(유저가 선택한 옵션, 추가할 셀렉트 객체)
+            createdOption(userInput, action_list1);
+           
+            //왼쪽 목록에서 삭제
+            action_list2.remove(i);
+        }
+    }
+}
+
+//오른쪽으로 이동
+function myFunction4(){
+	alert("전부 오른쪽으로 이동합니다");
+    //왼쪽에 있는 셀렉트 객체를 가져옴
+    var action_list1 = document.getElementById("mySelect1");
+    //오른쪽에 있는 셀렉트 객체를 가져옴
+    var action_list2 = document.getElementById("mySelect2");
+    //왼쪽에 있는 셀렉트 객체의 옵션 길이를 가져옴
+    i = action_list1.options.length;
+    //뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
+    while(i--){
+    	//유저가 선택한 옵션 변수에 넣음
+        var userInput = action_list1.options[i].value;
+        //옵션을 생성하는 메서드 호출(유저가 선택한 옵션, 추가할 셀렉트 객체)
+        createdOption(userInput, action_list2);
+      
+        //왼쪽 목록에서 삭제
+        action_list1.remove(i);
+    }
+}
+
+//왼쪽으로 이동
+function myFunction5(){
+    alert("전부 왼쪽으로 이동합니다");
+    //왼쪽에 있는 셀렉트 객체를 가져옴
+    var action_list1 = document.getElementById("mySelect1");
+    //오른쪽에 있는 셀렉트 객체를 가져옴
+    var action_list2 = document.getElementById("mySelect2");
+    //왼쪽에 있는 셀렉트 객체의 옵션 길이를 가져옴
+    i = action_list2.options.length;
+    //뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
+    while(i--){
+    	//유저가 선택한 옵션 변수에 넣음
+        var userInput = action_list2.options[i].value;
+        //옵션을 생성하는 메서드 호출(유저가 선택한 옵션, 추가할 셀렉트 객체)
+        createdOption(userInput, action_list1);
+        //왼쪽 목록에서 삭제
+        action_list2.remove(i);
+    }
+}
+
+</script>
+</body>
+</html>
