@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<button type="button" onclick="addImages()">실행</button>
+	<ul>
+	<li id="img1" onclick="addImages(this)">컴퓨터1</li>
+	<li id="img2" onclick="addImages(this)">식품2</li>
+	<li id="img3" onclick="addImages(this)">호랑이</li>
+	<li id="img4" onclick="addImages(this)">클라우드</li>
+	<li id="img5" onclick="addImages(this)">커피</li>
+</ul>
+<script>
+function addImages(e){
+	
+	/*
+	//이미지 전체 삭제
+	var arrImgs = document.getElementsByTagName("img");
+	for(var i = 0 ; i < arrImgs.length ; i++){
+		arrImgs[i].remove();
+	}
+	*/
+
+	
+	//생성할 이미지 세팅
+	var imgObj = document.createElement('img');
+	imgObj.id = "li" + e.id;
+	imgObj.alt = "altTest";
+	imgObj.src = "../images/" + e.id + ".png";
+	imgObj.height = "30"
+	    
+	//e에 이미지 추가
+	e.appendChild(imgObj);//<li></li>
+	
+	//모든 자식 찾기 : e.childNodes
+	//첫번째 자식 : firstChild
+	//마지막 자식 : lastChild
+	
+//     alert(e); //[object HTMLLIElement] => <li id="tmp1" onclick="addImg(this)">컴퓨터</li>
+//     alert(e.innerHTML); //컴퓨터1
+//     alert(e.id);
+//     alert(e.src);
+}
+
+</script>
+</body>
+</html>
