@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+<script>
+function addtest(t){
+	var node = document.createTextNode(t);
+	document.getElementById("target").appendChild(node);
+}
+</script>
+
+<div id="target" style="font: 20px bold" onclick="addtest('무궁화 꽃이 피었습니다.')">
+여기를 클릭하세요
+</div>
+</body>
+</html>
