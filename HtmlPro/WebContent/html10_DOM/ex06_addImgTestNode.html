@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<button type="button" onclick="addImages()">실행</button>
+	<ul>
+	<li onclick="addImg()">컴퓨터1</li>
+	<li onclick="addImg()">식품2</li>
+	<li onclick="addImg()">호랑이</li>
+	<li onclick="addImg()">클라우드</li>
+	<li onclick="addImg()">커피</li>
+</ul>
+<script>
+function addImages(){
+	var arr = document.getElementsByTagName("li");
+	
+	//이미지 소스를 가지고 있는 배열
+	var arrImgSrc = ["img1.png","img2.png","img3.png","img4.png","img5.png"];
+	
+	for(var i = 0 ; i < arr.length ; i++){
+		var imgObj = document.createElement('img');
+		//<img alt="" src="" height="30">
+		imgObj.alt = "altTest";
+		imgObj.src = "../images/" + arrImgSrc[i];
+		imgObj.height = "30"
+		
+		arr[i].appendChild(imgObj);//<li></li>
+	}
+}
+</script>
+</body>
+</html>
