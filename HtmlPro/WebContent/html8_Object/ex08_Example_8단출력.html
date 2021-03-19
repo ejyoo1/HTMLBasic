@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+    <script>
+//     var randomNo = Math.random();//0~0.99999
+//     var randomNo = parseInt(Math.random() * 100 + 1);//1~100.9999 => parseInt 1~100
+     
+
+    
+    function pickNow(){
+        var dan = document.getElementById("userNum").value;
+        var numbers = "";
+      //구구단계산
+        for(var i = 1 ; i < 9 ; i++){
+        	numbers += dan + "*" + i + "=" + (dan*i) + "\n";
+        }
+        document.guguForm.result.value = numbers;
+    	
+    }
+    </script>
+    <p>구구단 출력기</p>
+    <input id="userNum" type="text">
+    <button type="button" onclick="pickNow();">출력</button>
+    <hr>
+    <form name="guguForm">
+        <p><textarea name="result" rows="50" cols="50" readonly></textarea></p>
+    </form>
+</body>
+</html>
