@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+<p> 동해물과 백두산이 </p>
+<!-- 
+  document.body : body 내 요소를 전부 가져옴
+  document.head : head 내 요소를 전부 가져옴
+  document.element : HTML을 반환함.
+  document.documentElement : 
+ -->
+ 
+ <!-- 
+    document.getElementById("tmp2").parentElement
+    document.getElementById("tmp2").children : 이것을 사용하여 하위 요소를 찾는것이 좋음.
+    document.getElementById("tmp2").childNodes : 들여쓰기를 하여 탭을 한 경우 Node로 출력시 탭까지 나옴.
+    document.getElementById("tmp2").firstElementChild : 아메리카노 출력
+    document.getElementById("tmp2").firstChild : 첫째 자식 출력 들여쓰기 있는 경우 들여쓰기 출력됨.
+    document.getElementById("tmp2").lastElementChild : 카페라떼 출력
+    document.getElementById("tmp2").lastChild : 마지막 자식 출력. 공백이 있는 경우 공백 출력
+    document.getElementById("tmp3") : <li id=​"tmp3">​…​</li>
+    document.getElementById("tmp3").nextSibling : tmp3 다음 요소 출력 ( 공백이 있는경우 공백 출력)
+    document.getElementById("tmp3").nextElementSibling : tmp3 다음 엘리먼트 출력 : 카페라떼
+    document.getElementById("tmp3").previousElementSibling : 앞에 있는 엘리먼트 출력 : 아메리카노
+    document.getElementById("tmp3").tagName : LI 출력
+    document.getElementById("tmp3").nodeName : LI 출력
+    document.getElementById("tmp3").nextSibling.nextSibling.nodeName : LI 출력(공백포함)
+    document.getElementById("tmp3").textContent : 카푸치노 출력
+    카푸치노도 텍스트 노드로 감싸져 있는것임.
+    document.getElementById("tmp3").firstChild : 텍스트 객체를 찾음(검정색 : 객체 내용)
+    document.getElementById("tmp3").firstChild.nodeValue : 텍스트 출력됨(빨간색 : 순수한 글자)​
+  -->
+ <ul id="tmp2">
+    <li>아메리카노</li>
+    <li id="tmp3">카푸치노</li>
+    <li>카페라떼</li>
+ </ul>
+</body>
+</html>
