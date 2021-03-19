@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+    <div id="target">
+        <p id="p1">첫번째 단락</p>
+        <p id="p2">두번째 단락</p>
+    </div>
+    <button type="button" onclick="removeChild1()">삭제</button>
+<script>
+function removeChild1(){
+	var parentEle = document.getElementById("target");//<div>
+	var childEle = document.getElementById("p1");//<p>
+	parentEle.removeChild(childEle);
+}
+</script>
+</body>
+</html>
