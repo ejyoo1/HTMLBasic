@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>가위바위 보 게임</title>
+	<style>
+	img{
+	   width: 100px;
+	   height: 100px;
+	}
+	</style>
+</head>
+<body>
+
+<script>
+/*색 랜덤 설정*/
+function changeimg(){
+	var arrImgs = document.getElementsByTagName("img");
+	if(arrImgs.length > 0){
+		//이미지 전체 삭제
+	    for(var i = arrImgs.length-1 ; i >= 0 ; i--){
+	    	arrImgs[i].remove();
+	    }
+	}
+	
+	
+	//id 가져오기
+    var userImg = document.getElementById("userImg");
+    var comImg = document.getElementById("comImg");
+    
+    //이미지 세팅
+    var userImages = ["ga_right","ba_right","bo_right"];
+    var comImages = ["ga_left","ba_left","bo_left"];
+    
+    //가위 바위 보 배열
+    var arrGbb = ["가위","바위","보"];
+    
+    //값 설정
+    var userInput = document.getElementById("gbb").value;
+    var userIdx = arrGbb.indexOf(userInput);
+    var userVal = arrGbb[userIdx];
+    var comIdx = Math.floor(Math.random() * 3); //0,1,2
+    var comVal = arrGbb[comIdx];
+        
+    //생성할 이미지 세팅(컴퓨터)
+    var imgObj = document.createElement('img');
+    imgObj.id = "computer";
+    imgObj.alt = "computer";
+    imgObj.src = "../images/" + comImages[comIdx] + ".jpg";
+    imgObj.height = "30"
+        
+    //e에 이미지 추가
+    user.appendChild(imgObj);//<li></li>
+    
+  //생성할 이미지 세팅(사용자)
+    var imgObj = document.createElement('img');
+    imgObj.id = "user";
+    imgObj.alt = "user";
+    imgObj.src = "../images/" + userImages[userIdx] + ".jpg";
+    imgObj.height = "30"
+        
+    //e에 이미지 추가
+    com.appendChild(imgObj);//<li></li>
+    
+    
+    //----------------------------------------------------------------------
+  //가위 바위 보 비교
+    if(comIdx == userIdx){//비겼을 때
+    	document.getElementById("result").innerHTML = "비겼습니다. 컴퓨터 : " + comVal + " 사용자 : " + userVal;
+    } else if(comIdx < userIdx){// 0,1 0,2 1,2
+        // 사용자가 이긴 경우 
+        // => (컴,사) : (0,1), (0,2), (1,2)
+        if(comIdx == 0 && userIdx == 2){//컴퓨터가 이긴 경우 ()
+        	document.getElementById("result").innerHTML = "졌습니다. 컴퓨터 : " + comVal + " 사용자 : " + userVal;
+        }else{//사용자가 이긴 경우
+        	document.getElementById("result").innerHTML = "이겼습니다. 컴퓨터 : " + comVal + " 사용자 : " + userVal;
+        }
+    } else if(comIdx > userIdx){// 1,0 2,0 2,1
+        // 사용자가 이김
+        // => (컴,사) : (1,0), (2,0), (2,1)
+        if(comIdx == 2 && userIdx == 0){//사용자가 이긴 경우 
+        	document.getElementById("result").innerHTML = "이겼습니다. 컴퓨터 : " + comVal + " 사용자 : " + userVal;
+        }else{//컴퓨터가 이긴 경우
+        	document.getElementById("result").innerHTML = "졌습니다. 컴퓨터 : " + comVal + " 사용자 : " + userVal;
+        }
+    }
+    
+    
+    
+}//close function
+
+
+</script>
+<p>가위바위보를 입력하세요</p>
+<div>
+	<input id="gbb" type="text">
+	<button type="button" onclick="changeimg()">대결!</button>
+</div>
+<div id="user" style="display:inline;"></div>
+<div id="com" style="display:inline;"></div>
+<div id="result"></div>
+</body>
+</html>
