@@ -3,26 +3,46 @@
 <head>
 	<meta charset="UTF-8">
 	<title>셀렉트 객체 예제</title>
-</head>
+    <style>
+        .btn {
+            display: block;
+        }
+        
+        .formTag {
+            width:120px;
+            display:inline;
+            float:left;
+            text-align: center;
+        }
+        
+        select {
+            width:100px;
+        }
+        
+        footer {
+            clear:left;
+        }
+        
+    </style>
 </head>
 <body>
 <div>
-		<form style="width:300px; display:inline; float:left;">
-		    <select multiple id="mySelect1" size="8" style="width:300px">
-		        <option value="Apple">Apple</option>
-		        <option value="Pear">Pear</option>
-		        <option value="Banana">Banana</option>
-		        <option value="Orange">Orange</option>
-		    </select>
-		</form>
-	<div style="margin:0px 20px; display:inline; float:left;">
-        <button type="button" onclick="myFunction2()" style="display:block;"> > </button>
-        <button type="button" onclick="myFunction3()" style="display:block;"> < </button>
-        <button type="button" onclick="myFunction4()" style="display:block;"> >> </button>
-        <button type="button" onclick="myFunction5()" style="display:block;"> << </button>
+	<form class="formTag">
+	    <select multiple id="mySelect1" size="8" >
+	        <option value="Apple">Apple</option>
+	        <option value="Pear">Pear</option>
+	        <option value="Banana">Banana</option>
+	        <option value="Orange">Orange</option>
+	    </select>
+	</form>
+	<div class="formTag">
+        <button class="btn" type="button" onclick="myFunction2()" > > </button>
+        <button class="btn" type="button" onclick="myFunction3()" > < </button>
+        <button class="btn" type="button" onclick="myFunction4()" > >> </button>
+        <button class="btn" type="button" onclick="myFunction5()" > << </button>
     </div>
-		<form style="width:300px; display:inline; float:left;"> 
-		    <select multiple id="mySelect2" size="8" style="width:300px">
+		<form class="formTag"> 
+		    <select multiple id="mySelect2" size="8">
 		        <option value="Apple">Apple</option>
 		        <option value="Pear">Pear</option>
 		        <option value="Banana">Banana</option>
@@ -31,7 +51,7 @@
 		</form>
 </div>
 
-<footer style="clear:left;">
+<footer>
 <input id="userInput" type="text"> 
 <button type="button" onclick="myFunction1()"> Insert Option</button>
 </footer>
@@ -51,7 +71,6 @@ function createdOption(userInput, obj){
 
 //추가
 function myFunction1(){
-	alert("데이터를 추가합니다.");
 	//셀렉트 객체를 가져옴
 	var obj = document.getElementById("mySelect1");
 	
@@ -69,7 +88,7 @@ function myFunction2(){
     var action_list1 = document.getElementById("mySelect1");
 	//오른쪽에 있는 셀렉트 객체를 가져옴
 	var action_list2 = document.getElementById("mySelect2");
-	//선택된 옵션을 저장할 배열 생성함
+	//옵션이 선택됐는지 여부를 boolean 상태로 저장
 	var is_selected = [];
 	for(var i = 0 ; i < action_list1.options.length; ++i){
 		//왼쪽에 있는 셀렉트 객체에서 선택된 값이 있으면 배열에 저장함
@@ -79,7 +98,7 @@ function myFunction2(){
 	i = action_list1.options.length;
 	//뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
 	while(i--){
-		//배열에 값이 존재하면 
+		//옵션이 선택되었다면
 		if(is_selected[i]){
 			//유저가 선택한 옵션 변수에 넣음
 			var userInput = action_list1.options[i].value
@@ -99,7 +118,7 @@ function myFunction3(){
     var action_list1 = document.getElementById("mySelect1");
     //오른쪽에 있는 셀렉트 객체를 가져옴
     var action_list2 = document.getElementById("mySelect2");
-    //선택된 옵션을 저장할 배열 생성함
+    //옵션이 선택됐는지 여부를 boolean 상태로 저장
     var is_selected = [];
     for(var i = 0 ; i < action_list2.options.length; ++i){
         //왼쪽에 있는 셀렉트 객체에서 선택된 값이 있으면 배열에 저장함
