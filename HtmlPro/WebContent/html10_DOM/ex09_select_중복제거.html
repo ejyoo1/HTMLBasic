@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>셀렉트 객체 예제</title>
+    <style>
+	    * {
+	    box-sizing: border-box; /*박스 사이즈를 패딩과 여백 포함설정함.*/
+	    margin: 0; /*마진 0으로 시작*/
+	    padding: 0; /*패딩 0으로 시작*/
+	   }
+	   
+	   /*
+        select 폼영역을 가운데로 가기위해 
+              왼쪽 가운데 오른쪽으로 나누어 display:inline를 주고 왼 오 30%씩 영역을 잡고 가운데는 100% - 60%를 뺌
+        float: left를 줌 
+        */
+        .contents{
+            display:inline;
+            float:left;
+            padding: 10px 0px;
+        }
+        
+        #left {
+            width: 30%;/*왼쪽 길이 설정*/
+        }
+        
+        #center  { /*가운데 영역으로 놓기 위해 설정*/ 
+            display: inline;
+            overflow: hidden;
+            width: calc(100% - 60%);
+        }
+        
+        #right {
+            width: 30%;/*오른쪽 길이 설정*/
+        }
+        
+        .formTag {
+            display:inline; /*가운데 select 2개와 버튼영역 가로로 설정하기 위함*/
+            float:left;
+            margin: 0px 10px;
+        }
+        
+        .formTag select {
+            width: 70px;/*70이상되면 깨짐 데이터가 없어도 최소 크기 유지하기 위해 설정함 */
+        }
+        
+        .btn {
+            display: block; /*버튼 세로로 놓기 위해 설정*/
+            width: 50px;
+        }
+        
+        footer {
+            clear:left;/*하단 배치 위함*/
+            text-align: center;/*입력 영역 가운데로*/
+            
+        }
+        
+    </style>
+</head>
+<body>
+<div>
+	<div id="left" class="contents"><pre> </pre></div><!-- select 중앙에 배치하기 위해 공백 삽입 -->
+	<div id="center" class="contents">
+	<!-- select 도 서버에 전송하는 데이터 이므로 value를 사용할 수 있음 옵션 선택하여 가져올 수 있음 -->
+		<form class="formTag">
+		    <select multiple id="mySelect1" size="8" >
+		        <option value="Apple">Apple</option>
+		        <option value="Pear">Pear</option>
+		        <option value="Banana">Banana</option>
+		        <option value="Orange">Orange</option>
+		    </select>
+		</form>
+		<div class="formTag">
+	        <button class="btn" type="button" onclick="myFunction2()" > > </button>
+	        <button class="btn" type="button" onclick="myFunction3()" > < </button>
+	        <button class="btn" type="button" onclick="myFunction4()" > >> </button>
+	        <button class="btn" type="button" onclick="myFunction5()" > << </button>
+	    </div>
+		<form class="formTag"> 
+		    <select multiple id="mySelect2" size="8">
+		        <option value="Apple">Apple</option>
+		        <option value="Pear">Pear</option>
+		        <option value="Banana">Banana</option>
+		        <option value="Orange">Orange</option>
+		    </select>
+		</form>
+	</div>
+	<div id="right" class="contents"><pre> </pre></div><!-- select 중앙에 배치하기 위해 공백 삽입 -->
+</div>
+<footer>
+<input id="userInput" type="text"> 
+<button type="button" onclick="myFunction1()"> Insert Option</button>
+</footer>
+
+<script>
+/*중복 코드이므로 action_list1, action_list2 전역변수로 빼서 구현함.*/
+//왼쪽에 있는 셀렉트 객체를 가져옴
+var action_list1 = document.getElementById("mySelect1");
+//오른쪽에 있는 셀렉트 객체를 가져옴
+var action_list2 = document.getElementById("mySelect2");
+
+
+function createdOption(userInput, obj){
+	//옵션을 생성
+    var option = document.createElement("option");
+	
+    //옵션에 유저가 입력한 값과 value를 넣음
+    option.text = userInput;
+    option.value = userInput;
+    //셀렉트 객체에 옵션을 추가함
+    obj.add(option);
+}
+
+//추가
+function myFunction1(){
+	//유저가 입력한 입력값을 가져옴
+    var userInput = document.getElementById("userInput").value;
+	
+	//옵션을 생성하는 메서드 호출
+	createdOption(userInput, action_list1);
+}
+
+//오른쪽으로 이동
+function myFunction2(){
+	alert("선택된 항목을 오른쪽으로 이동합니다.");
+	//옵션이 선택됐는지 여부를 boolean 상태로 저장
+	var is_selected = [];
+	for(var i = 0 ; i < action_list1.options.length; ++i){
+		//왼쪽에 있는 셀렉트 객체에서 선택된 값이 있으면 배열에 저장함
+		is_selected[i] = action_list1.options[i].selected;
+	}
+	//왼쪽에 있는 셀렉트 객체의 옵션 길이를 가져옴
+	i = action_list1.options.length;
+	//뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
+	while(i--){
+		//옵션이 선택되었다면
+		if(is_selected[i]){
+			//유저가 선택한 옵션 변수에 넣음
+			var userInput = action_list1.options[i].value
+			//옵션을 생성하는 메서드 호출(유저가 선택한 옵션, 추가할 셀렉트 객체)
+		    createdOption(userInput, action_list2);
+			
+			//왼쪽 목록에서 삭제
+			action_list1.remove(i);
+		}
+	}
+}
+
+//왼쪽으로 이동
+function myFunction3(){
+	alert("선택된 항목을 왼쪽으로 이동합니다.");
+    //옵션이 선택됐는지 여부를 boolean 상태로 저장
+    var is_selected = [];
+    for(var i = 0 ; i < action_list2.options.length; ++i){
+        //왼쪽에 있는 셀렉트 객체에서 선택된 값이 있으면 배열에 저장함
+        is_selected[i] = action_list2.options[i].selected;
+    }
+    //왼쪽에 있는 셀렉트 객체의 옵션 길이를 가져옴
+    i = action_list2.options.length;
+    //뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
+    while(i--){
+        //배열에 값이 존재하면 
+        if(is_selected[i]){
+        	//유저가 선택한 옵션 변수에 넣음
+            var userInput = action_list2.options[i].value;
+            //옵션을 생성하는 메서드 호출(유저가 선택한 옵션, 추가할 셀렉트 객체)
+            createdOption(userInput, action_list1);
+           
+            //왼쪽 목록에서 삭제
+            action_list2.remove(i);
+        }
+    }
+}
+
+//오른쪽으로 이동
+function myFunction4(){
+	alert("전부 오른쪽으로 이동합니다");
+    //왼쪽에 있는 셀렉트 객체의 옵션 길이를 가져옴
+    i = action_list1.options.length;
+    //뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
+    while(i--){
+    	//유저가 선택한 옵션 변수에 넣음
+        var userInput = action_list1.options[i].value;
+        //옵션을 생성하는 메서드 호출(유저가 선택한 옵션, 추가할 셀렉트 객체)
+        createdOption(userInput, action_list2);
+      
+        //왼쪽 목록에서 삭제
+        action_list1.remove(i);
+    }
+}
+
+//왼쪽으로 이동
+function myFunction5(){
+    alert("전부 왼쪽으로 이동합니다");
+    //왼쪽에 있는 셀렉트 객체의 옵션 길이를 가져옴
+    i = action_list2.options.length;
+    //뒤에서 부터 시작(삭제되면 자동으로 길이가 줄기때문에)
+    while(i--){
+    	//유저가 선택한 옵션 변수에 넣음
+        var userInput = action_list2.options[i].value;
+        //옵션을 생성하는 메서드 호출(유저가 선택한 옵션, 추가할 셀렉트 객체)
+        createdOption(userInput, action_list1);
+        //왼쪽 목록에서 삭제
+        action_list2.remove(i);
+    }
+}
+
+</script>
+</body>
+</html>
