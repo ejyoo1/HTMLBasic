@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+	   div{
+	   height: 200px;
+	   border:1px solid red;
+	   }
+	</style>
+    <script>
+    /*목적지에 dragover가 정의되어있어야 한다.*/
+    function allowDrop(ev){
+    	ev.preventDefault();
+    }
+    
+    function drag(ev){
+//     	console.log("drop 이벤트 ::::::: " + ev);/*드래그 시작하는 시점에 콘솔로 찍음*/
+    	//dataTransfer : 문법이라고 생각
+        //어떤것을 옮길건지 세팅함.(K,V); 요소 id를 넣어준 것임.
+    	ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    function drop(ev){
+    	console.log("drop 이벤트 ::::::: " + ev.target);//div.element
+    	//preventDefault() Jquery 하면서 배울것임. : 기본 설정값을 막는다는 의미임
+    	ev.preventDefault();
+    	//data : ev.target.id
+    	//text 키워드로 넣었던 것을 가져옴
+    	var data = ev.dataTransfer.getData("text");
+    	console.log("drop dataTransfer 이벤트 ::::::: " + ev.dataTransfer.getData("text"));
+    	//자식 요소로 이미지를 넣어주어야 함.
+    	var img = document.getElementById(data)
+    	ev.target.appendChild(img);
+    }
+    </script>
+</head>
+<body>
+<!-- 
+draggable ="드래그 가능함"
+
+ -->
+ <!-- div 태그에 놓을것이기 때문에 drop 이벤트가 있어야함. -->
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">이미지를 옮겨올 영역</div>
+<br>
+<!-- 
+드래그를 하기위해 드래그 하는 이벤트 넣어주어야 함. draggable => 이것의 기본값은 false임
+드래그를 시작하기 위해 ondragstart 함수 호출
+이때 event라고 쓰면 this 키워드 처럼 기본 파라미터로 이벤트 정보를 넣어줄 수 있다.
+ -->
+<img id="drag1" src="../images/img1.png" ondragstart="drag(event)"
+width="336" height="69" draggable="true">
+
+
+</body>
+</html>
