@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+    <script>
+//     var randomNo = Math.random();//0~0.99999
+//     var randomNo = parseInt(Math.random() * 100 + 1);//1~100.9999 => parseInt 1~100
+     
+
+    
+    function pickNow(){
+        var dan = document.getElementById("gbb").value; // 2, 3 추출
+        var numbers = "";
+      //구구단계산
+        for(var i = 1 ; i < 10 ; i++){
+        	numbers += dan + "*" + i + "=" + (dan*i) + "<br>";//textArea일 때 "\n" , html 일 때 <br>
+        }
+        //textArea에 찍기
+        /*누적하지 않음*/
+//         document.guguForm.result.value = numbers;
+        /*누적하고자 하는 경우*/
+//         document.guguForm.result.value += numbers;
+        
+        //요소를 생성해서 p태그에 추가 - createElement
+        
+        var ele = document.createElement("p");
+        
+        ele.innerHTML = numbers;
+        document.getElementById("result").appendChild(ele);
+        
+        
+        /*
+        //case2)텍스트 노드를 생성해서 추가 : createTextNode (텍스트화 됨)(적합하지 않음)
+        var node = document.createTextNode(result);
+        document.getElemenetById("result").appendChild(node);
+        */
+        
+        /*
+        //case3) innerHTML(적합하지 않음)
+        //div에 있던 innerHTML을 가져와 담아줌
+        var tmpHtml = document.getElementById("result").innerHTML;
+        //원래 있었던 innerHTML에 내가 추가하고 싶은 result 값을 가져옴
+        tmpHtml = tmpHtml + numbers;
+        document.getElementById("result").innerHTML = tmpHtml;
+        */
+    }
+    
+    </script>
+    <p>구구단 출력기</p>
+    <div id="result">
+        <select id="gbb">
+        <!-- value: 실제 컨트롤 하기위한 데이터 -->
+            <option value="2">2단</option>
+            <option value="3">3단</option>
+        </select>
+    </div>
+    <button type="button" onclick="pickNow2();">출력</button>
+    
+<script type="text/javascript">
+//select
+var parentEle = document.getElementById("gbb");
+
+//생성할 옵션에 value 값과 사용자에게 보여줄 값을 세팅
+// ele.value = 2;//옵션의 value
+// ele.innerHTML = "2단"; //사용자에게 보여질 값 */
+//parentEle에 만든 옵션을 넣어줌
+// parentEle.appendChild(ele);
+//2단부터 9단까지 할 것이기 때문에 생성하고 추가하는 것이 반복이여야 함.
+for(var i = 3 ; i < 10 ; i++){//2부터 9단까지 
+	//옵션 생성
+	var ele = document.createElement("option");
+//     생성할 옵션에 value 값과 사용자에게 보여줄 값을 세팅
+    ele.value = i;//옵션의 value
+    ele.innerHTML = i+"단"; //사용자에게 보여질 값 
+    
+    parentEle.appendChild(ele);
+}
+
+function pickNow2(){
+	var dan = document.getElementById("gbb").value; // 2, 3 추출
+    var numbers = "";
+  //구구단계산
+    for(var i = 1 ; i < 10 ; i++){
+        numbers += dan + "*" + i + "=" + (dan*i) + "<br>";//textArea일 때 "\n" , html 일 때 <br>
+    }
+  
+    //요소를 생성해서 p태그에 추가 - createElement
+    
+    var ele = document.createElement("p");
+    
+    ele.innerHTML = numbers;
+    document.getElementById("result").appendChild(ele);
+  
+
+}
+    
+</script>
+</body>
+</html>
