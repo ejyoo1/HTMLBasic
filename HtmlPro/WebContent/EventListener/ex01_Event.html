@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<script>
+/*배경을 바꾸는 예제*/
+function changeColor(c){
+	document.getElementById("target").style.backgroundColor = c;
+}
+</script>
+<body id="target">
+<!-- 
+** 마우스
+onload : 많이 씀
+onclick : 
+ondbclick : 
+onmouseover :
+onmousemove : 
+onmouseout : 
+
+div에 마우스에 대한 이벤트를 걸면 css에 대한 설정을 할 수 있다.
+
+onfocus : 키보드로 왔다갔다
+onblur : 
+onchange : 많이 사용 select요소가 많이 사용 ( 주소 검색할 때 대전광역시 시, 도 에 따라 나오는 것에 활용)
+
+
+이벤트 리스너 : 이벤트를 추가하고 삭제하는 것
+
+ -->
+ 
+ 
+ 
+<form method="post">
+    <input type="radio" name="c1" value="v1" onclick="changeColor('lightblue')">파랑색
+    <input type="radio" name="c1" value="v2" onclick="changeColor('lightgreen')">녹색
+</form>
+ 
+</body>
+</html>
