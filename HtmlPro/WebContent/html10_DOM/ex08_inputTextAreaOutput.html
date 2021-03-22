@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자 입력 값 TextArea에 출력하기</title>
+
+</head>
+<body>
+
+<!-- 이름 -->
+<label for="userName">이름</label>
+<input type="text" id="userName"/><br>
+
+<!-- 성별 -->
+<input type="radio" name="gender" value="M" id="genderMail" title="남자"/>
+<label for="genderMail">남자</label>
+<input type="radio" name="gender" value="F" id="genderFemale" title="여자" checked/>
+<label for="genderFemale">여자</label><br>
+
+<!-- 취미 -->
+<input type="checkbox" name="hobby" id="hobby1" value="01" > 
+<label for="hobby1">독서</label>
+<input type="checkbox" name="hobby" id="hobby2" value="02" checked> 
+<label for="hobby1">운동</label>
+<input type="checkbox" name="hobby" id="hobby3" value="03" checked> 
+<label for="hobby1">음악듣기(기본값 체크)</label>
+<input type="checkbox" name="hobby" id="hobby4" value="04" > 
+<label for="hobby1">맛집탐방</label><br>
+
+<!-- 버튼 -->
+<button onclick="result()">결과 출력</button><br>
+
+<!-- 결과 출력 영역 -->
+<textarea id="result" rows="5" cols="50" name="etc">결과</textarea>
+
+
+<script>
+
+function result() {
+    
+  var userResult = document.getElementById("userName").value + "님!\n";
+  userResult += "당신은";
+  
+  var gender =document.getElementsByName("gender");
+  for(i=0; i<gender.length; i++){
+      if(gender[i].checked==true){
+          userResult += document.getElementsByName("gender")[i].value +"이고 \n";
+      }else{
+          continue;
+      }
+  }
+  
+  userResult += "취미는";
+  var objHobby = document.getElementsByName("hobby");
+  
+  for(var i = 0 ; i < objHobby.length ; i++){
+	  if(objHobby[i].checked == true){
+		if(i == objHobby.length - 1){
+			//objHobby[i].value : on
+			//objHobby[i].innerText : 
+			userResult += objHobby[i].value;
+// 			alert(objHobby[i].value);
+		}else{
+			userResult += objHobby[i].value + ", ";
+// 			alert(objHobby[i].value);
+		}
+	  }
+  }
+  /*
+  현재 가져온 값이 배열인지 컬렉션인지 확인하는 방법
+  document.getElementById 하여 찍어보면
+  컬렉션인 경우 컬렉션이라고 나옴. 배열인 경우 nodeList 나옴
+  //배열에서 꺼내서 tmp에 넣어줌
+  방법1)
+  for(var tmp of arr1){
+	  tmp.checked
+  }
+  방법2)배열할 때 on
+  for(var i = 0 ; i < objHobby.length ; i++){
+	  objHobby[i].checked
+  }
+  
+  방법3)컬렉션 쓸때는 in
+  for(var tmp in arr2){
+	  
+  }
+  */
+  userResult += "이군요!";
+  document.getElementById("result").value = userResult;
+//   alert(userResult);
+}
+
+</script>
+</body>
+</html>
