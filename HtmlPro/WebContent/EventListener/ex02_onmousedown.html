@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+    <script>
+    function changeColor1(button){
+    	button.style.color = "#ff0000";
+    }
+    function changeColor2(button){
+    	button.style.color = "#000000";
+    }
+    </script>
+</head>
+<body>
+    <button onmousedown="changeColor1(this)"
+        onmouseup="changeColor2(this)">
+      눌러보세요!
+    </button>
+</body>
+</html>
