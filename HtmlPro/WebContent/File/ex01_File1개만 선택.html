@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>파일</title>
+	<script>
+	//파일 객체를 이용해서 파일의 정보를 가지고 오는것임.
+	function readFile(){
+// 		document.getElementById("attachFile");// ==> input 반환
+		var files = document.getElementById("attachFile").files;//==> file list 반환
+		//첨부파일은 1개이므로 0번째꺼를 가져옴
+// 		file[0] ==> File객체
+        //document.getElementById("attachFile").files[0];
+        //첨부 파일이 없는 경우도 생각해야 함.(if문 체크)
+	    var file = files[0];
+        //이 정보를 담아서 String으로 담아 textArea innerHTML로 넣어주면 됨.
+        /*
+	        file.name;//파일명
+	        file.size;//파일사이즈
+	        file.type;//파일타입
+	        file.lastModifiedDate;//마지막 수정일자
+        */
+        
+        //textarea에 담을 문자 만들기
+        var str = "";
+        str += "■파일 명■ '" + file.name + "'\n";//파일명
+        str += "■파일 사이즈■ '" + file.size + "'\n";//파일사이즈
+        str += "■파일 타입■ '" + file.type + "'\n";//파일타입
+        str += "■파일 최종 수정 일시■ '" + file.lastModifiedDate + "'\n";//마지막 수정일자(파일 최종 수정 일시)
+        
+        document.getElementById("result").innerHTML = str;//담기
+	}
+	</script>
+</head>
+<body>
+<!-- document.getElementsByTagName("input") -->
+<!-- document.getElementsByTagName("input")[0].files -->
+    <input type="file" id="attachFile">
+    <!-- 버튼 눌렀을 때 파일명 사이즈 종류 수정일자를 textArea에 보여주기 위한 버튼 -->
+    <button type="button" onclick="readFile()">파일읽기</button><br><br>
+    <textArea id="result" rows="6" cols="50">내용영역</textArea>
+</body>
+</html>
