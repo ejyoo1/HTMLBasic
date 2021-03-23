@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<title>Test</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        /*기본 뼈대 시작*/
+        * {
+	        box-sizing: border-box; /*박스 사이즈를 패딩과 여백 포함설정함.*/
+	        margin: 0; /*마진 0으로 시작*/
+	        padding: 0; /*패딩 0으로 시작*/
+        }
+        
+        body{
+            min-width: 700px;
+        }
+        
+        #left{
+            float: left;/*center 영역 가운데 잡기 위한 필수 코드*/
+            width: calc(50% - 350px);/*center 영역 가운데 잡기 위한 필수 코드*/
+        }
+        
+        #center{
+            float: left;/*center 영역 가운데 잡기 위한 필수 코드*/
+            width: 700px;/*center 영역 가운데 잡기 위한 필수 코드*/
+        }
+        
+        #right{
+            float: right;/*center 영역 가운데 잡기 위한 필수 코드*/
+            width: calc(50% - 350px);/*center 영역 가운데 잡기 위한 필수 코드*/
+        }
+    
+        .contents {
+            background-color: lightgray;
+            border: 1px solid black;
+            margin: 20px;
+        }
+        
+        .contents_child {
+            margin: 10px 20px 20px 20px; /*자식 선택자 모두에게 top 10px을 부여할 것이므로 탑에만 10으로 설정*/
+         }
+         
+        .contents_child * {
+           margin-top: 10px;/*자식 선택자 모두에게 탑 10설정*/
+        }
+        
+        .content_child_ele2 {
+            height: 300px; /*textarea 크기를 늘리기 위한 코드*/
+        }
+        
+        .content_child_ele2 textarea{
+            width: 100%;
+            height: 100%;
+        }
+        
+        /*
+        #center div:nth-child(2), #center div:nth-child(3) {/*두번째 세번째 div*/
+           
+         }
+         */
+         
+        /*기본 뼈대 종료*/  
+        
+        
+        
+        
+        /*기능 시작*/
+        .txtarea {
+            width: 100%;/*가로 contents_child 에 맞추어 100%로 설정*/
+            height: 100%
+        }
+        
+        /*기능 종료*/ 
+    </style>
+    
+    <script>
+    
+    function readFile(){
+    	var files = document.getElementById("attachFile").files;
+        var file = files[0];
+        var imgname = file.name;
+        var reader = new FileReader();
+        
+    	var fileext = document.getElementById("attachFile").value;
+    	console.log("첨부파일 값 : " + fileext);
+    	fileext = fileext.slice(fileext.indexOf(".") + 1).toLowerCase();
+    	console.log("확장자 소문자 값 : " + fileext);
+    	
+    	if(fileext != "jpg" && fileext != "png"){
+    		alert("파일임");
+            reader.readAsText(file);//파일을 읽어서 reader에 담기
+            reader.onload = function(){
+                document.getElementById("fileContents").innerHTML 
+                = reader.result;
+            }
+    	}else{
+    		alert("이미지임");
+            reader.readAsDataURL(file);
+            
+            reader.onload = function (){
+            	var ele = document.createElement("img");
+            	var re = document.getElementById("imgp");
+            	ele.src = reader.result;
+            	ele.width = 100;
+            	ele.width = 100;
+            	re.appendChild(ele);
+            }
+    	}
+    	var str = "";
+        str += "■파일 명■ '" + file.name + "'\n";//파일명
+        str += "■파일 사이즈■ '" + file.size + "'\n";//파일사이즈
+        str += "■파일 타입■ '" + file.type + "'\n";//파일타입
+        str += "■파일 최종 수정 일시■ '" + file.lastModifiedDate + "'\n";//마지막 수정일자(파일 최종 수정 일시)
+        
+        document.getElementById("fileInfo").innerHTML = str;//담기
+    }
+    
+    function reset(){
+    	document.getElementById("attachFile").value = "";
+    	var txtarea    = document.getElementsByTagName("textarea");
+    	for(i = 0 ; i < txtarea.length ; i++){
+    		txtarea[i].value = "";
+    	}
+    }
+    </script>
+</head>
+<body>
+<div id="left">&nbsp;</div>
+<div id="center">
+	<div class="contents">
+	   <div class="contents_child">
+	       <div class="content_child_ele1">
+		       <input id="attachFile" type="file" class="form-control-file border" accept=".jpg,.html">
+		       <button type="button" class="btn btn-primary" onclick="readFile()">파일읽기</button>
+		       <button class="btn btn-primary" onclick="reset()">내용 초기화</button>
+		       <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"/> 
+	       </div>
+	   </div>
+	</div>
+	<div class="contents">
+	   <div class="contents_child" id="table-content1">
+	       <div class="content_child_ele1">
+		       <h2>결과 출력(FileReader 객체)</h2>
+		       <p>이미지 파일일 경우에는 DataURL 형식으로 아닌 경우 Text 형식으로</p>
+	       </div>
+	       <div class="content_child_ele2">
+	           <textarea id="fileContents" class="txtarea" class="form-control"></textarea>
+	       </div>
+	   </div>
+	</div>
+	<div class="contents">
+	   <div class="contents_child" id="table-content2">
+	       <div class="content_child_ele1">
+		       <h2>파일 정보(File 객체)</h2>
+		       <p>이미지 파일을 읽은 경우에 이미지가 표시된다.</p>
+		       <p>다른 파일을 읽었을 경우 이미지가 표시되지 않는다.</p>
+	       </div>
+	       <div class="content_child_ele2">
+	           <p id="imgp"></p> 
+	           <textarea id="fileInfo" class="txtarea" class="form-control"></textarea>
+	       </div>
+	   </div>
+	</div>
+</div>
+<div id="right">&nbsp;</div>
+</body>
+</html>
