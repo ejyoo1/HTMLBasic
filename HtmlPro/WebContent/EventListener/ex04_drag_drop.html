@@ -31,6 +31,7 @@
     	var data = ev.dataTransfer.getData("text");
     	console.log("drop dataTransfer 이벤트 ::::::: " + ev.dataTransfer.getData("text"));
     	//자식 요소로 이미지를 넣어주어야 함.
+    	//도큐먼트에서 찾아서 이미지를 append
     	var img = document.getElementById(data)
     	ev.target.appendChild(img);
     }
