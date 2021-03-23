@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+    /*div{        border: 1px solid black;    }*/
+    /*vertical-align 은 div에서 먹지 않음*/
+    div.left {
+        height: 200px;
+        float: left; /*float : 이 공간에 다른 것도 넣겠다.*/
+        width: calc(50% - 25px); /*center 가 100px 이므로 왼쪽 오른쪽 50px씩 뺌*/
+        text-align: right;
+/*      margin-bottom: 50px; */
+    }
+    div.center {
+        height: 200px;
+        width: 50px;
+        float: left; /*float : 이 공간에 다른 것도 넣겠다.*/
+        text-align: center;
+        display: flex; /*버튼 세로 기준 가운데로 정렬*/
+        align-items: center; /*버튼 세로 기준 가운데로 정렬*/
+    }
+    div.right {
+        height: 200px;
+        float: right;
+        width: calc(50% - 25px); /*center 가 100px 이므로 왼쪽 오른쪽 50px씩 뺌*/
+        text-align: left;
+    }
+    div.bottom {
+        /*margin-top:50px;clear와 float가 들어가면 마진이 먹지 않음*/
+        text-align: center; /*버튼 가운데로 이동*/
+    }
+    select {
+        height: 200px;
+        width: 150px;       
+    }
+    button {
+        width: 30px;
+    }
+    div.bottom button {
+        width: 100px; /*아래 버튼 크기 100px로 수정*/
+    }
+    </style>
+    <script type="text/javascript">
+    function moveRight(param){
+        console.log(param);
+        
+        var leftSel = document.getElementById("left");
+        var rightSel = document.getElementById("right");
+        
+//      leftSel.length ==> select의 option 개수
+//      leftSel[i] ==> select의 i번째 option
+//      leftSel[1].selected; ==> select가 되었는지 확인 true/false
+        for(var i=0 ; i<leftSel.length ; i++) {
+            // 선택된 것 옮길때
+            if(param == undefined) {
+                
+                // leftSel[i].selected ==> 선택이 된 상태면 true, 아니면 false
+                // i번째 옵션이 선택되었는지 여부
+                if(leftSel[i].selected) {
+                    rightSel.append(leftSel[i]);
+                  //이동되면 순번위 위로 올라가기 때문에 i--를 수행 함
+                    i--;
+                }
+                
+            } else {
+                // 전체 옮기기
+                rightSel.append(leftSel[i]);
+              //이동되면 순번위 위로 올라가기 때문에 i--를 수행 함
+                i--;
+            }
+        }
+    }
+    
+    function moveLeft(param){
+        console.log(param);
+        
+        var leftSel = document.getElementById("left");
+        var rightSel = document.getElementById("right");
+        
+//      leftSel.length ==> select의 option 개수
+//      leftSel[i] ==> select의 i번째 option
+//      leftSel[1].selected; ==> select가 되었는지 확인 true/false
+        for(var i=0 ; i<rightSel.length ; i++) {
+            // 선택된 것 옮길때
+            if(param == undefined) {
+                
+                // leftSel[i].selected ==> 선택이 된 상태면 true, 아니면 false
+                // i번째 옵션이 선택되었는지 여부
+                if(rightSel[i].selected) {
+                	leftSel.append(rightSel[i]);
+                  //이동되면 순번위 위로 올라가기 때문에 i--를 수행 함
+                    i--;
+                }
+                
+            } else {
+                // 전체 옮기기
+                leftSel.append(rightSel[i]);
+              //이동되면 순번위 위로 올라가기 때문에 i--를 수행 함
+                i--;
+            }
+        }
+    }
+    
+    function addText(){
+    	//추가할 값
+    	var str = document.getElementById("addText").value;
+    	
+    	//step1.중복된 값이 있는지 확인하기
+    	var sel = document.getElementById("left");
+    	for(var i = 0 ; i < sel.length ; i++){
+    		console.log(sel[i].innerHTML);
+//     		sel[i].innerHTML;//<option>
+    		/*<option value="01">홍길동</option> : innerHTML : 홍길동 , value : 01*/
+    		if(sel[i].innerHTML == str) {
+    			alert("'" + str + "'은(는) 이미 등록된 값입니다.");
+		    	//입력란을 빈값으로 초기화 시키기
+		    	document.getElementById("addText").value = "";
+		    	//입력란으로 포커스 주기
+		    	document.getElementById("addText").focus();
+    			return;
+    		}
+    	}
+    	
+    	//step2.중복된 값이 없으면 추가하기
+    	
+    	//<option>1</option>
+    	var ele = document.createElement("option");
+    	ele.innerHTML = str;
+    	
+    	//왼쪽 셀렉트 박스에 옵션 추가하기
+    	document.getElementById("left").appendChild(ele);
+    	
+    	
+    }
+    </script>
+</head>
+<body>
+<!-- 처음 구조 잡을 때 div로 시작 -->
+    <div class="top">
+        <h2>select 객체 예제</h2>
+    </div>
+    <div class="left">
+        <select id="left" multiple="multiple">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <div class="center">
+        <div>
+            <button type="button" onclick="moveRight()">&gt;</button><br>
+            <button type="button" onclick="moveRight('all')">&gt;&gt;</button><br>
+            <button type="button" onclick="moveLeft()">&lt;</button><br>
+            <button type="button" onclick="moveLeft('all')">&lt;&lt;</button>
+        </div>
+    </div>
+    <div class="right">
+        <select id="right" multiple="multiple">
+        </select>
+    </div>
+    <div class="bottom">
+        <input type="text" id="addText">
+        <button type="button" onclick="addText()">추가</button>
+    </div>
+</body>
+</html>
