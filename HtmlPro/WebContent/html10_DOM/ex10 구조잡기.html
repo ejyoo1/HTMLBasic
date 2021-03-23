@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+    
+    div.left{
+        float: left;
+        width: calc(50% - 40px);
+        text-align: right;
+        margin-bottom: 50px;
+    }
+    
+    div.center{
+        float: left;
+        width: 80px;
+        text-align: center;
+        display: flex; /*division 안의 영역을 다시 잡아주는 것*/
+        align-items: center;
+    }
+    
+    div.right{
+        float: right;
+        width: calc(50% - 40px);
+        text-align: left;
+    }
+    
+    div.bottom{
+        clear: both;
+        text-align: center;
+    }
+    
+    select {
+        width: 100px;
+    }
+    
+    div.center button{
+        width: 50px;
+        margin: 10px;
+    }
+    
+    div.bottom button{
+        width:100px;
+    }
+    </style>
+</head>
+<body>
+<!-- 처음 구조 잡을 때 div로 시작 -->
+    <div class="top">
+        <h2>select 객체 예제</h2>
+    </div>
+    <div class="left">
+        <select id="left" multiple="multiple">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <div class="center">
+        <div>
+            <button type="button" onclick="moveRight()">&gt;</button><br>
+            <button type="button" onclick="moveRight('all')">&gt;&gt;</button><br>
+            <button type="button" onclick="moveLeft()">&lt;</button><br>
+            <button type="button" onclick="moveLeft('all')">&lt;&lt;</button>
+        </div>
+    </div>
+    <div class="right">
+        <select id="right" multiple="multiple">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <div class="bottom">
+        <input type="text" id="addText">
+        <button type="button" onclick="addText()">추가</button>
+    </div>
+</body>
+</html>
