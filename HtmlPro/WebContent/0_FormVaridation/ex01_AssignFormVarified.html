@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>폼의 유효성 검증</title>
+	<script>
+	/*
+	   요소에 대해 내부 속성을 많이 사용하는 경우
+	   요소로 받아 value, focus를 사용한다.
+	   ex  var ele = document.getElementById("userName");
+	       ele.value();
+	       ele.focus();
+	*/
+	function checkEmpty(){
+		var ele = document.getElementById("userName");
+		//사용자가 입력한 값이 0인지 확인(사이에 공백이 있을 수 있으므로 공백을 제거하는것이 좋다.)
+		console.log("ele.value trim 전 : " + ele.value);
+		if(ele.value.trim().length == 0){ /*ele.value : 사용자가 입력한 값이 나옴*/
+			   alert("이름이 입력되지 않았습니다.");
+			   //이름이 입력되지 않았으면 포커스를 해당 위치로 이동
+			   ele.focus();
+			   //작업이 진행되면 안되므로 return;
+			   return;
+		}
+	}
+	
+	/*
+	   요소 체크 시 기준이 되는 앞 뒤 -1 +1 기준으로 테스트 해본다.
+	*/
+	function checkLength(){
+		//요소를 가져옴 - 자주 사용할 것이기에 엘리먼트로 가져옴
+		var ele = document.getElementById("userId");
+		//6자보다 작거나 8자보다 크면
+		if(ele.value.length < 6 || ele.value.length > 8){
+			//제어
+			alert("아이디는 6~8자 입니다.");
+			//포커스 위치
+			ele.focus();
+			return;
+		}
+	}
+	
+	/*
+	   전체 입력값 체크
+	  Validation 처리 시 이름 항목에 대해 모든 것(자리수,빈값)을 체크를 하고 그 다음 입력을 체크해야한다.
+	   그러지 않으면 사용자 스크롤 이동이 생성된다.
+	   기존에 입력한 값이 있으면 유효성 검사에 걸렸을 때 데이터가 남아있는것이 좋다.
+	   웬만하면 사용자가 행한 행위는 그대로 두는 것이 좋다.
+	   input은 value 가 다 나온다.
+	*/
+	function checkValidate(){
+		//빈값 체크
+		//자릿수 체크
+		//아이디 빈값, 자릿수 체크
+		
+	    var eles = []; //유효성 검사 실패 요소만 담을 배열
+	    var str = ""; //p 태그 내 알림 문구 추가할 str 변수
+
+	    /*이름 유효성 검사*/
+	    var ele = document.getElementById("userName");
+	    var elep = document.getElementById("pUserName");
+	    if(ele.value.trim().length == 0){
+			str = "이름은 필수입력 값입니다.";
+			eles.push(ele);
+			elep.style.color = "red";//삽입 전에 스타일을 변경해야 함.
+			elep.style.fontWeight = "bold";//js에서는 대쉬를 사용하지 않음.
+			elep.style.fontSize = "x-small";//사이즈 작게
+			elep.innerHTML = str;
+		}else if(ele.value.trim().length < 2 || ele.value.trim().length > 5){
+			str = "2~5자 사이의 이름을 입력하세요.";
+			eles.push(ele);
+			elep.style.color = "red";//삽입 전에 스타일을 변경해야 함.
+            elep.style.fontWeight = "bold";//js에서는 대쉬를 사용하지 않음.
+            elep.style.fontSize = "x-small";//사이즈 작게
+			elep.innerHTML = str;
+		}
+		
+	    /*생일 유효성 검사*/
+		ele = document.getElementById("birthday");
+		elep = document.getElementById("pBirthday");
+		if(ele.value.length == 0){
+			str = "생일은 필수입력 값입니다.";
+			eles.push(ele);
+			elep.style.color = "red";//삽입 전에 스타일을 변경해야 함.
+            elep.style.fontWeight = "bold";//js에서는 대쉬를 사용하지 않음.
+            elep.style.fontSize = "x-small";//사이즈 작게
+			document.getElementById("pBirthday").innerHTML = str;
+		}else if(ele.value.length > 10){
+			str = "10자 이하의 생일을 입력하세요.";
+            eles.push(ele);
+            elep.style.color = "red";//삽입 전에 스타일을 변경해야 함.
+            elep.style.fontWeight = "bold";//js에서는 대쉬를 사용하지 않음.
+            elep.style.fontSize = "x-small";//사이즈 작게
+            document.getElementById("pBirthday").innerHTML = str;
+		}
+		
+		/*아이디 유효성 검사*/
+		ele = document.getElementById("userId");
+		elep = document.getElementById("pUserId");
+		if(ele.value.length == 0){
+			str = "아이디는 필수입력 값입니다.";
+			eles.push(ele);
+			elep.style.color = "red";//삽입 전에 스타일을 변경해야 함.
+            elep.style.fontWeight = "bold";//js에서는 대쉬를 사용하지 않음.
+            elep.style.fontSize = "x-small";//사이즈 작게
+            document.getElementById("pUserId").innerHTML = str;
+		}else if(ele.value.length < 6 || ele.value.length > 8){
+			str = "6~8자 사이의 아이디를 입력하세요.";
+            eles.push(ele);
+            elep.style.color = "red";//삽입 전에 스타일을 변경해야 함.
+            elep.style.fontWeight = "bold";//js에서는 대쉬를 사용하지 않음.
+            elep.style.fontSize = "x-small";//사이즈 작게
+            document.getElementById("pBirthday").innerHTML = str;
+		}
+		
+		/*휴대폰 번호 유효성 검사*/
+		ele = document.getElementById("phone");
+		elep = document.getElementById("pPhone");
+		if(ele.value.trim().length == 0){
+			str = "휴대폰 번호는 필수입력 값입니다.";
+			eles.push(ele);
+			elep.style.color = "red";//삽입 전에 스타일을 변경해야 함.
+            elep.style.fontWeight = "bold";//js에서는 대쉬를 사용하지 않음.
+            elep.style.fontSize = "x-small";//사이즈 작게
+			document.getElementById("pPhone").innerHTML = str;
+		}else if(ele.value.trim().length > 13){
+			str = "13자 이하의 번호를 입력하세요.";
+			eles.push(ele);
+			elep.style.color = "red";//삽입 전에 스타일을 변경해야 함.
+            elep.style.fontWeight = "bold";//js에서는 대쉬를 사용하지 않음.
+            elep.style.fontSize = "x-small";//사이즈 작게
+			console.log(ele.value.length);
+		}
+		
+		/*유효성 검사에 실패한 배열이 존재할 때만 실행*/
+		if(eles.length != 0){
+			console.log("eles.length : " + eles.length);
+	        console.log("eles[0] : " + eles[0].id);
+	        eles[0].focus();
+	        
+	        alert("입력값을 확인해주세요.");
+		}
+	}
+	
+	
+	
+	/*
+	var val = ~;
+	val = val.replaceAll("-") "");
+	val.length == 10 || 9
+	
+	try{
+		parseInt(val);
+	}
+	
+	
+	*/
+	</script>
+</head>
+<body>
+
+<!--
+    입력값이 체크됐는지 검증해야 함.
+    서버에서 값을 체크하는 경우 보안상의 문제가 될 수 있음.
+    입력 시 해킹을 위해 소스코드를 삽입함. 따라서 입력값에 대한 max값을 필히 지정해야 함.
+-->
+ 
+    <h3> 회원가입 </h3>
+ 
+    <!-- 서버로 전송해야 하기에 form 태그를 사용함 -->
+    <form>
+	    <!-- 웹접근성 고려하려면 label이나 Title 둘중 하나를 써야한다. -->
+	    <label for="userName">이름(2-5 문자)</label> : <!-- 이름 --> 
+	    <input type="text" id="userName"><br>
+	    <p id="pUserName"></p>
+	       
+	    <label for="addr">주소</label> : <!-- 주소 -->
+	    <input type="text" id="addr"><br>
+	    <p id="pAddr"></p>
+	    
+	    <label for="birthday">생일(10자)</label> : <!-- 생일 -->
+	    <input type="date" id="birthday"><br>
+	    <p id="pBirthday"></p>
+	    
+	    <label for="userId">아이디(6-8 문자)</label> : <!-- 아이디 -->
+	    <input type="text" id="userId"><br>
+	    <p id="pUserId"></p>
+	    
+	    <label for="email">이메일 </label> : <!-- 이메일 -->
+	    <input type="email" id="email"><br>
+	    <p id="pEmail"></p>
+	    
+	    <label for="phone">휴대폰(13자)</label> : <!-- 휴대폰 -->
+	    <input type="text" id="phone"><br>
+	    <p id="pPhone"></p>
+	    
+	    <button type="submit" title="확인">확인(submit)</button><!-- onclick이벤트를 주지 않아도 눌렀을 때 서버로 전송하기 위한 이벤트가 있음.(그래서 새로고침 되는 것) -->
+        <button type="button" onclick="checkEmpty()" title="이름 공백 확인">이름 공백 확인</button><!-- 빈값이 있는지 없는지 체크하는 버튼 -->
+        <button type="button" onclick="checkLength()" title="아이디 자리수 확인">아이디 자리수 확인</button><br>
+        <button type="button" onclick="checkValidate()" title="한꺼번에 유효성 검사">한꺼번에 유효성 검사</button>
+    
+        
+    </form>
+</body>
+</html>
