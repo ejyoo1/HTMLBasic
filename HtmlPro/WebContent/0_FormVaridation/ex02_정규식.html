@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+    <script>
+    function validate(){
+    	//휴대폰 번호 검사
+    	var ele = document.getElementById("phone");
+    	var regExp = /^\d{3}-?\d{3,4}-?\d{4}$/; //첫 시작은 숫자 3개 -는 0또는 1개 숫자3자리 또는 4자리 -는 0또는 1개 숫자는4자리로 끝나야 함
+    	
+    	if(ele.value.match(regExp)){//정규식 일치하면
+    		alert("전화번호가 정상입니다.")
+    		return ture;
+    	}else{ //정규식 일치하지 않으면
+    	    alert("전화번호가 오류입니다.");
+    	    ele.focus();
+    	}
+    }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="phone">휴대폰(13자)</label> : <!-- 휴대폰 -->
+        <input type="text" id="phone"><br>
+        <p id="pPhone"></p>
+        
+        <button type="button" onclick="validate()" title="숫자 검증">숫자 검증</button>
+    </form>
+</body>
+</html>
