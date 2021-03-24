@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+	   .box {
+	       background-color: lightgrey; /*영역 배경색 설정*/
+	       border: 1px solid; 
+	       margin-bottom : 10px;
+	   }
+	   
+	   #fileInfo {
+	       border: 1px dashed #999999; /*선 설정*/
+	       background-color: white; /*배경색 흰색으로*/
+	       height: 100px; /*파일 정보 표시 div 높이*/
+	   }
+	   
+	   img {
+	       width: 100%;
+	       height: /*이미지 높이*/
+	   }
+	</style>
+	
+	<!-- 
+	varidation 체크 습관화 해야 함.
+	indexOf : 배열/스트링에 쓸 수 있음 [배열인 경우 : 배열의 인덱스값 반환 / 스트링인 경우 : 스트링 내 같은 문자열 반환]
+	 -->
+	<script>
+	function readFile() {
+		//파일 리스트 가져오기
+		var files = document.getElementById("inputFile").files;//파일 리스트를 가져옴 [document.getElementById("inputFile") : input]
+		
+		if(files.length < 1){ //[varidation 체크 : 파일이 없는 경우]
+			alert("선택된 파일이 없습니다.");
+			return;
+		}
+		
+		var file = files[0]; //0번째로 해서 파일을 담음(어짜피 1개의 파일이므로)
+		
+		//파일 정보 가져오기 => 세팅
+		var str = "파일명 : " + file.name + "<br>"
+		   + "파일유형 : " + file.type + "<br>" //[img인경우 : image/png, 파일인 경우 : text/html]  
+		   + "파일크기 : " + file.size + "<br>"
+		   + "파일수정일시 : " + file.lastModifiedDate + "<br>"
+		
+		//파일 정보 div 에 넣기 => innerHTML HTML형식으로 삽입
+		document.getElementById("fileInfo").innerHTML = str; //HTML으로 넣는 경우이므로 줄바꿈은 \n이 아닌 <br>로 써야함 
+		
+		//파일 읽기 결과 출력
+		var reader = new FileReader();//파일을 읽기위한 리더 객체 생성
+		
+		//1. 이미지인 경우 - DataURL
+		if(file.type.match("image")){ //"image/png".indexOf("image")==0 [file.type.indexOf("image")], substr, slice
+			reader.readAsDataURL(file); //DataURL로 파일을 읽는다.
+		}else{
+		//2. 이미지가 아닌 경우 - Text
+		    reader.readAsText(file) //텍스트로 파일을 읽는다.
+		}
+		
+		// 파일 로딩 : 웹에 뿌려줌
+		reader.onload = function (){
+			document.getElementById("taResult").innerHTML = reader.result; //파일의 컨텐츠 담기 : reader.result;
+			
+			//이미지 삽입할 img 태그 객체 가져옴
+			var objImg = document.getElementById("imgResult");
+			 
+			//이미지인 경우, 보이지 않은 경우 스타일 설정(JQuery 함수쓰는 방법도 있음.)
+			if(file.type.match("image")){//이미지인 경우
+			    //이미지가 보이게 설정
+			    objImg.src = reader.result;
+			    objImg.alt = file.name; //파일명 삽입
+			    objImg.style.display = "inline"; //보이게 설정(inline이 기본값)
+			}else{
+			    //이미지가 보이지 않게 설정
+			    objImg.style.display = "none"; //보이지 않게 설정
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+<!-- 
+사용자 입력영역, 버튼 조작영역, 표시영역 나누면 편함. 
+디자인 시 화면 주석을 달아주면서 하면 좋다.
+스크립트 작업하면서 id를 준다.(클릭 이벤트 시 변경을 가할 영역에 id를 줌)
+id 부여하는 방법도 규칙성 있는 것이 좋다.
+-->
+
+    <!-- 파일 선택 영역 -->
+    <div class="box">
+        <input type="file" id="inputFile">
+        <button type="button" onclick="readFile()">읽기</button>
+    </div>
+    <!-- 결과 출력 영역 -->
+    <div class="box">
+        <h3>결과 출력(FileReader)</h3>
+        <p>이미지 파일일 경우에는 DataURL형식으로, 아닌 경우에는 Text 형식으로</p>
+        <textarea rows="10" cols="" id="taResult"></textarea>
+    </div>
+    
+    <!-- 결과 출력 영역:이미지랑 파일정보 -->
+    <div class="box">
+        <h3>파일 정보(File 객체)</h3>
+        <p>이미지 파일일 경우에는 이미지가 표시되고 아닌 경우에는 이미지가 표시되지 않는다.</p>
+        <img alt="" src="" id="imgResult"> <!-- 이미지가 나오는 부분이 있어야 함. -->
+        <br>
+        <div id="fileInfo"></div><!-- 파일 정보 표시 영역 -->
+    </div>
+</body>
+</html>
