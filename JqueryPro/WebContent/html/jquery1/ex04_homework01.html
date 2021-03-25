@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>새로운 요소 만들기</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	$(document).ready(function(){
+		//생성할 요소 정의
+		var ele = $('<button type="button" onclick="imgAppend()">이미지 추가</button>');
+		ele.appendTo("body");
+		//body에 추가
+	});
+	
+	function imgAppend(){
+		var img = $(    "<img>", {
+            "alt"    : "사자"
+          , "src"    : "../../images/lion.png"
+          , "height" : "100"
+          , "click"  : function(){
+        	  $(this).css("border","1px solid red");
+          }
+    });
+		img.appendTo("body");
+	}
+	</script>
+</head>
+<body>
+<!-- 
+    1) 화면이 로딩되면 body안에 이미지 추가 버튼 만들어 지기 (O)
+    2) 버튼 클릭 시 동적으로 이미지 추가하기 - width, height 크기 지정 (O)
+    3) 이미지 클릭 시 이미지 테두리 넣기
+ -->
+ 
+ 
+</body>
+</html>

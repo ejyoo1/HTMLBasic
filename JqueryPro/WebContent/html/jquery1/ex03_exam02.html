@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>JQuery로 p태그 생성하기</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	function test(){
+		var ele
+		= $('<p id="p1" onclick="proc1()">Hello</p>'); //ele는 JQuery 객체가 됨.
+		ele.appendTo("body"); //body에 생성
+		
+		/*img 생성위한 코드 작성 방법
+		$('<img alt="사자" src="../../images/lion.png">');
+		$(    "<img>", {
+			  "alt" : "사자"
+			  , "src" : "../../images/lion.png"
+		});
+		*/
+		var img = $(    "<img>", {
+			      "alt"    : "사자"
+                , "src"    : "../../images/lion.png"
+                , "height" : "100"
+                , "click"  : function(){
+                alert("으앙!");
+                }
+          });
+		img.appendTo("body");
+	}
+	</script>
+</head>
+<body>
+    <p>JQuery로 요소 생성하기</p>
+    <img alt="사자" src="../../images/lion.png">
+    <button type="button" onclick="test()">클릭</button>
+</body>
+</html>

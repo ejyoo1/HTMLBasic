@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>JQuery 기본</title>
+	<script src="../../js/jquery-3.6.0.js"></script><!-- 이 안에 JQuery 쿼리가 자동으로 들어감 -->
+<script type="text/javascript">
+/*
+document를 JQuery 화 한 것임.
+$("h2").css("background","blue");
+$("p").show();
+$("#id9").hide();
+*/
+$(document).ready(function(){
+	alert(1);
+});
+</script>
+</head>
+<body>
+<h1>테스트</h1>
+</body>
+<script type="text/javascript">
+/*javascript 문법*/
+var list = document.getElementsByTagName("h1");
+list[0].style.backgroundColor = "yellow";
+list[0].style.Color = "blue";
+ 
+/*Jquery 문법*/
+	var obj = $("h1");
+    obj.css("background-color", "gray");
+    obj.css("color", "white");
+    
+    //연결해서 사용 가능 - 체이닝 기법
+    obj.css("background-color", "gray").css("color", "white");
+    
+    //document가 준비가 되면 수행하는 것
+    $(function()){ // ==> $(document).ready(function() {
+        alert(1);
+    })
+    	alert(2);
+    }
+</script>
+</html>
