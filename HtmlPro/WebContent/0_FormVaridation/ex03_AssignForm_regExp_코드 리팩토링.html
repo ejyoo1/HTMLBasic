@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>폼의 유효성 검증</title>
+	<style>
+	   .btn_blue {
+	       background-color: #008CBA; 
+           color: white; 
+           border-radius: 20px; 
+           padding: 10px; 
+           width: 80px; 
+           border: none; 
+           opacity: 0.6; 
+           transition: 0.3s; 
+           display: inline-block;
+           cursor: pointer; 
+	   }
+	   
+	   .btn_blue:hover {
+	       opacity: 1; 
+	   }
+	   
+	   fieldset {
+	       background-color: RGB(250,250,250);
+	   }
+	</style>
+	<script>
+
+	//유효성 검사 성공 시 서버로 전송
+	function sendUserInfo(){
+		if(!checkValidate()) return; 
+		
+		if(!confirm("전송하시겠습니까?")){
+			return;
+		}else{
+			document.signUp.submit();
+		}
+	}
+	
+	//1) 빈값 체크
+	function isEmpty(str){
+		if(str == null || str.trim().length == 0)
+			return true;
+		return false;
+	}
+	
+	//2) 공백 체크
+	function hasBlank(str){
+		return str.match(" ");
+	}
+	
+	//3) 길이 체크
+	function checkLength(str, min, max){
+		if(min == null && max == null){ //min, max 공백이면 (설계에 맞지 않음)
+			return false;
+		} else if(min == null){//최대값만 존재하는 경우
+			if(str.length > max) return false;
+		} else if(max == null){//최소값만 존재하는 경우
+			if(str.length < min) return false;
+		} else { //최소값, 최대값이 둘다 존재하는 경우
+			if(str.length < min || str.length > max) return false;
+		}
+		return true;
+	}
+	
+	//4) 정규식 체크
+	function checkRegExp(str, regExp){
+		return str.match(regExp);
+	}
+	
+	function styleSet(elep,status){
+		elep.style.fontSize = "x-small";
+		elep.style.fontWeight = "bold";
+		if(status){ 
+			elep.style.color = "blue";
+		}else{ 
+			elep.style.color = "red";
+		}
+	}
+	
+	function checkValidate(){
+		//입력필드 변수 선언
+		var userId    = document.getElementById("userId");//아이디
+		var userPw    = document.getElementById("userPw");//비밀번호
+		var userName  = document.getElementById("userName");//이름
+		var birthday  = document.getElementById("birthday");//생일
+		var phone     = document.getElementById("phone");//휴대전화
+		var email     = document.getElementById("email");//이메일
+        
+		
+		//유효성 검사 결과 표시 p태그 선언
+		var pUserId   = document.getElementById("pUserId");//아이디
+		var pUserPw   = document.getElementById("pUserPw");//비밀번호
+		var pUserName = document.getElementById("pUserName");//이름
+		var pBirthday = document.getElementById("pBirthday");//생일
+		var pPhone    = document.getElementById("pPhone");//휴대전화
+		var pEmail    = document.getElementById("pEmail");//이메일
+		
+		
+		//정규식
+		var userIdExp     = /^[a-z][a-z0-9]{7,19}$/;
+		var userPwExp     = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_.]).{8,20}/;
+		var userNameExp   = /^[가-힣]{2,5}$/;
+		var userPhoneExp  = /^\d{3}-\d{3,4}-\d{4}$/;
+		var userEmailExp  = 
+			/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+		
+		//사용할 공통변수 선언
+	    var eles   = []; 
+	    var str    = ""; 
+	    var val;
+	    var min, max;
+	    var flag;
+	    
+	    /*아이디*/
+	    val = userId.value;
+	    min = 5;
+        max = 20;
+        
+	    if(isEmpty(val)){// 1) 빈값 체크
+            str = "아이디는 필수 정보입니다. ";
+            eles.push(userId);
+            styleSet(pUserId,false);
+            pUserId.innerHTML = str;
+            return false;
+        }
+        
+        if(hasBlank(val)){ // 2) 공백 체크
+            str = "아이디에 빈 칸은 입력하실 수 없습니다. ";
+            eles.push(userId);
+            styleSet(pUserId,false);
+            pUserId.innerHTML = str;
+            return false;
+        }
+        
+        if(!checkLength(val, min, max)){ //3) 길이 체크 : 5~10
+            str = "아이디는 " + min + "글자 이상, " + max + "글자 이하이어야 합니다. ";
+            eles.push(userId);
+            styleSet(pUserId,false);
+            pUserId.innerHTML = str;
+            return false;
+        }
+        
+        
+        if(checkRegExp(val, userIdExp)){//4) 정규식 검사
+        	str = "아이디 형식이 잘못되었습니다. \n영어 소문자로 시작하고, 영문 소문자와 숫자만 사용 가능합니다.";
+        	eles.push(userId);
+        	styleSet(pUserId,false);
+            pUserId.innerHTML = str;
+            return false;
+        }
+	     
+        //유효성 검사 성공
+        str = "멋진 아이디네요!";
+        styleSet(pUserId,true); 
+        pUserId.innerHTML = str;
+       
+        
+	    /*비밀번호*/
+	    val = userPw.value;
+	    min = 8;
+        max = 20;
+        
+        if(isEmpty(val)){// 1) 빈값 체크
+            str = "비밀번호는 필수 정보입니다.";
+            eles.push(userPw);
+            styleSet(pUserPw,false);
+            pUserPw.innerHTML = str;
+            return false;
+        }
+        
+        if(hasBlank(val)){ // 2) 공백 체크
+            str = "비밀번호에 빈 칸은 입력하실 수 없습니다. ";
+            eles.push(userPw);
+            styleSet(pUserPw,false);
+            pUserPw.innerHTML = str;
+            return false;
+        }
+        
+        if(!checkLength(val, min, max)){ //3) 길이 체크 : 5~10
+            str = "비밀번호는 " + min + "글자 이상, " + max + "글자 이하이어야 합니다. ";
+            eles.push(userPw);
+            styleSet(pUserPw,false);
+            pUserPw.innerHTML = str;
+            return false;
+        }
+        
+        if(checkRegExp(val, userPwExp)){//4) 정규식 검사
+            str = "비밀번호 형식이 잘못되었습니다. \n영어 대소문자, 숫자, 특수문자(-_.)만 사용가능합니다.";
+            eles.push(userPw);
+            styleSet(pUserPw,false);
+            pUserId.innerHTML = str;
+            return false;
+        }
+        
+        //유효성 검사 성공
+        str = "안전합니다!";
+        styleSet(pUserPw,true); 
+        pUserPw.innerHTML = str;
+        
+        
+	    /*이름*/
+	    val = userName.value;
+        min = 2;
+        max = 5;
+        
+        if(isEmpty(val)){// 1) 빈값 체크
+            str = "이름은 필수 정보입니다.";
+            eles.push(userName);
+            styleSet(pUserName,false);
+            pUserName.innerHTML = str;
+            return false;
+        }
+        
+        if(hasBlank(val)){ // 2) 공백 체크
+            str = "이름에 빈 칸은 입력하실 수 없습니다. ";
+            eles.push(userName);
+            styleSet(pUserName,false);
+            pUserName.innerHTML = str;
+            return false;
+        }
+        
+        if(!checkLength(val, min, max)){ //3) 길이 체크 : 5~10
+            str = "이름은 " + min + "글자 이상, " + max + "글자 이하이어야 합니다. ";
+            eles.push(userName);
+            styleSet(pUserName,false);
+            pUserName.innerHTML = str;
+            return false;
+        }
+        
+        if(checkRegExp(val, userNameExp)){//4) 정규식 검사
+            str = "이름 형식이 잘못되었습니다. \n한글만 사용가능합니다.";
+            eles.push(userName);
+            styleSet(pUserName,false);
+            pUserName.innerHTML = str;
+            return false;
+        }
+        
+        //유효성 검사 성공
+        str = "멋진 이름이네요!";
+        styleSet(pUserName,true); 
+        pUserName.innerHTML = str;
+	   
+       
+		/*생일*/
+		val = birthday.value;
+        max = 10;
+        
+        if(isEmpty(val)){// 1) 빈값 체크
+            str = "생일은 필수 정보입니다.";
+            eles.push(birthday);
+            styleSet(pBirthday,false);
+            pBirthday.innerHTML = str;
+            return false;
+        }
+        
+        if(hasBlank(val)){ // 2) 공백 체크
+            str = "생일에 빈 칸은 입력하실 수 없습니다. ";
+            eles.push(birthday);
+            styleSet(pBirthday,false);
+            pBirthday.innerHTML = str;
+            return false;
+        }
+        
+        if(!checkLength(val, min, max)){ //3) 길이 체크 : 5~10
+            str = "생일을 정확하게 선택해주세요.";
+            eles.push(birthday);
+            styleSet(pBirthday,false);
+            pBirthday.innerHTML = str;
+            return false;
+        }
+        
+        /* 생일 정규식 없음
+        if(checkRegExp(val, userNameExp)){//4) 정규식 검사
+            str = "생일 형식이 잘못되었습니다. 다시 확인해주세요. ex)1993-12-06";
+            eles.push(userName);
+            styleSet(pUserName,false);
+            pUserName.innerHTML = str;
+            return false;
+        }
+        */
+        
+        //유효성 검사 성공
+        str = "유효한 날짜입니다!";
+        styleSet(pBirthday,true); 
+        pBirthday.innerHTML = str;
+        
+		
+		/*휴대폰번호*/
+		val = phone.value;
+        if(val.trim().length == 0){
+            str = "휴대폰 번호는 필수 정보입니다.";
+            eles.push(phone);
+            styleSet(pPhone,false); 
+            pPhone.innerHTML = str;
+            return false;
+        }else if(!val.match(userPhoneExp)){
+            str = "000-0000-0000 형식의 올바른 휴대전화 번호를 입력해주세요.";
+            eles.push(phone);
+            styleSet(pPhone,false); 
+            pPhone.innerHTML = str;
+            return false;
+        }else if(val.match(userPhoneExp)){
+            str = "유효한 전화번호입니다!";
+            styleSet(pPhone,true); 
+            pPhone.innerHTML = str;
+        }
+        
+		/*이메일*/
+		val = email.value;
+        if(val.trim().length == 0){
+            str = "이메일은 필수 정보입니다.";
+            eles.push(email);
+            styleSet(pEmail,false); 
+            pEmail.innerHTML = str;
+            return false;
+        }else if(!val.match(userEmailExp)){
+            str = "이메일 주소를 다시 확인해주세요. (예:user1@ddit.com)";
+            eles.push(email);
+            styleSet(pEmail,false); 
+            pEmail.innerHTML = str;
+            return false;
+        }else if(val.match(userEmailExp)){
+            str = "유효한 이메일입니다!";
+            styleSet(pEmail,true); 
+            pEmail.innerHTML = str;
+        }
+
+        
+		if(eles.length != 0){
+			console.log("eles.length : " + eles.length);
+	        console.log("eles[0] : " + eles[0].id);
+	        eles[0].focus();
+	        
+	        alert("입력값을 확인해주세요.");
+		}else{
+			alert("유효성 검사 성공!!");
+		}
+		return true;
+	}
+	
+	function pTagReset(){
+		document.getElementById("pUserId").innerHTML = "";
+		document.getElementById("pUserPw").innerHTML = "";
+		document.getElementById("pUserName").innerHTML = "";
+		document.getElementById("pAddr").innerHTML = "";
+		document.getElementById("pBirthday").innerHTML = "";
+		document.getElementById("pPhone").innerHTML = "";
+		document.getElementById("pEmail").innerHTML = "";
+	}
+	</script>
+</head>
+<body>
+
+    <fieldset>
+        <legend>회원 정보 입력</legend>
+	    <form>
+		    <label for="userId">아이디(8~20 문자)</label> : <!-- 아이디 -->
+	        <input type="text" id="userId"><br>
+	        <p id="pUserId"></p>
+	        
+	        <label for="userPw">비밀번호</label> : <!-- 비밀번호 -->
+	        <input type="text" id="userPw"><br>
+	        <p id="pUserPw"></p>
+		    
+		    <label for="userName">이름</label> : <!-- 이름 --> 
+		    <input type="text" id="userName"><br>
+		    <p id="pUserName"></p>
+		       
+		    <label for="addr">주소</label> : <!-- 주소 -->
+		    <input type="text" id="addr"><br>
+		    <p id="pAddr"></p>
+		    
+		    <label for="birthday">생년월일</label> : <!-- 생일 -->
+		    <input type="date" id="birthday"><br>
+		    <p id="pBirthday"></p>
+		    
+		    <label for="phone">휴대폰</label> : <!-- 휴대폰 -->
+		    <input type="text" id="phone"><br>
+		    <p id="pPhone"></p>
+		    
+		    <label for="email">이메일 </label> : <!-- 이메일 -->
+	        <input type="email" id="email"><br>
+	        <p id="pEmail"></p>
+		    
+	        <button type="button" class="btn_blue" onclick="sendUserInfo()" title="전송">전송</button>
+	        <input type="reset" class="btn_blue" value="초기화" onclick="pTagReset()">
+	        
+	    </form>
+    </fieldset>
+</body>
+</html>
