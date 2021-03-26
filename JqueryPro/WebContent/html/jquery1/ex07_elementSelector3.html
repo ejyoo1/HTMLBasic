@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>셀렉터 실습 - 부모-자식-후손-손자</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	$(document).ready(function(){
+	   $("h3 ~ p").css("background-color","yellow").css("width","100px");
+	   $("h3 + p").css("font-weight", "bold").css("font-size","xx-large");
+	});
+	</script>
+</head>
+<body>
+    <!-- 
+        h3 다음의 모든 형제의 배경색 변경, 길이지정, 가운데 정렬
+        h3 다음의 첫번째 형제의 글자를 굵게, 크게 : font-weight
+     -->
+     <p> 형제 선택자 에 대하여</p>
+     <h3>꼬마 버스 타요 가족을 소개합니다.</h3>
+     <p>타요</p>
+     <p>로기</p>
+     <p>라니</p>
+     <p>가니</p>
+</body>
+</html>

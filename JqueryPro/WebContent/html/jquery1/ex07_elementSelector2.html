@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>셀렉터 실습 - 부모-자식-후손-손자</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	$(document).ready(function(){
+	   $("span").css("background-color", "yellow");
+	   $("div span").css("border", "3px solid red");//div 안에있는 모든 span
+	   $("div > span").css("border","3px solid blue");//div 안에 1depth span
+	   
+	   
+	   
+	   
+	   
+	   $("#test").css("background-color", "blue");
+	   $("#test >> div").css("background-color", "red");
+	});
+	</script>
+</head>
+<body>
+    <!-- 
+        span태그의 배경색 변경 - yellow
+        div의 모든 후손 중 span 태그의 테두리 - red
+        div 바로 다음 자식 span 태그의 테두리 - blue
+     -->
+    <p>이 문단에는 <span>스팬</span> 엘리먼트가 있다.</p>
+    <div>
+	       이 디비젼에도 <span>스팬</span> 엘리먼트가 있다.
+	   <p>디비젼의 내부 문단의 <span>스팬</span> 엘리먼트이다.</p>
+	   <p>
+	       <div>
+	            <p>
+			               내부 디비젼의 다시 문단 속 아주 
+			        <strong>깊은 곳</strong>에 
+			        <em>숨어있는</em> 
+			        <span>스팬</span> 엘리먼트도 있다.
+		        </p>
+	       </div>
+	   </p>
+    </div>
+    
+    
+    
+    <div id="test">
+        1depth
+        <div>
+            2depth
+            <div>
+                3depth
+                <div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
