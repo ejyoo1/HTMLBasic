@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>text()와 html()의 차이</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+    <script>
+    function getHTML(){
+        var result = $("div").html();//get메소드 역할
+        //div 태그에 넣기
+        //div 뽑아오기 (set 메소드 역할)
+        $("#result").html(result);//js : document.getElementById("result").innerHTML = result;
+    }
+    
+    function getTxt(){
+    	var result = $("div").text();//get메소드 역할
+        $("#result").text(result);//set메소드 역할
+    }
+    </script>
+</head>
+<!-- 
+html() : 태그를 포함하여 갖고오고 첫번쨰 요소를 반환함. (html 태그 유지)
+text() : 모든 태그 요소들을 텍스트로 가져옴
+ -->
+<body>
+<button id="btn1">:last</button>
+<button id="btn2">:last-child</button><br><br>
+
+<div style="border:1px solid">
+  <p>The <strong>first paragraph</strong> in div.</p>
+  <p>The last paragraph in the div.</p>
+</div><br>
+
+<div style="border:1px solid">
+  <p>The first paragraph in another div.</p>
+  <p>The last paragraph in another div.</p>
+</div>
+<button type="button" onclick="getHTML()">html()</button>
+<button type="button" onclick="getTxt()">text()</button>
+<div id="result">
+</div>
+</body>
+</html>
