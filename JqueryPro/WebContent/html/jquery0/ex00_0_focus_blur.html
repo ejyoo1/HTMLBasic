@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>입력폼 포커스 설정 / 포커스 해제</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("input").focus();
+			$("p").html("focus event triggered");
+		});
+		$("#btn2").click(function(){
+			$("input").blur();
+			$("p").html("blur event triggered");
+		});
+	});
+	</script>
+</head>
+<body>
+Enter your name: <input type="text">
+<br><br>
+
+<button id="btn1">Trigger focus event</button>
+<button id="btn2">Trigger blur event</button>
+
+<p style="color:red"></p>
+</body>
+</html>

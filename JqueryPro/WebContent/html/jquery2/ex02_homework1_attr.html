@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	//마우스 오버
+	var imgBasic = "../../images/lion.png"
+	var imgChange = ["../../images/nasa1.png","../../images/nasa2.png","../../images/nasa3.png"];
+	var imgObj;
+	var imgLength;
+	var count = 0;
+	$(document).ready(function(){
+		//화면 로딩 시 버튼 숨기기-초기 설정
+        $("button").css("display","none");
+		
+		//이미지 요소 가져오기
+		imgObj = $("img");
+		console.log("imgObj : " + imgObj)
+		//이미지 개수 가져오기
+		imgLength = $("img").length;
+		console.log("imgLength : " + imgLength);
+		
+		
+		
+		//마우스 올렸을 때
+		$("img").mouseover(function(e){
+			var random = Math.floor(Math.random() * 3);
+			console.log("random : " + random);
+			$(this).attr("src", imgChange[random])
+			.attr("width","100px")
+            .attr("height","100px");
+		});
+		
+		//마우스 벗어났을 때
+		$("img").mouseout(function(e){
+			$(this).attr("src", imgBasic)
+			.attr("width","100px")
+            .attr("height","100px");
+		});
+		
+		//마우스 더블클릭했을 때
+		$("img").dblclick(function(e){
+			$(this).css("display","none");
+			count++;
+			console.log("count : " + count);
+			/*
+			1) 요소 속성으로 찾는 방법 - for
+			for(var i=0 ; imgs.length; i++){
+				if(imgs[i].style.display == "none") cnt++;
+			});
+			2) 요소 속성으로 찾는 방법 - each
+			$("img").each(function(idx, item){
+				item.style.display == "none") cnt++;
+			});
+			*/
+			
+			if(count == imgLength){//사라진 이미지 수 비교
+	            console.log("같음");
+	            $("#showBtn").css("display","inline");
+	        }else{
+	            console.log("다름");
+	        }
+		});
+		
+		//버튼 클릭했을 때
+		$("button").click(function(e){
+			$("img").each(function(idx, obj){
+	            $(obj).css("display","inline");
+	            $("#showBtn").css("display","none");
+	            count = 0;
+	        });
+		});
+		
+	});
+	</script>
+</head>
+<body>
+<img src="../../images/lion.png" alt="이미지1" style="width:100px;height:100px;">
+<img src="../../images/lion.png" alt="이미지2" style="width:100px;height:100px;">
+<img src="../../images/lion.png" alt="이미지3" style="width:100px;height:100px;">
+<button type="button" id="showBtn">모두보이기</button>
+</body>
+</html>

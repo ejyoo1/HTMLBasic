@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>링크 이동 불가능하게 제어</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("a").click(function(event){
+			event.preventDefault();
+			alert("Was preventDefault() called: " + 
+					event.isDefaultPrevented());
+		  });
+	   });
+	</script>
+</head>
+<body>
+<a href="https://w3schools.com/">Go to W3Schools.com</a>
+
+<p>The preventDefault() method will prevent the link above from following the URL.</p>
+<p>Click the link and check if the default action is prevented.</p>
+</body>
+</html>

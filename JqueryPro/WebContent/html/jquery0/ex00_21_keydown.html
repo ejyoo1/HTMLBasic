@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("input").keydown(function(){
+			$("input").css("background-color","yellow");  
+		  });
+		  $("input").keyup(function(){
+			 $("input").css("background-color","pink"); 
+		  });
+	   });
+	</script>
+</head>
+<body>
+<!-- 키보드 키를 누를 때 <input> 필드의 배경색을 설정합니다. -->
+<!-- 
+keydown 이벤트와 관련된 이벤트 순서 :
+
+keydown-키가 내려가는 중입니다.
+keypress- 키를 눌렀습니다.
+keyup- 키가 해제됩니다.
+keydown 이벤트는 키보드 키를 누를 때 발생합니다.
+
+keydown () 메서드는 keydown 이벤트를 트리거하거나 keydown 이벤트가 발생할 때 실행할 함수를 연결합니다.
+
+팁 : event.which 속성을 사용하여 눌린 키보드 키를 반환합니다.
+ -->
+Enter your name: <input type="text">
+
+<p>Enter your name in the input field above. 
+It will change background color on keydown and keyup.</p>
+</body>
+</html>

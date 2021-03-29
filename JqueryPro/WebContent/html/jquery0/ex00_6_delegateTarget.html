@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>버튼 클릭 시 배경색 바꾸기</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("div").on("click", "button", function(event){
+			  $(event.delegateTarget).css("background-color","pink");	
+		});
+	});
+	</script>
+</head>
+<body>
+<div style="background-color:yellow">
+  <p>Click the button to change the background color of this div.</p>
+  <button>Click me!</button>
+</div>
+
+<div style="background-color:yellow">
+  <p>Click the button to change the background color of this div.</p>
+  <button>Click me!</button>
+</div>
+</body>
+</html>

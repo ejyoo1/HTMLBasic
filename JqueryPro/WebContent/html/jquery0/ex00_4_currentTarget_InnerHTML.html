@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>currentTarget</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	/*
+	이벤트 버블링 단계 내의 현재 DOM 요소 this와 동일함.
+	*/
+	$(document).ready(function(){
+		$("h1, p").click(function(event){
+			alert(event.currentTarget.innerHTML);
+		});
+	});
+	</script>
+</head>
+<body>
+<h1>This is a heading</h1>
+
+<p>This is a paragraph.</p>
+<p>Click on one of the HTML elements to alert its content.</p>
+</body>
+</html>

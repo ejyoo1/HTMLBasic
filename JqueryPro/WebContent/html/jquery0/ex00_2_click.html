@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>클릭 시 fade 효과주며 사라지기</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		   $("p").click(function(){
+			   $(this).fadeOut();
+		   });
+	   });
+	</script>
+</head>
+<body>
+<p>Click this paragraph to make it disappear.</p>
+</body>
+</html>

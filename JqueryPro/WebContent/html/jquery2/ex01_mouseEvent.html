@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>JQuery 마우스 이벤트</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$("p").on({
+            mouseenter : function(){
+                $(this).css("background-color","gray");
+            }
+            , mouseleave : function(){
+                $(this).css("background-color","blue");
+            }
+            , click : function(){
+                alert("클릭했습니다.");
+                $(this).css("background-color","yellow");
+            }
+            , mouseover : function(){
+            	//글자색 변경하기
+                $(this).css("color","red");
+            }
+            , mouseout : function(e){
+            	//글자색 원래대로 변경하기
+                $(this).css("color","");
+            	console.log(e);//p태그 속성들
+            	console.log(e.type);//"mouseout" String
+            	console.log(e.target);//<p>이벤트를 넣자</p> HTML 요소 태그
+            	console.log(e.button);//0
+            	//e.screenX, e.pageX
+            }
+        });
+//      $("p").mouseover(){}
+    });
+    </script>
+</head>
+<body>
+	<h1>JQuery 마우스 이벤트</h1>
+	<p>이벤트를 넣자1</p>
+	<p>이벤트를 넣자2</p>
+	<p>이벤트를 넣자3</p>
+	<p>이벤트를 넣자4</p>
+</body>
+</html>

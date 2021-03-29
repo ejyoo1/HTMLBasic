@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("div").click(function(event){
+			event.stopImmediatePropagation();
+			alert("Was event.stopImmediatePropagation()"
+					+ "called: " + event.isImmediatePropagationStopped());
+		  });
+		  $("div").click(function(event){
+			  alert("Event handler 1 executed");
+			  event.stopImmediatePropagation();
+		  });
+		  $("div").click(function(event){
+			  alert("Event handler 1 executed");
+		  });
+		  $("div").click(function(event){
+			  alert("Event handler 1 executed");
+		  });
+	   });
+	</script>
+</head>
+<body>
+<!-- 나머지 이벤트 처리기의 실행을 중지합니다.
+이벤트가 DOM트리에서 버블링 되는것을 중지한다. 
+(연속 alert 출력을 중지함.)-->
+<div style="height:100px;width:300px;padding:10px;
+border:1px solid blue;background-color:lightblue;">
+Click on this div element.
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>입력폼 포커스 위치 시 텍스트 보이고 숨기기</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("input").focus(function(){
+			$("span").css("display","inline").fadeOut(2000);  
+		  });
+	   });
+	</script>
+</head>
+<body>
+<input>
+
+<span>Nice to meet you!</span>
+<p>Click in the input field to get focus.</p>
+</body>
+</html>

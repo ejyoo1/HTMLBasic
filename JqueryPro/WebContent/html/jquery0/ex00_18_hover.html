@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>마우스 over, out - hover</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("p").hover(function(){
+			$(this).css("background-color","yellow");}, function(){
+			$(this).css("background-color","pink");
+		  });
+	   });
+	</script>
+</head>
+<body>
+<!-- hover () 메서드는 마우스 포인터가 선택된 요소 위에있을 때 실행할 두 개의 함수를 지정합니다. -->
+<!-- 이 메서드는 mouseenter 및 mouseleave 이벤트를 모두 트리거 합니다. -->
+<!-- $(selector).hover(inFunction,outFunction) -->
+<p>Hover the mouse pointer over this paragraph.</p>
+</body>
+</html>

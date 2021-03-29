@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("div, p").mouseenter(function(event){
+			 $("#msg").html("Related target is : " +
+					 event.relatedTarget.nodeName); 
+		  });
+	   });
+	</script>
+</head>
+<body>
+<!-- 
+마우스 이동 시 입력 또는 종료되는 요소를 반환
+요소의 관련 대상을 반환 
+-->
+<div style="height:200px;border:solid">This is a div element 
+  <p style="background-color:pink">This is a paragraph</p>
+</div><br>
+
+<div id="msg" />
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>해당요소 또는 하위 요소가 포커스 받았을 때 div 배경색 설정</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("div").focusin(function(){
+			$(this).css("background-color", "#FFFFCC");  
+		  });
+		  $("div").focusout(function(){
+			 $(this).css("background-color", "#FFFFFF"); 
+		  });
+	   });
+	</script>
+</head>
+<body>
+<div style="border: 1px solid black;padding:10px;">
+  First name: <input type="text"><br>
+  Last name: <input type="text">
+</div>
+
+<p>Click an input field to get focus. 
+Click outside an input field to lose focus.</p>
+</body>
+</html>

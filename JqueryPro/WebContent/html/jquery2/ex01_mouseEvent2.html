@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>JQuery 마우스 이벤트</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+    <script>
+    $(document).ready(function(){//이문장 필수
+    	//바디를 클릭했을 때 이벤트명, 클릭한요소, 클릭한 위치좌표, 클릭한 버튼종류를 메시지로 보여줘라
+    	$("body").click(function(e){
+//     		이벤트명, 클릭한요소, 클릭한 위치 좌표, 클린한 버튼종류 를 메시지로 보여줘
+    	    var str = "" 
+    	    + "이벤트 종료 : "      + e.type + "\n"
+    	    + "이벤트 발생 요소 : " + e.target + "\n"
+    	    + "클릭한 위치 좌표(X) : " + e.pageX + "\n"
+    	    + "클릭한 위치 좌표(Y) : " + e.pageY + "\n"
+    	    + "클릭한 스크린 좌표(X) : " + e.screenX + "\n"
+    	    + "클릭한 스크린 좌표(X) : " + e.screenY + "\n"
+    	    + "클릭한 버튼 : " + e.button;
+    	    alert(str)
+    	});
+    });
+    </script>
+</head>
+<body>
+	<div style="width:300px; height:300px; background-color:yellow;"></div>
+	<br>
+	<button type="button">버튼</button>
+</body>
+</html>

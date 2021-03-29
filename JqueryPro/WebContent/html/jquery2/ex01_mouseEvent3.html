@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>마우스 스크롤 좌표 표시</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$(document).mousemove(function(e){
+    		//좌표값 가져오기
+    		var str = ""
+    		+ "pageX : " + e.pageX 
+    		+ "pageY : " + e.pageY
+    		+ "screenX : " + e.screenX
+    		+ "screenY : " + e.screenY;
+    		
+    		$("#log").html(str); //html ==> innerHTML
+    	});
+    });
+    
+    </script>
+</head>
+<body>
+	<div id="log" style="height: 50px;"></div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("p").on("click dblclick mouseover mouseout",
+			function(event){
+			  $("div").html("Event: " + event.type);
+		  });
+	   });
+	</script>
+</head>
+<body>
+<!-- 이벤트 타입을 반환함 -->
+<p>This paragraph has a click, double-click, 
+mouseover and mouseout event defined.
+<br>If you trigger one of the events, 
+the div element below will display the event type.</p>
+<div />
+</body>
+</html>

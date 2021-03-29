@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("span").click(function(event){
+			  event.stopPropagation();
+			 alert("The span element was clicked."); 
+			 alert(event.isPropagationStopped());
+		  });
+		  $("p").click(function(event){
+			 alert("The p element was clicked."); 
+		  });
+		  $("div").click(function(){
+			 alert("The div element was click"); 
+		  });
+	   });
+	</script>
+</head>
+<body>
+<!-- 
+div안에 span, p 태그가 있을 때,
+stopPropagation을 쓰면 span만 출력되고
+stopPropagetion을 안쓰면 p와 div가 출력됩니다.
+ -->
+<div style="height:100px;width:300px;padding:10px;
+border:1px solid blue;background-color:lightblue;">
+Click on this div element.
+<p style="background-color:pink">
+This is a p element, in the div element. <br>
+<span style="background-color:orange">This is a span element in the p and the div element.</span>
+</p>
+</div>
+</body>
+</html>

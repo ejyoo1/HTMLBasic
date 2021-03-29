@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<style>
+       img{ width:100px; height: 80px; }
+    </style>
+	<script>
+	   $(document).ready(function(){
+		  //초기 화면 설정
+		  //보이기 버튼 숨기기
+		  $("button").css("display","none");/*document.ready 사용 시 깜빡거림이 있음 ==> 사용자 입장에서 눈아픔 ==> 웹접근성에 위배될 수 있기에 스타일에 작성하는 것이 좋음.*/
+		  
+		  var orginSrc = "";
+		  //이미지에 마우스 오버 - 다른 이미지 보이기
+		  $("img").mouseover(function(e){
+			  //case1) this 사용
+			  //this ==> <img>
+			  //this.src ==> "../../images/~"
+			  //case2) event 객체 사용
+			  //e.target ==> <img>
+			  console.log("e.target : " + e.target);
+			  console.log("e.target.src : " + e.target.src);
+			  //마우스 아웃 시 원래 이미지로 돌리기 위해 
+			  orginSrc = e.target.src;
+			  e.target.src = "../../images/nasa1.png";
+		  });
+		  //이미지에 마우스 아웃 - 원래 이미지 보이기
+		  $("img").mouseout(function(e){
+			  e.target.src = orginSrc;
+              
+          });
+		  //이미지에 더블클릭 - 이미지 사라지기
+		  $("img").dblclick(function(){
+			  console.log("img 요소 : " + this);
+			  
+			  //case1) hide JQuery 메소드 사용
+			  /*$(this).hide();*/
+			  //case2) css JQuery 메소드 사용
+			  $(this).css("display", "none");//this는 img요소이기 때문에 css 함수를 쓸 수 없으므로 JQuery화 함.
+// 			  //case2) js 사용
+              /*this.style.display = "none";
+			  console.log(this.style.display);*/
+			  
+			  showBtn();
+			  
+		  });
+		  
+		  $("button").click(function(){
+			 $("img").css("display", "inline"); 
+		  });
+		    
+		  $("a").click(function(e){
+			  e.preventDefault();//해당 링크로 이동 안됨.
+		  });
+	   });
+	   
+	   function showBtn(){
+// 		   $("img").length 와 보이지 않는 이미지의 개수 비교 같으면 버튼 보이기
+
+           var cnt = 0;//보이지 않는 이미지의 개수
+           
+           /* 방법 1)
+		   $("img").each(function(idx, item){//몇백만건이면 for문을 돌리는게 낫다.
+			  console.log(item); // ==> img Element <img>
+// 			  item.style.display
+			  $(item).css("display") == "none" cnt++;//cnt를 쓰지 않고 show()메서드 쓰면 간단하게 되긴 함.
+		   });
+		   if($("img").length == cnt){//보이지 않는 이미지의 개수와 이미지 개수가 같으면
+			   $("button").css("display","inline");
+		   }*/
+		   
+		   //방법 2)
+		   var flag = false;
+		   $("img").each(function(idx, item){
+	              if($(item).css("display")!= "none") {
+		              flag = true;
+// 		              return;//each문 종료
+	              }
+		   });
+		   if(flag) return; 
+	       
+		   $("button").css("display","inline");
+	   }
+	</script>
+	
+</head>
+<body>
+<!-- body는 레이아웃 요소만 -->
+<img src="../../images/lion.png" alt="이미지1" >
+<img src="../../images/lion.png" alt="이미지2" >
+<img src="../../images/lion.png" alt="이미지3" >
+<button type="button" id="showBtn">모두보이기</button>
+
+<a href="http://www.naver.com">네이버로 이동</a>
+</body>
+</html>

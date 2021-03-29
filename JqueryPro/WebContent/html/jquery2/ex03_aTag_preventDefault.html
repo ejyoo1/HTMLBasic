@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<style>
+       img{ width:100px; height: 80px; }
+    </style>
+	<script>
+	   $(document).ready(function(){
+		  $("a").click(function(e){
+			  e.preventDefault();//해당 링크로 이동 안됨.
+		  });
+	   });
+	   
+	</script>
+	
+</head>
+<body>
+<!-- body는 레이아웃 요소만 -->
+<img src="../../images/lion.png" alt="이미지1" >
+<img src="../../images/lion.png" alt="이미지2" >
+<img src="../../images/lion.png" alt="이미지3" >
+<button type="button" id="showBtn">모두보이기</button>
+
+<a href="http://www.naver.com">네이버로 이동</a>
+</body>
+</html>

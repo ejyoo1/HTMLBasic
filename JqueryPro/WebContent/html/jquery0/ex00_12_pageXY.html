@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>pageXY</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $(document).mousemove(function(event){
+			$("span").text("X: " + event.pageX + ", Y: " + event.pageY);  
+		  });
+	   });
+	</script>
+</head>
+<body>
+<p>The mouse pointer position is at: <span></span></p>
+</body>
+</html>

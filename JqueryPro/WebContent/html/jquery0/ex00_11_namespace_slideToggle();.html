@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>p태그 클릭 시 p태그 제거</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("p").on("click.mySomething", function(){
+			 $(this).slideToggle(); 
+		  });
+		  $("button").click(function(){
+			 $("p").off("click.mySomething"); 
+		  });
+	   });
+	</script>
+</head>
+<body>
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<p>Click any p element to make it disappear.</p>
+
+<button>Remove the click.mySomething namespace for all p elements</button>
+<br><br>
+
+<div>
+"click.mySomething" defines the mySomething namespace 
+for this particular click event. This event could be 
+removed by using .off("click.mySomething"), without 
+removing other click handlers attached to the specified 
+element. 
+</div>
+</body>
+</html>
