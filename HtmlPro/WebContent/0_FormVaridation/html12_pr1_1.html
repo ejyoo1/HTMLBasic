@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>회원가입</title>
+	<style type="text/css">
+		fieldset {
+			border-radius: 15px;
+		}
+		
+		legend {
+			text-align: center;
+		}
+		
+		form {
+			box-sizing: border-box;
+			padding: 10px;
+		}
+		
+		div {
+			margin: 15px auto;
+			text-align: center;
+		}
+		
+		label {
+			display: inline-block;
+			width: 150px;
+			text-align: left;
+		}
+		
+		input {
+			padding: 5px;
+			display: inline-block;
+			width: 200px;
+		}
+		
+		#userTel {
+			width: 147px;
+		}
+		
+		select {
+			padding: 5px;
+		}
+		
+		p {
+			display: inline-block;
+			margin: 0;
+			width: 365px;
+			font-size: 11px;
+			text-align: right;
+		}
+		
+		button {
+			width: 70px;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<fieldset style="margin: 0 auto;width:500px;">
+		<legend>&nbsp;회원정보입력&nbsp;</legend>
+		<form name="signUp">
+			<div>
+				<label for="userId">아이디</label>
+				<input id="userId" type="text" title="아이디">
+				<p></p>
+			</div>
+			
+			<div>
+				<label for="userPw">비밀번호</label>
+				<input id="userPw" type="password" title="비밀번호">
+				<p></p>
+			</div>
+			
+			<div>
+				<label for="userPw2">비밀번호 확인</label>
+				<input id="userPw2" type="password" title="비밀번호확인">
+				<p></p>
+			</div>
+			
+			<div>
+				<label for="userName">이름</label>
+				<input id="userName" type="text" title="이름">
+				<p></p>
+			</div>
+			
+			<div>
+				<label for="userBirth">생년월일</label>
+				<input id="userBirth" type="date" title="생년월일">
+				<p></p>
+			</div>
+			
+			<div>
+				<label for="userTel">휴대폰</label>
+				<select>
+					<option>010</option>
+					<option>011</option>
+					<option>070</option>
+				</select>
+				<input id="userTel" type="text" placeholder="0000-0000 ('-' 생략가능)" title="휴대폰번호">
+				<p></p>
+			</div>
+			
+			<div>
+				<label for="userEmail">이메일</label>
+				<input id="userEmail" type="email" title="이메일">
+				<p></p>
+			</div>
+			
+			<div>
+				<button type="button" onclick="validate()">전송</button>
+				<button type="reset">초기화</button>
+			</div>
+		</form>
+	</fieldset>
+	
+	<script type="text/javascript">
+		var uId = document.getElementById("userId");
+		var uPw = document.getElementById("userPw");
+		var uPw2 = document.getElementById("userPw2");
+		var uNm = document.getElementById("userName");
+		var uBirth = document.getElementById("userBirth");
+		var uTel = document.getElementById("userTel");
+		var uEmail = document.getElementById("userEmail");
+		
+		// 정규식
+		// 1. 아이디 : 빈 칸 없이 8~20자. 영문 소문자로 시작. 소문자, 숫자 사용 가능.
+		var regId = /^[a-z][0-9a-z_-]{7,19}$/;
+		// 2. 비밀번호 : 빈 칸 없이 8~20자. 영문 대소문자, 숫자, 특수문자(~!@#$%^&*()?_) 반드시 1글자씩 포함.
+		var regPw = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[~!@#$%^&*()?_])[0-9a-zA-Z~!@#$%^&*()?_]{8,20}$/;
+		// 3. 이름 : 빈 칸 없이 한글 2~5 글자.
+		var regNm = /^[가-힣]{2,5}$/;
+		// 4. 생년월일 : 1900-01-01 or 2000-01-01의 형태.
+		var regBirth = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/; 
+		// 5. 휴대폰 : 핸드폰 번호 형식. 하이픈(-)은 써도 되고 안 써도 됨.
+		var regTel = /^\d{4}-?\d{4}$/;
+		// 6. 이메일 : 아이디와 같은 조건 + 이메일 형식, 대소문자 구분 없음.
+		var regEmail = /^([a-z][0-9a-z_-]{7,19})+@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])+(?:\.[a-zA-Z]{2,3})$/i;
+		
+		function validate() {
+			
+			// 1) 빈값체크
+			// 2) 공백체크
+			// 3) 길이체크
+			// 4) 형식체크
+			
+			// 1. 아이디
+			var p = document.querySelector("#userId+p");
+			if(uId.value.trim().length == 0) {
+				alert("아이디는 필수입력입니다.");
+				p.innerHTML = "8~20자의 영문 소문자, 숫자, 특수문자(-),(_)만 가능";
+				p.style.color = "#e50000";
+				uId.focus();
+				return;
+			} else if(uId.value.search(/\s+/) != -1) {
+				alert("아이디에는 빈 칸을 포함할 수 없습니다.");
+				p.innerHTML = "8~20자의 영문 소문자, 숫자, 특수문자(-),(_)만 가능";
+				p.style.color = "#e50000";
+				uId.focus();
+				return;
+			}
+			
+			if(uId.value.match(regId)) {
+				p.innerHTML = "사용 가능한 아이디입니다.";
+				p.style.color = "#198c19";
+			} else {
+				p.innerHTML = "8~20자의 영문 소문자, 숫자, 특수문자(-),(_)만 가능";
+				p.style.color = "#e50000";
+				uId.focus();
+				return;
+			}
+			
+			// 2. 비밀번호
+			var p = document.querySelector("#userPw+p");
+			if(uPw.value.trim().length == 0) {
+				alert("비밀번호는 필수입력입니다.");
+				p.innerHTML = "8~20자의 영문 대소문자, 숫자, 특수문자(~!@#$%^&*()?_)만 가능";
+				p.style.color = "#e50000";
+				uPw.focus();
+				return;
+			} else if(uPw.value.search(/\s+/) != -1) {
+				p.innerHTML = "8~20자의 영문 대소문자, 숫자, 특수문자(~!@#$%^&*()?_)만 가능";
+				p.style.color = "#e50000";
+				alert("비밀번호에는 빈 칸을 포함할 수 없습니다.")
+				uPw.focus();
+			}
+			
+			if(uId.value.match(regId)) {
+				p.innerHTML = "사용 가능한 비밀번호입니다.";
+				p.style.color = "#198c19";
+			} else {
+				p.innerHTML = "8~20자의 영문 대소문자, 숫자, 특수문자(~!@#$%^&*()?_)만 가능";
+				p.style.color = "#e50000";
+				uPw.focus();
+				return;
+			}
+			
+			// 2-1. 비밀번호확인
+			var p = document.querySelector("#userPw2+p");
+			if(uPw2.value.trim().length == 0) {
+				alert("비밀번호 확인을 입력해주세요.");
+				p.innerHTML = "비밀번호가 일치하지 않습니다.";
+				p.style.color = "#e50000";
+				uPw2.focus();
+				return;
+			}
+			
+			if(uPw.value == uPw2.value) {
+				p.innerHTML = "비밀번호가 일치합니다.";
+				p.style.color = "#198c19";
+			} else {
+				p.innerHTML = "비밀번호가 일치하지 않습니다.";
+				p.style.color = "#e50000";
+				uPw2.focus();
+				return;
+			}
+			
+			// 3. 이름
+			var p = document.querySelector("#userName+p");
+			if(uNm.value.trim().length == 0) {
+				alert("이름은 필수항목입니다.");
+				p.innerHTML = "2~5자의 한글만 가능합니다.";
+				p.style.color = "#e50000";
+				uNm.focus();
+				return;
+			} else if(uNm.value.search(/\s+/) = -1) {
+				alert("이름에는 빈 칸을 포함할 수 없습니다.");
+				p.innerHTML = "2~5자의 한글만 가능합니다.";
+				p.style.color = "#e50000";
+				uNm.focus();
+			}
+			
+			if(uNm.value.match(regNm)) {
+				p.innerHTML = "올바른 형식입니다.";
+				p.style.color = "#198c19";
+			} else {
+				p.innerHTML = "2~5자의 한글만 가능합니다.";
+				p.style.color = "#e50000";
+				uPw2.focus();
+				return;
+			}
+			
+			// 4. 생년월일
+			var p = document.querySelector("#userBirth+p");
+			if(uBirth.value.trim().length == 0) {
+				alert("생년월일은 필수항목입니다.");
+				p.innerHTML = "2003년 이후 출생자는 가입이 불가능합니다.";
+				p.style.color = "#e50000";
+				uBirth.focus();
+				return;
+			}
+			
+			if(uBirth.value.match(regBirth)) {
+				p.innerHTML = "올바른 형식입니다.";
+				p.style.color = "#198c19";
+				
+				if(uBirth.value.split("-")[0] > 2002) {
+					p.innerHTML = "2003년 이후 출생자는 가입이 불가능합니다.";
+					p.style.color = "#e50000";
+					return;
+				}
+			} else {
+					p.innerHTML = "형식이 올바르지 않습니다. 숫자만 입력해주세요.";
+					p.style.color = "#e50000";
+					uPw2.focus();
+					return;
+			}
+			
+			// 5. 휴대폰
+			var p = document.querySelector("#userTel+p");
+			if(uTel.value.trim().length == 0) {
+				alert("휴대폰 번호는 필수항목입니다.");
+				p.innerHTML = "형식이 올바르지 않습니다.(ex:0000-0000)";
+				p.style.color = "#e50000";
+				uTel.focus();
+				return;
+			} else if(uTel.value.search(/\s+/) = -1) {
+				alert("휴대폰 번호에는 빈 칸을 포함할 수 없습니다.")	
+				p.innerHTML = "형식이 올바르지 않습니다.(ex:0000-0000)";
+				p.style.color = "#e50000";
+				uTel.focus();
+			}
+			
+			if(uTel.value.match(regTel)) {
+				p.innerHTML = "올바른 형식입니다.";
+				p.style.color = "#198c19";
+			} else {
+				p.innerHTML = "형식이 올바르지 않습니다.(ex:0000-0000)";
+				p.style.color = "#e50000";
+				uTel.focus();
+				return;
+			}
+			
+			
+			// 6. 이메일
+			var p = document.querySelector("#userEmail+p");
+			if(uEmail.value.trim().length == 0) {
+				alert("이메일은 필수항목입니다.");
+				p.innerHTML = "올바른 형식의 이메일이 아닙니다.";
+				p.style.color = "#e50000";
+				uEmail.focus();
+				return;
+			} else if(uEmail.value.search(/\s+/) = -1) {
+				alert("이메일에는 빈 칸을 입력할 수 없습니다.");
+				p.innerHTML = "올바른 형식의 이메일이 아닙니다.";
+				p.style.color = "#e50000";
+				uEmail.focus();
+			}
+		
+			
+			if(uEmail.value.match(regEmail)) {
+				p.innerHTML = "올바른 형식입니다.";
+				p.style.color = "#198c19";
+			} else {
+				p.innerHTML = "올바른 형식의 이메일이 아닙니다.";
+				p.style.color = "#e50000";
+				uEmail.focus();
+				return;
+			}
+			
+			// 입력 값 전송
+			var con = confirm("회원가입을 진행하시겠습니까?")
+			if(con == true) {
+				alert("회원가입에 성공하였습니다!");
+				document.signUp.submit();
+			} else if(con == false) {
+				return;
+			}
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>로그인 폼 선생님 코드</title>
+	
+	<script>
+	function sendUserInfo() {
+		
+
+		if(!validate()) return; 
+		
+		
+	    if(!confirm("전송하시겠습니까?")) return; 
+    	
+    	
+	    /*서버 전송 로직*/
+    	
+	}
+	
+	
+	
+	
+	function isEmpty(str) {
+		if(str == null || str.trim.length == 0 || str == undefined){
+			  return true;
+		}else{
+			  return false;//빈값이 아닌 경우 return false;
+		}
+	}
+	
+	//공백체크
+	function hasBlank(str){
+		var regExp = /\s+/;
+		//공백을 가지고 있으면 return true
+		//공백을 가지고 있지 않으면 return false;
+		return str.match(regExp);
+	}
+	
+	/*
+	if-else 를 사용하려면 경우의 수를 잘 따져서 사용해야 한다.
+	*/
+	//길이체크(문자, 최대, 최소)
+	/*
+	function checkLength(str, min, max){
+        if(min == null && max == null){
+            return false; //min, max가 꼭 필요한데, 없으면 문제가 있다는 것을 명시해야 함.
+        } else if(min == null){ //최소값이 널인경우
+            if(str.length > max){ //최대값만 비교
+                return false;
+            }
+        } else if(max == null){//최대값이 널인경우
+            if(str.length < min){ //최소값만 비교
+                return false;
+            }
+        } else { //최소값, 최대값이 둘다 존재하는 경우
+            if(str.length < min || str.length > max){ //최소값, 최대값 둘다 존재하는 경우
+                return false;
+            }
+        }
+    }
+	*/
+	
+	/*
+	줄일 수 있는 것은 줄여라.
+	*/
+	function checkLength(str, min, max){
+		if(min == null){ //최소값이 널인경우
+			if(str.length > max) return false; //최대값만 비교
+		}
+		
+		if(max == null){//최대값이 널인경우
+			if(str.length < min) return false; //최소값만 비교
+		}
+		
+		if(min != null || max != null){ //최소값, 최대값 둘다 null이 아닌경우
+			if(str.length < min || str.length > max) return false; //최소값, 최대값 둘다 존재하는 경우
+		}
+	}
+	
+	function checkRegExp(str, regExp){
+		return str.match(regExp); 
+	}
+	
+	function validate() {
+		/*
+		유효성 체크
+		체크하는 순서도 중요하다. 메시지를 구체적으로 주기 위함.
+		오류가 발생했을 때, 해당 영역으로 포커스, 메시지를 주어야 한다.
+		1) 빈값체크 : 입력 값에 빈값이 있습니다.
+		2) 공백체크 : 공백이 있습니다.
+		3) 길이체크 : 몇자가 입력되었습니다.
+		4) 형식체크 : 입력형식이 맞지 않습니다.
+		*/
+		/*
+		반복적인 코드는 따로 함수로 빼어 모듈화를 시킴
+		아이디 길이 줄 때 변수로 준 이유는 나중에 길이를 변경하는 요구사항이 존재 시 하드코딩 된 경우 모두 찾아야되는 번거로움이 있지만
+		변수로 빼놓으면 유지보수가 쉽다.
+		*/
+		
+		/*아이디 검사*/
+		var ele = document.getElementById("userId"); //아이디 엘리먼트 가져옴
+		var val = ele.value; //객체 value 체크
+		if(isEmpty(val)){//1) 빈값 체크
+			alert("아이디는 필수 입력입니다.");
+			ele.focus();
+			return false; //여기서 그만하기 위해 return false 돌려줌
+		}
+		
+		// \s+ : 공백이 1개이상 있고 (공백이 여러개 있을 수 있음.)
+		//[0-9a-zA-Zㄱ-ㅎ가-힣]* : 요게 있을수도 있고 없을수도 있고
+// 		var regExp = /[0-9a-zA-Zㄱ-ㅎ가-힣]*\s+[0-9a-zA-Zㄱ-ㅎ가-힣]*/;
+		if(hasBlank(val)){//2) 정규식으로 공백체크
+			alert("아이디에 빈칸은 입력하실 수 없습니다.");
+			ele.focus();
+			return false; //여기서 그만하기 위해 return false 돌려줌
+		}
+		
+		//3)길이체크
+		if(!checkLength(val, 5, 10)){
+			alert("아이디는 5글자 이상, 10글자 이하이어야 합니다.");
+			ele.focus();
+			return false; //여기서 그만하기 위해 return false 돌려줌
+		}
+		
+		//4)형식 체크 : 영소시작. 영소+숫자
+		regExp = /^[a-z][0-9a-z]*/;
+		if(checkRegExp(val, regExp)){//매칭이 되면
+			alert("아이디 형식이 잘못되었습니다.\n영어 소문자로 시작하고, 영어 소문자와 숫자로 입력하세요.");
+			ele.focus();
+			return false; //여기서 그만하기 위해 return false 돌려줌
+		}
+	}
+	
+	/*
+	휴대폰 검사 : 0101231234, 01012341234, 010-123-1234, 010-1234-1234
+	==> /^[0-9]{3}[0-9]{3,4}[0-9]{4}|^[0-9]{3}[0-9]{3,4}[0-9]{4}$/
+	==> /(^[0-9]{3}[0-9]{3,4}[0-9]{4}|^[0-9]{3}[0-9]{3,4}[0-9]{4})$/
+	비밀번호
+	==> /[a-z]+/ && /[A-Z]+/ && /[0-9]+/ && /[특수문자..]+/ : 한덩이가 잘못도ㅒㅆ으면 fass
+	*/
+	</script>
+</head>
+<body>
+<!-- 
+    input 웹접근성 : label로 감싸거나 title을 작성하거나 둘중 하나 선택하여 작업한다.
+    
+    submit 버튼 클릭 시 input 태그에서 엔터를 칠 때, 바로 전송이 된다. 
+       이때 웹접근성에 위배가 된다. 
+       전송을 클릭해야지만 서버로 전송이 되어야 한다.
+       
+       아이디 부여 시 어떤 정보에 대한 아이디인지 구체적으로 작성하는 것이 좋다.  
+ -->
+    <form>
+        아이디 : <input type="text" id="userId" title="아이디"><br>
+        비밀번호 : <input type="password" id="userPassword" title="비밀번호"><br> 
+        이름 : <input type="text" id="userName" title="이름"><br>
+        생년월일 : <input type="text" id="birthDay" title="생년월일"><br>
+        휴대폰 : <input type="text" id="hpNo" title="휴대폰"><br>
+        이메일 : <input type="text" id="email" title="이메일"><br>
+     <button type="button" onclick="sendUserInfo()">전송1</button>
+     <button type="submit">전송2</button><!-- submit은 화면이 리로드 됨 -> 입력값에서 엔터를 누르면 전송이 됨. -->
+     <button type="reset">취소</button>   
+    </form>
+</body>
+</html>
