@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>교재목록 숙제</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("a").click(function(e){
+			  //$("li:nth-of-type(3) a").attr("href");
+			  //../../images/nasa3.png
+// 			  $(this).attr("href","../../images/nasa3.png");
+// 			  var test = $("li:nth-of-type(3) a").attr("href");
+// 			  console.log(test);
+              e.preventDefault();
+              var url = this.href;
+              console.log("url : " + url);
+              $("img")  .slideUp(0).slideDown(200)
+                        .attr("src",url)
+                        .attr("width", "100px")
+                        .attr("height", "100px");
+		  });
+	   });
+	   
+	   
+	   
+	   $(document).ready(function(){
+	          $("#btnSlideDown").click(function(){
+	              $("p").slideDown();
+	          });
+	          $("#btnSlideUp").click(function(){
+	              $("p").slideUp();
+	          });
+	          $("#btnSlideToggle").click(function(){
+	              $("div").slideToggle();
+	          });
+	       });
+	</script>
+</head>
+<body>
+    <ul>
+        <li><a href="../../images/nasa1.png">JQuery 교재</a></li>
+        <li><a href="../../images/nasa2.png">JSP 교재</a></li>
+        <li><a href="../../images/nasa3.png">UML 교재</a></li>
+    </ul>
+    <hr color="red">
+    <img src="../../images/lion.png" style="width:100px; height:100px;">
+</body>
+</html>

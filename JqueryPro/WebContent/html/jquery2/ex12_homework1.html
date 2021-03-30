@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>토글 테스트</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("#btnShow").click(function(){
+			  $("img").show();
+		  });
+		  $("#btnHide").click(function(){
+			  $("img").hide();
+		  });
+		  $("#btnSlideUp").click(function(){
+			  $("img").slideUp();
+		  });
+		  $("#btnSlideDown").click(function(){
+			  $("img").slideDown();
+		  });
+		  $("#btnSlideToggle").click(function(){
+			  $("img").slideToggle();
+		  });
+		  $("#btnFadeIn").click(function(){
+			  $("img").fadeIn();
+		  });
+		  $("#btnFadeOut").click(function(){
+			  $("img").fadeOut();
+		  });
+		  $("#btnFadeTo").click(function(){
+			  $("img").fadeTo(2000,0.3);
+		  });
+		  $("#btnFadeToggle").click(function(){
+			  $("img").fadeToggle();
+		  });
+	   });
+	</script>
+</head>
+<body>
+    <button type="button" id="btnShow">Show</button>
+    <button type="button" id="btnHide">Hide</button>
+    <button type="button" id="btnSlideUp">SlideUp</button>
+    <button type="button" id="btnSlideDown">SlideDown</button>
+    <button type="button" id="btnSlideToggle">SlideToggle</button>
+    <button type="button" id="btnFadeIn">FadeIn</button>
+    <button type="button" id="btnFadeOut">FadeOut</button>
+    <button type="button" id="btnFadeTo">FadeTo</button>
+    <button type="button" id="btnFadeToggle">FadeToggle</button>
+    <img src="../../images/lion.png" style="display:block;">
+</body>
+</html>
