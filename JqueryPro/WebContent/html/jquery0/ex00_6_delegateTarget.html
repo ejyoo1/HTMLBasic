@@ -5,6 +5,9 @@
 	<title>버튼 클릭 시 배경색 바꾸기</title>
 	<script src="../../js/jquery-3.6.0.js"></script>
 	<script>
+	/*
+	delegateTarget : 현재 호출되는 JQuery 이벤트 핸들러가 연결된 요소를 반환함.
+	*/
 	$(document).ready(function(){
 		$("div").on("click", "button", function(event){
 			  $(event.delegateTarget).css("background-color","pink");	

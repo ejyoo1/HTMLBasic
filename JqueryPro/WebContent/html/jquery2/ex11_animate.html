@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Hide Show Toggle</title>
+	<style>
+	   div{
+	       border: 3px dotted red;
+	       position: relative; /*이것 필수*/
+	       left: 30px;
+	   }
+	</style>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		   $("#btnAni").click(function(){
+			   $("#tmp").animate({left: '300px'});
+			   //==> $("#tmp")가 static이면 이동되지 않음.(position 주어야됨)
+		   });
+	   });
+	</script>
+</head>
+<body>
+    <p>이 영역은 버튼을 누르면 사라졌다가 다시 나타나지용</p>
+    <button type="button" id="btnAni">animate</button>
+    <div id="tmp">
+        안녕하십니까?<br>
+        안녕히 가십시오
+    </div>
+</body>
+</html>

@@ -10,13 +10,16 @@
 	<script>
 	   $(document).ready(function(){
 		  $("a").click(function(e){
+			  // 링크를 막는 방법
+			  // case1) event 객체의 preventDefault() 메소드 호출
+			  // case2) false 리턴 : return false
 			  e.preventDefault();//해당 링크로 이동 안됨.
 		  });
 	   });
 	   
 	</script>
 	
-</head>
+</head>`
 <body>
 <!-- body는 레이아웃 요소만 -->
 <img src="../../images/lion.png" alt="이미지1" >

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("input", "#ex2").focus(function(){
+			  //appendTo 썻을 때 생성한 태그에 효과 적용하는 방법
+// 			  $("<span>포커스 받았슈~</span>").appendTo("#ex2").fadeOut(1000);
+              
+              //append 썻을 때 생성한 태그에 효과 적용하는 방법
+              var ele = $("<span>포커스 받앗슈~</span>");
+              $("#ex2").append(ele);//ele.fadeOut(1000)직접 넣어도 됨.
+              ele.fadeOut(1000);
+		  }); 
+		  
+		  $("#btn1").click(function(){
+			  $("input", "#ex2").trigger("focus");//이벤트 강제 호출 (포커스도 이동됨.)
+		  });
+		  
+		  $("#btn2").click(function(){
+			  $("input", "#ex2").triggerHandler("focus");//이벤트 강제 호출(포커스는 안되고 fadeOut만 됨)
+		  });
+	   });
+	</script>
+</head>
+<body>
+    <div id="ex2">
+        <h3>trigger()와 triggerHandler 비교</h3>
+        <button type="button" id="btn1">trigger</button>
+        <button type="button" id="btn2">triggerHandler</button>
+        <br><br>
+        <input type="text">
+    </div>
+</body>
+</html>

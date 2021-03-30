@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $(":button").click(function(){
+			  //e로 쓰는 경우 e.target
+			  $(this).css("border", "3px solid black")
+			  return false;
+		  });
+		  $("span").click(function(){
+			 $(this).css("border", "3px solid black")
+			 return false;
+		  });
+		  $("div").click(function(){
+			  $(this).css("border", "3px solid black")
+// 			  $(this).html("hello~");//span 을 가져옴 ==> 텍스트를 넣으면 span 이 없어짐.
+// 			  방법1) p 태그를 만들어서 추가하기
+// 			  var ele = $("<p>하이</p>");
+// 			  $(this).append(ele);
+// 			  방법2) 텍스트 노드 만들어서 추가하기
+			  var node = document.createTextNode("헬로우");//<> 사이의 text이므로 node
+			  $(this).append(node);
+		  });
+		  $("a").click(function(){
+			  var userAge = prompt("태어난 년도를 입력하세요.");
+			  if(userAge == null){
+				  alert("입력된 값이 없습니다.");
+				  return false;
+			  }
+			  if(parseInt(userAge)+"" == "NaN"){
+                  alert("숫자를 입력해야 합니다."); 
+                  return false;
+              }
+			  if(userAge.trim().length ==0){
+				  alert("입력된 값이 없거나 빈값을 입력하셨습니다.");
+				  return false;
+			  }
+			  
+			  //년도 뽑기 new Date().getFullYear()
+			  //2021년 1살 : 2021-2021=0
+			  //20살 : 19
+			  var resultAge = new Date().getFullYear() - new Date(userAge).getFullYear();
+			  console.log("계산된 나이 : " + resultAge);
+			  console.log("입력 나이 : " + userAge);
+			  alert(userAge);
+			  if(resultAge < 18){
+				  alert("이동불가");
+				  return false;
+			  }else{
+				  alert("이동");
+				  return false;
+// 				  console.log("이동");
+			  }
+		  });
+	   });
+	   //button 클릭 시, 버튼의 테두리 설정
+	   
+	   //span클릭 시 span의 테두리 설정
+	   //div 클릭 시 , div의 테두리 설정. div안에 "Hello~" 글자 추가
+	   //a 클릭 시 프롬프트로 태어난 년도 4자리를 입력받아서 20세 이상인 경우만 링크 이동하기
+	</script>
+</head>
+<body>
+    <div style="background-color:pink; height:100px" >
+        <span style="background-color:yellow; margin: 0px 50px 0 50px; padding:10px 10px; display:block;">
+            <button type="button">클릭하세요</button>
+        </span>
+    </div>
+    <br>
+    <hr color="red">
+    <br>
+    <a href="http://www.daum.net">Daum으로 이동</a>
+</body>
+</html>

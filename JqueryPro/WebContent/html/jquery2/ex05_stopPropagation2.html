@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   //span클릭 : 배경색 빨강, h1 클릭 : 배경색 녹색으로 변경
+	   //span 클릭해도 h1에 이벤트가 전달되지 않아야 함.
+	   $(document).ready(function(){
+		  $("h1").click(function(){
+			  $(this).css("background-color","green");
+		  });
+		  $("span").click(function(){
+			  $(this).css("background-color","red");
+// 			  e.stopPropagation();
+			  return false;
+		  });
+	   });
+	</script>
+</head>
+<body>
+    <h1>
+        큰 제목 안에 <span>작은 영역</span>이 있다.
+    </h1>
+</body>
+</html>
