@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>교재목록 숙제</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   var url;
+	   $(document).ready(function(){
+		   //show,hide
+		  $("a").click(function(e){
+              e.preventDefault();
+              url = this.href;
+              console.log("url : " + url);
+              /*callBack 함수 사용 => hide를 한 뒤 다음 작업 명시*/
+              $("img").hide("slow", function(){//함수를 분리하는 것보다는 바로 바꾸도록 (속도문제) //만약 함수를 사용하는 경우 callback()이 아닌 callback을 사용할 것. callback()은 함수를 호출하여 바로 결과값을 뿌려주는 것임.
+            	  //1. 이미지 바꾸기
+            	  $("img") .attr("src",url)
+            	  //2. 보여주기
+                  .attr("width", "100px")
+                  .attr("height", "100px")
+                  .show();
+              });
+		  });
+	   });
+	</script>
+</head>
+<body>
+    <ul>
+        <li><a href="../../images/nasa1.png">JQuery 교재</a></li>
+        <li><a href="../../images/nasa2.png">JSP 교재</a></li>
+        <li><a href="../../images/nasa3.png">UML 교재</a></li>
+    </ul>
+    <hr color="red">
+    <img src="../../images/lion.png" style="width:100px; height:100px;">
+</body>
+</html>

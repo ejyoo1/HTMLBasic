@@ -5,15 +5,20 @@
 	<title>교재목록 숙제</title>
 	<script src="../../js/jquery-3.6.0.js"></script>
 	<script>
+	   var url;
 	   $(document).ready(function(){
+		   //슬슬사라지기
 		  $("a").click(function(e){
               e.preventDefault();
-              var url = this.href;
+              url = this.href;
               console.log("url : " + url);
-              $("img")  .slideUp(0).slideDown(200)
-                        .attr("src",url)
-                        .attr("width", "100px")
-                        .attr("height", "100px");
+              /*callBack 함수 사용 => fadeOut을 한 뒤 다음 작업 명시*/
+              $("img").fadeOut("fast", function(){//함수를 분리하는 것보다는 바로 바꾸도록 (속도문제)
+            	  $("img") .attr("src",url)
+                  .attr("width", "100px")
+                  .attr("height", "100px")
+                  .fadeIn();
+              });
 		  });
 	   });
 	</script>

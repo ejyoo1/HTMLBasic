@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>교재목록 숙제</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   var url;
+	   $(document).ready(function(){
+		  $("a").click(function(e){
+              e.preventDefault();
+              url = this.href;
+              console.log("url : " + url);
+              /*callBack 함수 사용 => slideUp을 한 뒤 다음 작업 명시*/
+              $("img").slideUp(0, function(){//함수를 분리하는 것보다는 바로 바꾸도록 (속도문제)
+            	  $("img") .attr("src",url)
+                  .attr("width", "100px")
+                  .attr("height", "100px")
+                  .attr("display", "block")/*진짜 슬라이드 효과*/
+                  .slideDown(200);
+              });
+              /*이미지는 inline 이기 때문에 왼쪽을 기준으로 사라지게 된다.
+                        이미지에 display: block 효과를 주면 슬라이드 처럼 표시된다.
+              */
+		  });
+	   });
+	</script>
+</head>
+<body>
+    <ul>
+        <li><a href="../../images/nasa1.png">JQuery 교재</a></li>
+        <li><a href="../../images/nasa2.png">JSP 교재</a></li>
+        <li><a href="../../images/nasa3.png">UML 교재</a></li>
+    </ul>
+    <hr color="red">
+    <img src="../../images/lion.png" style="width:100px; height:100px;">
+</body>
+</html>
