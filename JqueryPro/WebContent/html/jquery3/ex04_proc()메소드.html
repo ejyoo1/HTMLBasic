@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>proc()메소드 사용</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  var count = 0;
+		   
+		  $("#checkVal").prop("checked",true);
+		  $("#genderFemale").prop("checked",true);
+		  $("#job option[value='A01']").prop("selected", true);
+		  $("#readOnlyTxt").prop("readonly",true);
+		  $("#disabledBtn").prop("disabled",true);/*disable은 서버로 전송되지 않는다.*/
+		  $("#checkAll").click(function(){
+			  /*내 방법
+			  var ischecked = $(":checkbox[name='checkType']:eq(0)").is(":checked");//첫번째 체크박스를 가져와서
+	          console.log("ischecked : " + ischecked);
+	          var objArr = $(":checkbox[name='checkGroup']");
+	          if(ischecked){
+	              objArr.each(function(){
+	                     objArr.prop("checked",true);
+	                  });
+	          }else{
+	              objArr.each(function(){
+	                  objArr.prop("checked",false);
+	               });
+	          }*/
+	          //선생님 방법
+	          //1) '전체선택' 체크박스가 체크되어 있는지 확인
+	          var isChecked = $(this).prop("checked");
+	          var objArr = $(":checkbox[name='checkGroup']");
+//              $("#chkAll ~ :checkbox")
+//              $("[name='checkGroup']")
+// $("input[name=hobby]:checked")
+// $("셀렉터1").not("셀렉터2") : 셀렉터1중 셀렉터2를 뺸 나머지 반환
+		  
+	          
+	          if(isChecked){
+	        	//2) '전체선택' 체크박스가 체크되어있다면
+	              //다른 체크박스 체크해주기
+                  objArr.each(function(){
+                         objArr.prop("checked",true);//세팅하는것은 한번에 됨. 데이터를 가져오는것은 반복으로..
+                      });
+                  count = 5;
+              }else{
+            	//3) '전체선택' 체크박스가 체크되어있지않다면
+                  //다른 체크박스 체크 해제해주기
+                  objArr.each(function(){
+                      objArr.prop("checked",false);
+                   });
+                  count = 0;
+              }
+	          
+		  });
+		  
+		  
+		  $(".checkGroup").click(function(e){
+			  var objArr2 = $(e.target);
+				 if(objArr2.prop("checked")==true){
+					 console.log("체크됨");
+					 count++;
+				 }else{
+					 console.log("체크되지 않음");
+					 count--;
+				 }
+			  console.log(count);
+			  if(count==5){
+				  console.log("모두 체크되었습니다.");
+				  $("#checkAll").prop("checked", true);
+			  }else {
+				  console.log("모두 체크되지 않았습니다.");
+				  $("#checkAll").prop("checked",false);
+			  }
+		  });
+		  
+	   });
+	</script>
+</head>
+<body>
+    <form>
+        <label for="checkVal">체크박스</label><input type="checkbox" id="checkVal">
+        
+        라디오<input type="radio" id="genderMale" name="gender" value="M">
+        <label for="genderMale">남자</label>
+        <input type="radio" id="genderFemale" name="gender" value="F">
+        <label for="genderFemale">여자</label><br>
+        
+        리스트박스<select id="job">
+            <option value="none">--선택--</option>
+            <option value=" A01">한국어</option><!-- 필드에서는 이렇게 코드값을 부여하여 사용한다. -->
+            <option value="A02">영어</option>
+            <option value="A03">중국어</option>
+        </select><br>
+       (readonly):<input type="text" id="readOnlyTxt"><br>
+       (disabled):<button type="button" id="disabledBtn">실행</button>
+                <button type="button">attr확인</button>
+                <button type="button">prop 확인</button><br>
+                
+          체크박스(전체선택/해제):
+          <input type="checkbox" value="checkAll" id="checkAll"><label for="checkAll">전체선택</label>
+          <input type="checkbox" name="checkGroup" id="ckb1" class="checkGroup"><label for="ckb1">1</label>
+          <input type="checkbox" name="checkGroup" id="ckb2" class="checkGroup"><label for="ckb2">2</label>
+          <input type="checkbox" name="checkGroup" id="ckb3" class="checkGroup"><label for="ckb3">3</label>
+          <input type="checkbox" name="checkGroup" id="ckb4" class="checkGroup"><label for="ckb4">4</label>
+          <input type="checkbox" name="checkGroup" id="ckb5" class="checkGroup"><label for="ckb5">5</label>
+    </form>
+</body>
+</html>

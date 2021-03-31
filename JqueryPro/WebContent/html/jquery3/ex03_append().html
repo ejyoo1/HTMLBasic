@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>append() 사용하기</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("p").click(function(e){
+			var result = $(e.target).attr("title");
+			console.log("result : " + result);
+// 			var imgSrc = e.target.attr("title");
+// 			console.log("imgSrc : " + imgSrc);
+			var addObj = $("<img src='../../images/" + result + ".png'>");
+			$(addObj).attr("width","100px").attr("height","100px");
+			$(this).append(addObj);
+		  }); 
+	   });
+	</script>
+</head>
+<body>
+<p title="nasa1">튜울립</p>
+<p title="nasa2">국화</p>
+<p title="nasa3">코알라</p>
+<p title="lion">수국</p>
+</body>
+</html>

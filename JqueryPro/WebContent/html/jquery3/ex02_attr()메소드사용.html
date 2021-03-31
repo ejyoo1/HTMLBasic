@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>속성값 변경</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		   $("#btnSet").click(function(){
+               /*방법 1 ) for문 사용
+			   var objs = $("img");
+			   for(){}
+			   */
+			   
+			   /*방법 2) each 사용*/
+			   $("img").each(function(){
+				   var str = $(this).attr("src");
+				   
+				   var arr = str.split("/"); //==>[..,..,images/nasa1.png] 길이 4 
+	               var fileName = arr[arr.length - 1];//nasa1.png
+				   $(this).attr("title", fileName);
+			   });
+		   });
+	   });
+	</script>
+</head>
+<body>
+<img src="../../images/nasa1.png" alt="img1" style="width:100px;height:100px;">
+<img src="../../images/nasa2.png" alt="img2" style="width:100px;height:100px;">
+<img src="../../images/nasa3.png" alt="img3" style="width:100px;height:100px;">
+<img src="../../images/lion.png" alt="img4" style="width:100px;height:100px;">
+<img src="../../images/Lion.jpg" alt="img5" style="width:100px;height:100px;">
+<button type="button" id="btnSet">눌러보세요</button>
+</body>
+</html>

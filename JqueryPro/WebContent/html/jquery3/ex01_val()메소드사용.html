@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Val()메소드 사용하여 값 넣기</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		   $("#btnGet").click(function(){
+			  /*필드에서는 id를 가져와서 씀.*/
+			  //이름
+// 			  $("#userName") //<input type="text" value="아이유" id="userName">
+// 			  var userName = $("#userName").val();//value값을 리턴 : 아이유
+// 			  console.log(userName);
+			  //성별(라디오버튼)
+// 			  $("[name=gender]") //===> 라디오버튼 한묶음
+// 			  $("[name=gender]:checked") //===> 필터를 하나 더 줌 (input태그 가져옴)
+// 			  $("[name=gender]:checked").value(); // ===> 체크된 것의 값을 가져옴
+// 			  $("#description").val(); // ===> textArea 값 가져옴 (String형식)
+// 			  $("#job").val(); //===>직업
+//               $("#job") //===><select>
+//                 $("#job option") //===> <select><option></option></select>
+//                 $("#job option:selected").val(); //===>select 하위의 option들 중 선택된 옵션 value
+//                     $("#job option:selected").text() //===>아빠 text
+			    
+			    
+			  //사용자 입력값 출력
+			  var result = ""
+				    + "이름 : " + $("#userName").val() + "\n"
+				    + "성별 : " + $("[name=gender]:checked").val() + "\n"
+				    + "성별(자세하게) : " + $("label[for=genderFemale]").text() + "\n"
+				    + "소개 : " + $("#description").val() + "\n"
+				    + "직업 : " + $("#job option:selected").text() + "\n";
+			  
+			  alert(result);
+		   });
+		   
+		   $("#btnSet").click(function(){
+			  $("#userName").val("유은지"); 
+// 			  $("#genderFemale").
+			    document.getElementById("genderFemale").checked = "checked";
+			    $("#job").val("A02");
+		   });
+	   });
+	</script>
+</head>
+<body>
+    <form>
+        이름<input type="text" value="아이유" id="userName"><br>
+        성별<input type="radio" id="genderMale" name="gender" value="M" checked>
+        <label for="genderMale">남자</label>
+        <input type="radio" id="genderFemale" name="gender" value="F">
+        <label for="genderFemale">여자</label><br>
+        소개<textarea rows="3" cols="" id="description"></textarea><br>
+        직업<select id="job">
+            <option value="A01">프로그래머</option><!-- 필드에서는 이렇게 코드값을 부여하여 사용한다. -->
+            <option value="A02">프로게이머</option>
+            <option value="A03">웹퍼블리셔</option>
+<!--             <option value="programmer">프로그래머</option> -->
+<!--             <option value="progamer">프로게이머</option> -->
+<!--             <option value="webpublisher">웹퍼블리셔</option> -->
+        </select><br>
+        <button type="button" id="btnGet">조사하기</button>
+        <button type="button" id="btnSet">이름변경</button>
+    </form>
+</body>
+</html>
