@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>마우스 다운 시 P태그 생성</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("div").mousedown(function(){
+			$(this).after("<p>Mouse button pressed down.</p>");  
+		  });
+	   });
+	</script>
+</head>
+<body>
+    <div style="color:red;">Press down the mouse button over this div element.</div>
+</body>
+</html>

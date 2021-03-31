@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>버튼 클릭 시 p slideToggle -> div 마우스 오버 시 button mousedown 호출 </title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script>
+	   $(document).ready(function(){
+		  $("button").mousedown(function(){
+			  $("p").slideToggle();
+		  });
+		  $("div").mouseover(function(){
+			 $("button").mousedown(); 
+		  });
+	   });
+	</script>
+</head>
+<body>
+    <p>This is a paragraph.</p>
+
+    <button>Toggle</button><br><br>
+    <div>Press down and release the mouse button over this div element.</div>
+</body>
+</html>
