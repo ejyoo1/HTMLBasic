@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            //'버튼'들에 이벤트 바인딩
+            $("button").click(function(){
+                var str = "";
+                var btnId = $(this).attr("id"); 
+
+                if(btnId == "btnCase1"){
+                    $("li.2-1").closest("ul")//li.2-1을 찾아서 이것과 가장 가까운 ul을 찾음
+                    .css("background-color","red");//red
+                    str = '$("li.2-1").closest("ul")';
+                }else if(btnId == "btnCase2"){
+                    $("li.2-2").closest("li")//li.2-1을 찾아서 이것과 가장 가까운 li을 찾음
+					.css("background-color", "yellow");
+					// red
+					str = '$("li.2-2").closest("li")';
+                }else if(btnId == "btnCase3"){
+                    
+                }else if(btnId == "btnCase4"){
+                    
+                }else{
+                    console.log("버튼이 없음");
+                }
+
+                $("#divScript").text(str);
+            });
+        });
+    </script>>
+</head>
+<body>
+    <button id="btnCase1">case1</button>
+    <button id="btnCase2">case2</button>
+    <button id="btnCase3">case3</button>
+    <button id="btnCase4">case4</button>
+    <div id="divScript"></div>
+
+    <ul class="1" id="one">
+        <li class="1">1</li>
+        <li class="2" id="two">2
+            <ul class="2-1">
+                <li class="2-1">2-1</li>
+                <li class="2-2">2-2
+                    <ul class="2-2-1">
+                        <li class="2-2-1">2-2-1</li>
+                        <li class="2-2-2">2-2-2</li>
+                        <li class="2-2-3">2-2-3</li>
+                    </ul>
+                </li>
+                <li class="2-3">2-3</li>
+            </ul>
+        </li>
+        <li class="3">3</li>
+    </ul>
+</body>
+</html>

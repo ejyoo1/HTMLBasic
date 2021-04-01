@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="../../js/jquery-3.6.0.js"></script>
+  <script>
+    var pTagText = "";
+      var pTag = "";
+    $(document).ready(function(){
+      //div 인지 판단
+      $("p").click(function(){
+        if($(this).parent().is("div")){
+          $(this).clone().appendTo($(this).parent());
+        }else{
+          alert("작업대상이 아닙니다.");
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <div>
+    <p>무궁화 꽃이 피었습니다</p>
+  </div>
+  <p>은주는 예쁘다~</p>
+  <div>
+    <p>사뿐이 즈려밟고 가시옵소서</p>
+  </div>
+</body>
+</html>
