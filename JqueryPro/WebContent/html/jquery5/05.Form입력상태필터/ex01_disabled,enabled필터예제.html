@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>disabled, enabled 필터</title>
+  <script src="../../js/jquery-3.6.0.js"></script>
+  <script>
+    $(document).ready(function(){
+      $(":enabled").css("border", "1px solid blue");
+      $(":disabled").css("border", "1px solid red");
+    });
+  </script>
+</head>
+<body>
+  <!--disabled필터, enabled 필터-->
+  <form>
+    <input type="text">
+    <input type="password">
+    <select nsme="disSelect" disabled>
+
+    </select>
+    <br>
+    <input type="button" value="확인" disabled>
+    <br>
+  </form>
+</body>
+</html>

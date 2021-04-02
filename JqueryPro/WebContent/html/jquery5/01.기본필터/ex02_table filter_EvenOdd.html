@@ -4,14 +4,30 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <script src="../../js/jquery-3.6.0.js"></script>
+  <style>
+    table{
+      width: 100%;
+      text-align: center;
+    }
+  </style>
   <script>
     $(document).ready(function(){
-      $("table tr:even").css("background-color","lightgray");
+      //even - 짝수를 의미. 테이블의 0번째 tr부터 적용됨.
+      $("tr:even").css("background-color","lightgray");
+      $("tr:odd").css("background-color","#ff0000");
+      $("tr").first().css({
+          "background-color" : "#000000"
+          , "color" : "#ffffff"
+        });
     });
   </script>
 </head>
 <body>
   <table>
+    <tr>
+      <td>번호</td><!--테이블 구성 시 첫줄은 th로 구성하는 것이 좋음-->
+      <td>가격</td>
+    </tr>
     <tr>
       <td>one</td>
       <td>45만원</td>

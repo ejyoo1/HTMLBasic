@@ -1,0 +1,19 @@
+:first, :last, :eq(), :gt(), :lt() 필터 사용 추천하지 않음 ==> 메소드 사용!
+
+:first ==> .first()
+:last ==> .last()
+:eq(index) ==> .eq(index)
+:gt(index), lt(index) ==> .slice(index)
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+:even ==> 선택 요소 중 짝수 요소
+:odd ==> 선택 요소 중 홀수 요소
+:not(selector) ==> 괄호의 selector와 일치하는 모든 요소를 제외
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+.slice(start[,end])
+
+$('li').slice(2).css(~) ==> li 요소 중 3번째부터 css 적용
+
+$('li').slice(2,5).css(~) ==> li 요소 중 3번째부터 5번째 까지 css 적용
+
+$('li').slice(-4,-2).css(~) ==> li요소 중 뒤에서 4번째 부터 뒤에서 3번째 까지 css 적용

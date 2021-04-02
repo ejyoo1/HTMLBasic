@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>radio 버튼</title>
+  <script src="../../js/jquery-3.6.0.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#submitBtn").click(function(){
+        var checkId = $("#radioForm :checked").attr("id");
+        var str = $("[for='" + checkId + "']").text();
+        console.log(str);
+        $("#result").text(str);
+      });
+    });
+  </script>
+</head>
+<body>
+  <form id="radioForm">
+    <label for="answer1">1번</label>
+    <input type="radio" name="question1" id="answer1" value="A1"></br>
+
+    <label for="answer2">2번</label>
+    <input type="radio" name="question1" id="answer2" value="A2"></br>
+
+    <label for="answer3">3번</label>
+    <input type="radio" name="question1" id="answer3" value="A3"></br>
+  </form>
+  <p id="result">선택값</p>
+  <button type="button" id="submitBtn">제출</button>
+</body>
+</html>

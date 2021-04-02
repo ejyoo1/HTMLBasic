@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script src="../../js/jquery-3.6.0.js"></script>
+  <title>nth-child 사용</title>
+  <script>
+    $(document).ready(function(){
+      $("td:nth-child(3n-2)").css("background-color", "#888888");//==> 3n+1
+      $("td:nth-child(3n-1)").css("background-color", "#AAAAAA");// ==> 3n+2
+      $("td:nth-child(3n)").css("background-color", "#CCCCCC");//==> 3n;
+
+      // $("tr").first().css("background-color","000000")
+      // .css("color","#FFFFFF");/*tr위에 td가 올라가 있고, td애 색상이 있어서 배경색이 적용되지 않음. 이 코드는 잘못된 것임.*/
+      //==> 첫번째 tr의 td에 색상을 적용해주기
+      $("tr:first-child td").css({
+        "background-color" : "#000000"
+        ,"color" : "#ffffff"
+      });
+    });
+  </script>
+</head>
+<body>
+  <!--
+    테이블의 0,3,6 번째 td색상 짙은 회색
+    테이블의 1,4,7 번째 td색상 회색
+    테이블의 2,5,8 번째 td색상 밝은 회색
+    :nth-child(n)사용
+  -->
+  <table>
+    <tr>
+      <td>이름</td>
+      <td>주소</td>
+      <td>전화번호</td>
+      <td>주소</td>
+      <td>전화번호</td>
+    </tr>
+    <tr>
+      <td>홍길동</td>
+      <td>대전</td>
+      <td>010-222-333</td>
+      <td>대전</td>
+      <td>010-222-333</td>
+    </tr>
+    <tr>
+      <td>진달래</td>
+      <td>서울</td>
+      <td>010-444-555</td>
+      <td>서울</td>
+      <td>010-444-555</td>
+    </tr>
+    <tr>
+      <td>개나리</td>
+      <td>부산</td>
+      <td>010-777-888</td>
+      <td>부산</td>
+      <td>010-777-888</td>
+    </tr>
+    <tr>
+      <td>무궁화</td>
+      <td>대구</td>
+      <td>010-555-999</td>
+      <td>대구</td>
+      <td>010-555-999</td>
+    </tr>
+  </table>
+</body>
+</html>

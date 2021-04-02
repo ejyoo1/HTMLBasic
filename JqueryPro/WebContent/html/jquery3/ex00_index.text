@@ -1,0 +1,50 @@
+■ text(), html(), val() : 컨텐츠 확인 및 변경 메소드
+
+■ text() : 선택한 요소의 텍스트 내용을 반환(html 코드 제외)
+■ html() : 선택한 요소의 내용을 반환(html 코드 포함) == innerHTML 기능과 동일
+■ val() : 양식필드의 값을 반환(form fields)(value 속성의 값)
+
+■ text(str) : 선택한 요소의 텍스트 내용을 str로 설정
+■ html(str) : 선택한 요소의 내용을 str로 설정(html코드 포함)
+■ val(str) : 양식 필드(form fields)의 값을 str로 설정
+
+** 컨텐츠 반환 시, 선택된 요소가 여러개라면 첫번째 요소의 내용만 반환.
+** 컨텐츠 변경 시 선택된 요소가 여러개라면 모든 요소에 적용
+
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ 
+
+■ attr() : 속성 확인 및 변경 메소드(일반)
+- .attr("href") : 확인
+- .attr("src", "~") : 변경
+
+■ prop() : 속성 확인 및 변경 메소드(true,false)
+- prop("checked") : 상태값 가져오기
+- prop("disabled", true) : 상태값 세팅하기
+
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ 
+
+■ (selector)append(content) : 선택한 요소 내부의 마지막 위치에 추가
+
+■ (content)appendTo(selector) : append와 동일 하지만 이미 있을 때 삭제하고 다시 만듬 
+
+■ prepend/prependTo : append/appendTo와 동일 처음 위치에 추가
+
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■
+
+■ (selector).after(content) : 뒤에 형제레벨로 추가
+
+■ (content).insertAfter(selector): after와 동일 이미 요소 있는 경우 삭제하고 다시 추가
+
+■ (selector).before(content) : 선택한 요소 앞에 content 추가
+■ (contnet).insertBefore(selector) : selector 앞에 추가( 이미있을경우 삭제하고 다시 추가)
+
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ 
+
+■ (selector).empty() selector의 자식 요소 삭제
+■ (selector).remove() selector 및 selector 의 자식요소를 삭제
+■ (selector).remove(selector1) : selector 중에서 selector1에 해당하는 요소 삭제
+
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ 
+
+■ (selector).clone() : 선택된 요소를 복사
+■ (selector).clone(true/false) : true이면 이벤트 처리기까지 복사

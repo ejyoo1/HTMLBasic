@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>???</title>
+  <script src="../../js/jquery-3.6.0.js"></script>
+  <script>
+    /*
+    따로 구현해볼 내용
+    1. .each(function(idx, item){}) 문법도 있음.
+      ==> this를 사용하면 되므로 따로 구현하지는 않겠음.
+    */
+    
+    $(document).ready(function(){
+      $("#sumitBtn").click(function(){
+        var str = "";
+        $("#hobbyForm :checked").each(function(){ //리턴 타입 : 배열
+          var test1 = $(this).attr("id");//$(this).val(); ==> 속성 value 가져오기
+          var test2 = $("label[for='"+test1+"']").text();
+          // var test3 = $("input + label").text();//형제요소 찾기(input 다음으로 오는 것만 해당, 왼쪽은 안나옴.)
+          
+          //, 없애는 방법 : substr ==> 길이 -2(쉼표,공백 포함)
+          if(str.length == 0){
+            str += test2;
+          }else{
+            str += ", " + test2;
+          }
+        });
+        console.log(str);
+        $("#result span").text(str);//이것을 사용하면 덮어쓰기 됨.
+        //$("#result span").append(str);을 하면 텍스트가 초기화되지 않고 계속 추가되는 현상이 있음.
+        /*
+        //체크박스의 value가 코드값인 경우 - 형제요소 찾기
+        //체크박스 바로 뒤에 라벨이 위치함.
+        $(":checked").each(function(idx){
+          var val = "";
+          console.log($(this).next());
+          val = $(this).next().text();//이부분이 핵심!
+
+          if(idx == 0) str += val;
+          else str += ", " + val;
+        });
+        alert(str);
+        $("#result").html(str);
+        */
+      });
+    });
+  </script>
+</head>
+<body>
+  <!--
+    체크된 요소(checkbox, radio 버튼에서 사용)
+    예) $(":checked")
+  -->
+  <form id="hobbyForm">
+    취미 :
+    <input type="checkbox" name="hobby" value="hobby01" id="hobby1" checked><!--value는 코드값으로 작성(서버 관리 위함)-->
+    <label for="hobby1">여행</label>
+    <input type="checkbox" name="hobby" value="hobby02" id="hobby2">
+    <label for="hobby2">장기</label>
+    <input type="checkbox" name="hobby" value="hobby03" id="hobby3">
+    <label for="hobby3">바둑</label>
+    <input type="checkbox" name="hobby" value="hobby04" id="hobby4">
+    <label for="hobby4">독서</label>
+    <input type="checkbox" name="hobby" value="hobby05" id="hobby5">
+    <label for="hobby5">낚시</label>
+
+    <p id="result">선택결과 : <span></span></p>
+
+    <button type="button" id="sumitBtn">전송</button><!--type을 쓰지 않으면 기본값 submit-->
+  </form>
+</body>
+</html>

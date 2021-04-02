@@ -1,0 +1,12 @@
+    :hidden : 숨겨진 요소를 선택한다.
+    * 대상 - 숨겨진 요소의 유형(작동하는 요소 유형)
+    1) display : none
+    2) 폼 요소 중 type="hidden"
+    3) width와 height가 0으로 설정됨
+    4) 부모 요소가 hidden
+    * visibility : hidden;, opacity: 0;요소에는 작동하지 않음.
+    ex) $("p:hidden").show("5000");
+    ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    :visible : 보이는 요소를 선택한다.
+    * 대상 - 숨겨진 요소가 아닌 것
+    ex) $("p:visible").css(~);

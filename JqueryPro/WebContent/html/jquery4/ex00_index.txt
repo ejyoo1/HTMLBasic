@@ -1,0 +1,91 @@
+■■1. 상위 요소 찾기
+$(selector).parent(filter)
+: 셀렉터의 태그/선택자(필터)를 부모로 갖는 요소
+ex) $("p").parent("div").css(~);
+ ==> div 를 부모로 갖는 p 요소 반환
+
+
+$(selector).parents(filter)
+$(selector).parents(filter, filter, ...)
+: 선택된 요소의 모든 상위 요소 반환(filter)를 옵션으로 가능 (명시하지 않으면 html까지 반환함.)
+
+
+$(selector).parentsUntil(stop,filter)
+: selector와 stop 사이의 요소를 반환(selector, stop은 불포함). 
+: stop이 명시되지 않으면 최상위 요소(html)까지 반환
+ex) $("span").parentsUntil("div","ul").css(~)
+ ==> span의 부모요소 중 div미만 ~ ul이상 범위 요소 반환
+
+
+$(selector).closest(filter,context)
+: selector와 가장 가까이에 있는 상위 요소를 반환(자신도 포함) id로 범위지정 가능(context 불포함)
+ex) $("span").closest("ul")
+ ==> span에서 가장 가까운 상위 요소를 반환함. 2번째 가까운 것은 제외
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+■■ 하위 요소 찾기
+$(selector).children(filter) 
+: 선택한 요소의 자식 요소를 반환
+https://www.w3schools.com/jquery/traversing_children.asp
+
+$(selector).find(filter)
+: 선택한 요소의 하위 요소에서 filter를 찾아서 모두 반환
+https://www.w3schools.com/jquery/traversing_find.asp
+
+
+■■ 선택 요소 확장
+$(selector).add(element, context)
+: element도 선택자로 추가
+ ex) $("h1,p,#test").css("border","1px"); ===> $("h1").add("p").add("#test").css("border","1px");
+ https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_traversing_add
+
+
+ ■■ 형제 요소 찾기
+ $(selector).siblings(filter)
+ : 선택한 요소의 모든 형제 요소를 반환
+ https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_traversing_siblings
+
+ $(selector).next(filter)
+ : 선택한 요소의 다음(뒤에 위치한)형제요소
+https://www.w3schools.com/jquery/traversing_next.asp
+
+ $(selector).nextAll(filter)
+  : 선택한 요소의 다음 모든 형제요소들
+  https://www.w3schools.com/jquery/traversing_nextall.asp
+
+ $(selector).nextUntil(stop, filter)
+  : 선택한 요소의 다음 모든 형제 요소. 단, stop,filter 이전까지의 요소를 반환
+https://www.w3schools.com/jquery/traversing_nextuntil.asp
+
+
+ ■■ 필터링
+ 
+ $(selector).first()
+ : 선택된 요소의 첫번째 요소 반환
+ https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_traversing_first
+
+
+ $(selector).last()
+  : 선택된 요소의 마지막 번째 요소
+  https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_traversing_last
+
+
+ $(selector).eq(index)
+  : 선택된 요소 중 index 번째 요소(0부터 시작)
+  https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_sel_eq
+
+
+ $(selector).filter(criteria,function(index))
+ : 선택 요소 중 특정 조건에 일치하는 요소 반환
+ https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_traversing_filter
+
+
+ $(selector).not(criteria,function(index))
+  : 선택 요소 중 특정 조건에 일치하는 요소를 제거하고 반환
+https://www.w3schools.com/jquery/sel_not.asp
+
+
+ $(selector).is(selectorElement,function(index,element))
+ : 선택된 요소 중 하나가 selectorElement와 일치하는지 확인 true, false를 리턴
+ https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_traversing_is
+ 

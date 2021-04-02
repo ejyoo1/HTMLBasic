@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>selected 필터 예제</title>
+  <script src="../../js/jquery-3.6.0.js"></script>
+  <script>
+    $(document).ready(function(){
+      var str = "";
+      $("#sumitBtn").click(function(){
+        $("[name=spring] :selected").each(function(idx){
+          console.log(this);
+          if(idx > 0){
+            str += "," + $(this).val();
+          }else {
+            str += $(this).val();
+          }
+        });
+        console.log(str);
+        $("span").append(str);
+      });
+    });
+  </script>
+</head>
+<body>
+  <!--
+    선택된 요소 (select option에서 사용)
+    예) $(":selected")
+    - checkbox, radio 버튼에서 사용되지 않음.
+  -->
+  <form>
+    봄소식 : 
+    <select name="spring" id="spring" multiple size="6">
+      <option>개나리</option>
+      <option selected>진달래</option>
+      <option>민들레</option>
+      <option selected>벚꽃</option>
+      <option>목련</option>
+      <option>철쭉</option>
+    </select><br>
+    <button type="button" id="sumitBtn">전송</button><br><br>
+    <div>
+      선택 결과 : <span></span>
+    </div>
+  </form>
+</body>
+</html>
