@@ -7,21 +7,85 @@
 </head>
 <body>
   <h3>XMLHttpRequest 사용하기</h3>
-  <button type="button">Get 방식 호출</button>
+  <button type="button" id="btnGetA">Get 비동기 호출</button>
+  <button type="button" id="btnGetS">Get 동기 호출</button>
+  <br>
+  <button type="button" id="btnJQ">JQuery AJAX 호출</button>
   <hr>
-  <div id="divResult" style="border: 1px solid; height: 300px;"></div>
+  <div id="divResult" style="border: 1px solid; height: 300px; overflow: auto;"></div>
+  <ht>
+  <form action="" method="get" id="fm">
+    아이디 : <input type="text" name="userName"><!-- 서버 데이터 전송 시 'name' 속성으로 왔다 갔다 함. -->
+   비밀번호 : <input type="password" name="userPassword">
+  </form>
 </body>
 <!--body 전에 script를 구성했으므로 document.ready를 사용하지 않는다.-->
 <script>
-  $("button").click(function(){
+//비동기
+  $("#btnGetA").click(function(){
     // XMLHttpRequest 객체로 호출하기
     // 1) XMLHttpRequest 객체 생성하기
     var xhttp = new XMLHttpRequest();
     // 2) 서버(서버, 페이지) 연결하기 ==> 본 예제는 페이지로 연결 - open(method, url, async)
     var url = "json.html";
-    xhttp.open("GET", url, true);
+    xhttp.open("get", url, true);
     // 3) 서버(서버, 페이지) 전송하기 ==> send();
     xhttp.send();
+    // 4) 결과 처리하기
+    xhttp.onreadystatechange = function(){
+      if(this.readyState == 4 //요청이 처리 완료됨(데이터 받음) 상태
+    		  && this.status == 200) //서버에서 요청 정상 처리됨 상태
+      {
+    	  console.log(this.responseText);
+    	  $("#divResult").html(this.responseText);
+      }
+    };
+  });
+  
+  //동기
+  $("#btnGetS").click(function(){
+    // XMLHttpRequest 객체로 호출하기
+    // 1) XMLHttpRequest 객체 생성하기
+    var xhttp = new XMLHttpRequest();
+    // 2) 서버(서버, 페이지) 연결하기 ==> 본 예제는 페이지로 연결 - open(method, url, async)
+    var url = "json.html";
+    xhttp.open("get", url, false);//동기식 호출로 변경
+ // 3) 결과 처리하기
+    //동기 수행 시 이벤트를 적용시기고 난 뒤 send로 해야 state가 변경할 때 마다 아래의 이벤트가 수행됨
+    //이것을 비동기처럼 구성하면, 이미 send(status 변경되는 이벤트가 발생되는 부분)로 state를 모두 처리 한 뒤 호출하는 것이므로 이벤트가 수행되지 않음.(요청할 이벤트가 없음.)
+    xhttp.onreadystatechange = function(){
+      if(this.readyState == 4 //요청이 처리 완료됨(데이터 받음) 상태
+    		  && this.status == 200) //서버에서 요청 정상 처리됨 상태
+      {
+    	  console.log(this.responseText);
+    	  $("#divResult").html(this.responseText);
+      }
+    };
+    // 4) 서버(서버, 페이지) 전송하기 ==> send();
+    xhttp.send();
+    
+  });
+  
+  
+  $("#btnJQ").click(function(){
+// 	  var obj = {userId: "test01", userPw: "1234567890"};
+    var obj = $("#fm").serialize()//객체의 모든 정보를 담아줌 ==> "userName=test&userPassword=test1"
+	  $.ajax({ 
+		  // 속성 설정
+		  url: "json.html"
+		  , type: "get" // 데이터 전송 방식(method) - "get" 또는 "post"
+		  , data: obj // 전송할 데이터 (로그인 : 아이디 패스워드)
+		  , dataType: "html" // 결과로 받은 데이터의 형식(서버로부터 받은 데이터 유형을 어떤 형식으로 해석을 할 지) ==> html, json, xml, text 등 쓸 수 있음.
+		  , success: function(){ // 성공 시 처리할 작업을 기술
+			  console.log("성공");
+			  //success: function(data)를 하면 첫번째 값이 데이터가 온다.
+			  //data를 가공에서 화면에 세팅 및 처리가 가능함.
+		  }
+		  , error: function(){ // 오류 시 처리할 작업을 기술
+			  console.log("실패");
+			  //error: function(xhr) ==> 실패 코드, 서버 내 어떤 오류인지 알 수 있음.
+		  }
+	  });
   });
 </script>
 </html>
