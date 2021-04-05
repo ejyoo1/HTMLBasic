@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="../../js/jquery-3.6.0.js"></script>
+</head>
+<body>
+  <h3>XMLHttpRequest 사용하기</h3>
+  <button type="button">Get 방식 호출</button>
+  <hr>
+  <div id="divResult" style="border: 1px solid; height: 300px;"></div>
+</body>
+<!--body 전에 script를 구성했으므로 document.ready를 사용하지 않는다.-->
+<script>
+  $("button").click(function(){
+    // XMLHttpRequest 객체로 호출하기
+    // 1) XMLHttpRequest 객체 생성하기
+    var xhttp = new XMLHttpRequest();
+    // 2) 서버(서버, 페이지) 연결하기 ==> 본 예제는 페이지로 연결 - open(method, url, async)
+    var url = "json.html";
+    xhttp.open("GET", url, true);
+    // 3) 서버(서버, 페이지) 전송하기 ==> send();
+    xhttp.send();
+  });
+</script>
+</html>

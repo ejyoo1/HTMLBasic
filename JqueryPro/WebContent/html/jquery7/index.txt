@@ -1,0 +1,13 @@
+1. Get Post
+ - Get 방식은 팝업띄우는 등 간단한 작업에 사용하면 좋다.
+  -post 방식 사용 시 open, serRequestHeader, send 순으로 작업해야 한다. setRequestHeader를 사용하지 않으면 send 시 문제가 발생함.
+
+
+2. 정상적인 코드
+  readyState == 4 .status == 200
+
+
+3. 크로스 도메인?
+ - 보안상의 이유로 같은 도메인이 아니면 호출을 막는다.
+ 
+  

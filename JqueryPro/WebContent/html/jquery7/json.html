@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="../../js/jquery-3.6.0.js"></script>
+  <script>
+    var obj = 
+    {
+      name: "홍길동"
+      , birth: "1425-12-14"
+      , age : 30
+      , address : { //구조화
+        nation: "조선"
+        , city: "전라도"
+      }
+      ,hobby: ["무술","검술","독서"]
+    }
+    //obj.name ==> "홍길동"
+    //obj.hobby ==> ["무술","검술","독서"]
+    //obj.address ==> object
+    //obj.address.dong ==> "대흥동"
+
+    $(document).ready(function(){
+      
+      $("#changeBtn").click(function(){
+        //JSON.parse(string) (obj ==> str)
+        //object를 string으로 변환하기 - JSON.stringify(obj)
+        var strJSON = JSON.stringify(obj);
+        console.log(JSON.stringify(obj));
+
+        // 1차변환에 추가
+        var spanObj = "<span>" + strJSON + "</span>";
+        console.log("spanObj : " + strJSON);
+        $("#test1 span:nth-child(2)").append(strJSON);
+
+        // 2차변환 String -> JsonObj
+        //JSON.stringify(obj) (str ==> obj)
+        var arrobj = JSON.parse(strJSON);
+        console.log("arrObj" + JSON.parse(strJSON));
+        
+        //추가
+        spanObj = "<span>" + arrobj + "</span>";
+        console.log("spanObj : " + arrobj);
+        $("#test2 span:nth-child(2)").append(JSON.stringify(arrobj));
+
+
+        //3) 나머지 표시해주기
+        //이름
+        $("#name").text(obj.name);
+        $("#address").text(obj.address.city);
+        //$("#hobby").text(obj.hobby);//배열 출력
+
+        //텍스트로 출력
+        var strHobby ="";
+        for(var i = 0 ; i < obj.hobby.length ; i++){ //each 가능
+          strHobby += obj.hobby[i] + ", ";
+        }
+        //끝에 있는 , 제거 (데이터 가공)
+        strHobby = strHobby.substr(0, strHobby.length-2);
+        console.log(strHobby);
+        $("#hobby").text(strHobby);
+
+        // $("#birthday").text(obj.birth);
+        var date = new Date(obj.birth);
+        $("#birthday").text(date);
+      });
+    });
+  </script>
+</head>
+<body>
+  <button type="button" id="changeBtn">변환 테스트</button>
+  <div id="test1">
+    <span>1차변환(obj > str) : </span>
+    <span></span>
+  </div>
+  <div id="test2">
+    <span>2차변환(str > obj) : </span>
+    <span></span>
+  </div>
+  <div>
+    <span >이름 : </span>
+    <span id="name"></span>
+  </div>
+  <div>
+    <span>주소 : </span>
+    <span id="address"></span>
+  </div>
+  <div>
+    <span>취미 : </span>
+    <span id="hobby"></span>
+  </div>
+  <div>
+    <span>생년월일 : </span>
+    <span id="birthday"></span>
+  </div>
+</body>
+</html>
