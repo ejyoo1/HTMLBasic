@@ -1,0 +1,6 @@
+{
+  "name" : "홍길동"
+  ,"age" : 34
+  ,"gender" : "남자"
+  ,"jab" : "unemployed"
+}

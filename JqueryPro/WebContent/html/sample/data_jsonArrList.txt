@@ -1,0 +1,20 @@
+[
+  {
+    "name" : "홍길동"
+    ,"age" : 34
+    ,"gender" : "남자"
+    ,"jab" : "unemployed"
+  }
+  ,{
+    "name" : "강건우"
+    ,"age" : 28
+    ,"gender" : "남자"
+    ,"jab" : "학생"
+  }
+  ,{
+    "name" : "서주형"
+    ,"age" : 29
+    ,"gender" : "남자"
+    ,"jab" : "학생"
+  }
+]

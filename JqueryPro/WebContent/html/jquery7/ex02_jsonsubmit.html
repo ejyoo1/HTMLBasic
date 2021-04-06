@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>데이터 전송</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<style>
+	 .test, .test th, .test td {
+	   border: 1px solid grey;
+	 }
+	</style>
+	<script>
+     function fnGet(){
+        // form submit 실행      
+        var fm = document.getElementById("fm"); // <form>
+        fm.action = "ex00_test.html?userId=test01&password=asdf"; // form 태그의 호출할 url 세팅
+        fm.method = "post"; // 메소드 세팅
+        fm.submit(); // submit 으로 실행
+     }
+     
+     function fnAjax(){
+    	 $.ajax({
+    		 url : "ex03_intro.html"
+    		 ,type : "GET"
+//     		 ,data : 
+//     		 ,dataType : 
+    		 ,success : function(data){//페이지 자체가 data로 들어옴
+    			 $("#divResult").html(data);
+    		 }
+    	   ,error : function(){
+    		   
+    	   }
+    	 });
+     }
+     
+     function fnText(){
+    	 $.ajax({
+//     		 url : "../sample/data_html.txt"
+          url : "/JqueryPro/html/sample/data_text.txt"// root(WebContent) 경로
+//     		 ,type : "get"
+//     		 ,data : {}
+        	 ,dataType : "text"
+        	 ,success : function(data){
+        		 // text, html 둘다 사용 가능 (text이기 때문에)
+//         		 $("#divResult").text(data);
+        		 $("#divResult").html(data);
+        	 }
+    	 });
+     }
+     
+     function fnJsonObj(){
+    	 $.ajax({
+    		 url : "/JqueryPro/html/sample/data_jsonObj.txt"
+    		 ,dataType : "json"
+    		 ,success : function(data){
+    			 console.log(data);
+    			 console.log(data.name);// object 내 key 접근
+    			 // div에 이름:~, 나이:~,
+    			 
+    			 var str = "";
+    			 str +=  "이름 : " + data.name   + "<br>"//text일 때 \n로 
+    			     +   "나이 : " + data.age    + "<br>"
+    			     +   "성별 : " + data.gender + "<br>"
+    			     +   "직업 : " + data.job    + "<br>"; 
+    			 
+    			 $("#divResult").html(str);
+    		 }
+    	 });
+     }
+     
+     function fnJsonArr(){
+    	 $.ajax({
+    		 url : "/JqueryPro/html/sample/data_jsonArr.txt"
+    		 ,dataType : "json"
+    		 ,success : function(data){
+    			 console.log(data);
+    			 
+    			 //html 세팅
+    			 /*
+    			 <ol>
+    			   <li>프로그래머</li>
+    			   ...
+    			   <li>주부</li>
+    			 </ol>
+    			 */
+    			 var str = "<ol>";
+    			 
+    			 for(var i=0 ; i < data.length ; i++){
+    				 str += "<li>" + data[i] + "</li>";
+    			 }
+    			 
+    			 /*//for 대신에 each() 사용
+//     		 $(data).each()
+           $.each(data, function(idx){//이 형태 많이 씀(근데 속도는 for문이 더 빠름)
+    				 str += "<li>" + data[idx] + "</li>";
+           });
+    			 str += "</ol>"
+    			 */
+    			 
+    			 $("#divResult").html(str);
+    		 }
+    	 });
+     }
+     
+     function fnJsonArrList(){
+    	 $.ajax({
+    		 url : "/JqueryPro/html/sample/data_jsonArrList.txt"
+    		 ,dataType : "json"
+    		 ,success : function(data){
+    			 console.log(data);
+    			 
+    			 // 1번째 회원
+    			 // 이름 : ~
+    			 // 나이 : ~
+    			 var str = "★★for문으로 돌리기 !!!★★<br>";
+    			 for(var i=0 ; i < data.length ; i++){
+    				 var obj = data[i];
+    				 str += "<br>== " + (parseInt(i)+1) +" 번째 회원 ==<br>"
+    				 str += obj.name   + "<br>"
+    				 str += obj.age    + "<br>"
+    				 str += obj.gender + "<br>"
+    				 str += obj.jab;
+    			 }
+    			 $("#divResult1").html(str);
+    			 
+    			 var str1 = "★★each문으로 돌리기 !!!★★<br>";
+    			 var count = 0;
+    			 $.each(data, function(idx){
+    				  count++;
+    				  str1 += "<br>== " + count +" 번째 회원 ==<br>"
+ 	            str1 += data[idx].name   + "<br>"
+ 	            str1 += data[idx].age    + "<br>"
+ 	            str1 += data[idx].gender + "<br>"
+ 	            str1 += data[idx].jab;
+    			 });
+    			 $("#divResult2").html(str1);
+    			 
+    			 
+    			 /*
+            <table>
+              <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>성별</th>
+                <th>직업</th>
+              </tr>
+              <tr>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+              </tr>
+            </table>
+    	     */
+    			 var str2 = "★★table for문으로 생성하기 !!!★★<br>";
+    			 str2 += "<table class='test'>" +
+    			 "<tr>" + 
+    			 "<th>이름</th><th>나이</th><th>성별</th><th>직업</th>"
+    			 "</tr>";
+    			 for(var i = 0 ; i < data.length ; i++){
+    				 var obj = data[i];
+    				 str2 += "<tr>"
+    					   + "<td>" + obj.name   + "</td>"
+    					   + "<td>" + obj.age    + "</td>"
+    					   + "<td>" + obj.gender + "</td>"
+    					   + "<td>" + obj.jab    + "</td>"
+    				     + "</tr>";
+    			 }
+    			 str2 += "</table>";
+    			 $("#divResult3").html(str2);
+    			 
+    			 
+    			 var str3 = "★★table each문으로 생성하기 !!!★★<br>";
+    			 str3 += "<table class='test'>" +
+    	           "<tr>" + 
+    	           "<th>이름</th><th>나이</th><th>성별</th><th>직업</th>"
+    	           "</tr>";
+    	     $.each(data, function(idx){
+    	    	 str3 += "<tr>"
+                     + "<td>" + data[idx].name   + "</td>"
+                     + "<td>" + data[idx].age    + "</td>"
+                     + "<td>" + data[idx].gender + "</td>"
+                     + "<td>" + data[idx].jab    + "</td>"
+                     + "</tr>";
+    	     });
+    			 
+    	     str3 += "</table>"
+    	     $("#divResult4").html(str3);
+    			 
+    			 
+    		 }
+	    	 ,error : function(data){
+	    		 console.log(data);
+	    	 }
+    	 });
+     }
+  </script>
+</head>
+<body>
+  <form action="../jquery6/json.html" method="get" id="fm">
+	    이름 : <input type="text"><br>
+	    나이 : <input type="text"><br>
+	  <button type="submit">submit</button>
+	  <button type="button" onclick="fnGet()">get버튼</button>
+	  <button type="button">post버튼</button>
+	  <hr>
+	  <button type="button" onclick="fnAjax()">Ajax버튼</button>
+	  <hr>
+	  <button type="button" onclick="fnText()">텍스트</button>
+	  <button type="button" onclick="fnHtml()">HTML</button>
+	  <button type="button" onclick="fnJsonObj()">JSON obj</button>
+	  <button type="button" onclick="fnJsonArr()">JSON 배열</button>
+	  <button type="button" onclick="fnJsonArrList()">JSON 목록</button>
+	  
+  </form>
+  <div id="divResult1"></div>
+  <div id="divResult2"></div>
+  <div id="divResult3"></div>
+  <div id="divResult4"></div>
+</body>
+</html>
