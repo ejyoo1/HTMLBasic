@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>데이터 결과 페이지</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+</head>
+<!-- 인코딩 안됨. -->
+<body>
+  안녕하세요, '<span id="spUserName">홍길동</span>' 씨
+  올해로 '<span id="spUserAge">39</span>'살 이시군요~
+</body>
+<script>
+
+var userName = "";
+var userAge = "";
+
+//window.location.htef;==> window 생략가능
+var url = encodeURI(location.href); //"http://localhost/JqueryPro/html/jquery7/ex04_xmlsubmit.html?userName=%EC%95%84%EC%9D%B4%EC%9C%A0&userAge=29"
+console.log(url);
+var params = url.substr(url.indexOf("?")+1);//userName=%EC%95%84%EC%9D%B4%EC%9C%A0&userAge=29
+console.log(params);
+var arrparams = params.split("&"); // ["userName=아이유", "userAge=25"]
+//arr[0];//"userName=아이유"
+userName = arrparams[0].split("=")[1];// ["userName", "아이유"] ==> "아이유"
+userAge = arrparams[1].split("=")[1];// ["userAge", "29"] ==> "29"
+
+
+document.getElementById("spUserName").innerHTML = userName;
+document.getElementById("spUserAge").innerHTML = userAge;
+</script>
+</html>

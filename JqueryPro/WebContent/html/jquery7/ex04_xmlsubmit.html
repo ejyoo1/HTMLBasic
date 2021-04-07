@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>화면 데이터 뿌리기</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<style>
+	 .test, .test th, .test td {
+	   border: 1px solid grey;
+	 }
+	</style>
+	<script>
+	 function fnGet(){
+		 var fm = document.getElementById("fm");
+		 fm.action = "ex04_xmlsubmit_Result.html";
+		 fm.method = "get";
+		 fm.submit();
+	 }
+	 function fnPost(){
+		 var fm = document.getElementById("fm");
+		 fm.action = "ex04_xmlsubmit2.jsp";
+		 fm.method = "post";
+		 fm.submit();
+	 }
+	</script>
+</head>
+<body>
+  <form id="fm">
+      이름 : <input type="text" name="userName"><br>
+      나이 : <input type="text" name="userAge"><br>
+    <button type="submit">submit</button>
+    <button type="button" onclick="fnGet()">get버튼</button>
+    <button type="button" onclick="fnPost()">post버튼</button>
+    <hr>
+  </form>
+  <div id="divResult"></div>
+</body>
+</html>

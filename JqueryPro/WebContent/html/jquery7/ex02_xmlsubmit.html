@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>데이터 전송</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script src="/JqueryPro/js/jquery7/ex02_xmlsubmit.js"></script>
+	<style>
+	 .test, .test th, .test td {
+	   border: 1px solid grey;
+	 }
+	</style>
+</head>
+<body>
+  <form action="../jquery6/json.html" method="get" id="fm">
+	  <button type="button" onclick="fnXml1()">XML(가수 목록)</button>
+	  <button type="button" onclick="fnXml2()">XML(CD 목록)</button>
+	  <button type="button" onclick="fnXmlTable()">XMLTable</button>
+	  <hr>
+  </form>
+  
+  <div id="divResult"></div>
+  <hr><br><br><br><br>
+  <div id="divResult2"></div>
+</body>
+</html>

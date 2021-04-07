@@ -31,17 +31,14 @@
 
         // 1차변환에 추가
         var spanObj = "<span>" + strJSON + "</span>";
-        console.log("spanObj : " + strJSON);
         $("#test1 span:nth-child(2)").append(strJSON);
 
         // 2차변환 String -> JsonObj
         //JSON.stringify(obj) (str ==> obj)
         var arrobj = JSON.parse(strJSON);
-        console.log("arrObj" + JSON.parse(strJSON));
         
         //추가
         spanObj = "<span>" + arrobj + "</span>";
-        console.log("spanObj : " + arrobj);
         $("#test2 span:nth-child(2)").append(JSON.stringify(arrobj));
 
 
