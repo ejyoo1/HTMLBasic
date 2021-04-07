@@ -2,7 +2,7 @@
 <html lang="kr">
 <head>
 	<meta charset="UTF-8">
-	<title>데이터 전송</title>
+	<title>xml 파싱</title>
 	<script src="../../js/jquery-3.6.0.js"></script>
 	<script src="/JqueryPro/js/jquery7/ex02_xmlsubmit_childNode.js"></script>
 	<style>
@@ -11,12 +11,18 @@
 	 }
 	</style>
 </head>
+<!--
+★KeyWord★
+xml 파싱 (테이블)
+xml 부모 태그 내 자식 태그의 수가 다름 (ex. 1개의 부모태그에 자식태그 5개가 기본. 어떤 태그는 자식태그가 4개일 수 있음.)
+xml 자식 태그 내 값이 비어있음
+-->
 <body>
-  <form action="../jquery6/json.html" method="get" id="fm">
+  <form id="fm">
 	  <button type="button" onclick="fnXmlTable()">XMLTable</button>
 	  <hr>
   </form>
   
-  <div id="divResult2"></div>
+  <div id="divResult"></div>
 </body>
 </html>
