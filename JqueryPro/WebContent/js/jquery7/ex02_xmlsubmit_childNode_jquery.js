@@ -36,14 +36,14 @@ function fnXmlTable(){
 
 // table 생성하기
 function makeAllList(param){
-	var arr = param.getElementsByTagName("CD");//$("CD",param); cd 개수
+	var arr = $("CD", param);//param.getElementsByTagName("CD")
 	//컬럼의 최대 카운트 개수 구하기
 	var arrCount = 0;
 	var maxEle;
 	var tharr = []; // 가장 많은 자식을 소유한 부모 태그의 자식 태그 태그명 목록
 	var str =   "<table class='test'><tr>";
 	for(var i = 0 ; i < arr.length ; i++){
-		var temp = arr[i].childElementCount;
+		var temp = $(arr[i]).children().length; //arr[i].childElementCount
 		if(arrCount < temp){
 			arrCount = temp;
 			maxEle = arr[i];
@@ -53,7 +53,8 @@ function makeAllList(param){
 	//가장 많은 자식을 가진 부모 태그 내 존재하는 자식 태그 목록을 th로 설정함.
 	for(var i = 0 ; i < arrCount ; i++){
 		str += "<th>" + maxEle.children[i].nodeName + "</th>" ;
-		tharr.push(maxEle.children[i].nodeName); //노드 길이 세팅
+		console.log(maxEle.children[i].nodeName + "★" + $(maxEle).children()[i].nodeName);
+		tharr.push($(maxEle).children()[i].nodeName);//maxEle.children[i].nodeName); //노드 길이 세팅
 	}
 	
 	str += "<tr>";
@@ -62,16 +63,17 @@ function makeAllList(param){
 		var childMaxLength = arr[i].children.length;//자식 노드 최대 길이수 설정
 		var childCount = 0;
 		for(var j = 0 ; j < tharr.length ; j++){// 가장 많은 자식을 가진 부모 태그 내 존재하는 자식 태그 목록 길이
+			var childele = arr[i].children[childCount];
 			// 삽입하려는 태그명이 tharr과 같은지 확인
-			if(arr[i].children[childCount] == undefined){// 부모 태그 내 자식 태그가 없을 때
+			if(childele == undefined){// 부모 태그 내 자식 태그가 없을 때
 				str += "<td>undefined</td>";
 				childCount++;
 			}else{// 부모 태그 내 자식 태그가 있는 경우
-				if(arr[i].children[childCount].nodeName == tharr[j]){// 태그 이름이 같으면
-					if(arr[i].children[childCount].innerHTML == ""){// 해당 태그의 값이 공백이면
+				if(childele.nodeName == tharr[j]){// 태그 이름이 같으면
+					if(childele.innerHTML == ""){// 해당 태그의 값이 공백이면
 						str += "<td>empty</td>";
 					}else{// 공백이 아니면
-						str += "<td>" + arr[i].children[childCount].innerHTML + "</td>";
+						str += "<td>" + childele.innerHTML + "</td>";
 					}
 					childCount++;
 				}else{
