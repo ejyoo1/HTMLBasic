@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<meta charset="UTF-8">
+<title>회원 목록 화면</title>
+<link rel="stylesheet" type="text/css" href="../css/memberList.css">
+<script src="../../js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<div id="header">
+		<h3>회원 목록</h3>
+  </div>
+	<!-- 검색 조건 영역 -->
+	<div style="background-color:azure" id="filter">
+		<label for="userId">ID : </label> <input type="text" id="userId">
+
+			<label for="userName">이름 : </label> <input type="text" id="userName">
+			<button>조회</button>
+	</div>
+	<div id="body">
+		<div style="background-color:aqua" id="test1">
+			test1
+		</div>
+		
+		<div style="background-color:aquamarine" id="test2">
+			<!-- 검색 결과 영역 -->
+			<table>
+				<tr>
+					<th>번호</th>
+					<th>ID</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>생년월일</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+			</table>
+		</div>
+		<!-- 버튼영역 -->
+		<!--<div>
+			<button>신규등록</button>
+		</div>-->
+	</div>
+	<footer>아래</footer>
+</body>
+</html>

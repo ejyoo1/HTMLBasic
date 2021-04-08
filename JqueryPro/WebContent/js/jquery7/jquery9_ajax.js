@@ -199,7 +199,7 @@ function makeTitleList(param){
 	for(var i=0 ; i<arr.length ; i++){
 		str += arr[i].childNodes[0].nodeValue + "<br>";// 가수 이름
 	}
-	$("#divResult").html(str);
+	$("#divResult").html(str);			
 	
 }
 

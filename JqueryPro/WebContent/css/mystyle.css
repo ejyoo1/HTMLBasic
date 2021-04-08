@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/*
+* 공통 CSS
+*/
+* {
+    box-sizing: border-box; /*박스 사이즈를 패딩과 여백 포함설정함.*/
+    margin: 0; /*마진 0으로 시작*/
+    padding: 0; /*패딩 0으로 시작*/
+}
+
+body {
+    min-width: 700px; /*바디 최소 크기 설정 - 커질수록 가운데 영역 스크롤 생성됨.*/
+    background-color: #f1f1f1; /*배경색 설정*/
+}
+
+ul {
+    list-style: none; /*li 영역 앞 점 제거*/
+}
