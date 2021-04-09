@@ -3,9 +3,6 @@
  */
 loadJQuery();
 
-/**
- * 현재 위치에 JQuery 추가하는 메서드
- */
 function loadJQuery() {
     var oScript = document.createElement("script");
     oScript.type = "text/javascript";
@@ -15,12 +12,6 @@ function loadJQuery() {
 //    console.log("JQuery 업로드 완료");
 }
 
-/**
- * get방식으로 전송된 url에서 키에 해당하는 하나의 값을 추출하는 메서드
- * @param strUrl 전체 url
- * @param strKey 추출하고자하는 키값
- * @returns strKey의 값
- */
 function getValue(strUrl, strKey){
 	var params = url.substr(url.indexOf("?")+1);
 	var arrparams = params.split("&");
@@ -34,12 +25,6 @@ function getValue(strUrl, strKey){
 	return result;
 }
 
-/**
- * get방식으로 전송된 url에서 키에 해당하는 여러개의 값을 추출하는 메서드
- * @param strUrl 전체url
- * @param strKey 추출하고자하는 키값
- * @returns strkey의 값들을 나열한 String 값 (V,V,V 형식)
- */
 function getSelectValue(strUrl, strKey){
 	var params = url.substr(url.indexOf("?")+1);
 	var arrparams = params.split("&");
@@ -58,16 +43,8 @@ function getSelectValue(strUrl, strKey){
 	return result;
 }
 
-/**
- * 공백검사(미구현)
- * @returns
- */
 function isBlank(){}
 
-/**
- * 빈값 검사
- * @returns [false:공백임, true:공백아님]
- */
 function isEmpty(param){
 	if(param == ""){
 		return false;
@@ -76,12 +53,6 @@ function isEmpty(param){
 	}
 }
 
-/**
- * 글자 수 최대 길이 체크하는 메서드
- * @param length 희망하는 글자 최대 길이
- * @param param 체크할 문자
- * @returns 체크한 결과값 [false: 최대 길이에 맞지않음, true: 최대 길이에 맞음]
- */
 function checkLength(length,param){
 	if(param.length != length){
 		return false;
@@ -90,22 +61,11 @@ function checkLength(length,param){
 	}
 }
 
-/**
- * 하이픈 제거하는 메서드
- * @param param 하이폰 제거할 내용
- * @returns 하이폰 제거한 내용
- */
 function delHyphen(param){
 	var temp = param.replace("-","");
 	return temp;
 }
 
-/**
- * 유효성 체크 메서드
- * @param regExp 유효성 체크 정규식
- * @param param 정규식 체크할 문자
- * @returns 정규식 체크 결과 [false:정규식 불일치, true: 정규식 일치]
- */
 function checkRegExp(regExp, param){
 	if(param.match(regExp)){
 		return false;
@@ -114,10 +74,6 @@ function checkRegExp(regExp, param){
 	}
 }
 
-/**
- * 주민번호 결과를 계산하는 메서드 (개선 필요 : 추후 변수로 값을 받도록 변경해야 함.)
- * @returns
- */
 function checkRRN(){
   var rrNumber = $("#rrNumber").val();
   var userNumber, ssn, temp;
@@ -186,15 +142,6 @@ function checkRRN(){
   }                                      
 }
 
-/**
- * 하나의 값을 특정 형식으로 변경하는 메서드(DB 데이터 가공)(구현중)
- * @param val 변경할 값
- * @param type 변경할 유형
- * @returns
- * hpno(휴대전화) : [★DB 저장 시 : 01012341234, 그외 : 010-1234-1234, 010-12341234, 010 1234 1234]
- * dateNo(날짜) : [93-12-16, 93/12/06 , 2020/04/08 , 2020-04-08, 2020년 04월 08일 931206(6자), 19931206(8자), 그외 변경안함.]
- */
-
 //function format(val, type){//JSP 미적용으로 변수 따로 생성함.(개선해야 함.)
 function format(){
 	var hpNumber 	= $("#hpNumber").val();
@@ -229,9 +176,4 @@ function format(){
 	}
 }
 
-/**
- * 특정 형식으로 일괄 변경하는 메서드 (미구현)
- * @returns
- * 필요기능 : 성공 count
- */
 function fomatAll(){}

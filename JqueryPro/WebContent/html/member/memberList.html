@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<meta charset="UTF-8">
+<title>회원 목록 화면</title>
+<script src="../../js/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	  $("#btnSearch").click(function(){
+		  //보고있는 화면에서 목록만 바꾸어 줄 것이므로 ajax 호출
+		  $.ajax({
+			  url : "/JqueryPro/MemberServlet" // 서블릿 가져오기
+			  ,type : "post"
+			  ,data : ""
+			  ,dataType : "json"
+			  ,success : function(data){
+				  console.log(data);
+		    	alert("성공");
+			  }
+		    ,error : function(xhr){
+		    	console.log(xhr);
+		    	alert("오류 발생");
+		    }
+		  });
+	  });
+});
+</script>
+</head>
+<body>
+	<div>
+	 <div class="search">
+	   <h4>검색조건</h4>
+	   <div class="row">
+	     <div class="search col-xs-5">
+	       <label>ID</label>
+	       <input type="text">
+	     </div>
+	     <div class="srarch-btn col-xs-2">
+	       <button type="button">초기화</button>
+	       <button type="button" id="btnSearch">검색</button>
+	     </div>
+	   </div>
+	 </div>
+	 <div class="result">
+	 목록
+	   <table style="border: 1px solid; width: 100%;">
+	     <tr>
+	       <td>ID</td>
+	       <td>이름</td>
+	     </tr>
+	     <tr>
+         <td>iu</td>
+         <td>아이유</td>
+       </tr>
+     </table>
+	 </div>
+	 <div class="bottom">
+	 <button type="button">신규등록</button>
+	 </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+  <style>
+   table{
+     border-collapse: collapse;
+     width: 100%;
+   }
+   table, td{
+     border: 1px solid;
+   }
+  </style>
+</head>
+<body>
+  <!-- 목록영역 -->
+  <div>
+    <table>
+      <tr>
+        <td>홍길동</td>
+        <td>남자</td>
+      </tr>
+      <tr>
+        <td>아이유</td>
+        <td>여자</td>
+      </tr>
+    </table>
+  </div>
+  <!-- 상세 정보 영역 -->
+  <div id="detail">
+  </div>
+</body>
+<script>
+//테이블의 행을 클릭했을 때 상세정보영역에 상세화면이 나오도록
+$("tr").click(function(){
+	$("#detail").load("ex05_ajaxLoad_detail.html");//load("서블릿경로");
+});
+</script>
+</html>
