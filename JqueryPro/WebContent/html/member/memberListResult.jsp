@@ -17,32 +17,19 @@
 [
 <%
 List<MemberVO> list = (List<MemberVO>) request.getAttribute("list"); // 조회 결과를 "list"로 담아줬음. [MemberServlet.java 48 line]
-		System.out.println("list.get(0) : " + list.get(0));
-String str="[";
 for(int i = 0 ; i < list.size() ; i++){
-	System.out.println("list.size() : " + list.size());
 	MemberVO vo = list.get(i);
 	String memId = vo.getMemId();
-	System.out.println("memId : " + memId);
 	String memName = vo.getMemName();
-	System.out.println("memName : " + memName);
 	
-	//json 타입으로 만들기 시작
+	//json 타입으로 만들기 시작 ==> {"name" : "~", "id" : "~"}
 	if(i>0){
-		System.out.println("쉼표 추가");
 		%>,<%
-		str += ",";
 	}
-%>
+ %>
   {"name" : "<%=memName%>", "id" : "<%=memId%>"}
   
 <%
-str += "{name : " + memName + ", id : " + memId + "}]";
 }
-System.out.println("str : " + str);
 %>
 ]
-
-
-
-

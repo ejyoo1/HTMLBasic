@@ -4,27 +4,7 @@
 <meta charset="UTF-8">
 <title>회원 목록 화면</title>
 <script src="../../js/jquery-3.6.0.js"></script>
-<script>
-$(document).ready(function(){
-	  $("#btnSearch").click(function(){
-		  //보고있는 화면에서 목록만 바꾸어 줄 것이므로 ajax 호출
-		  $.ajax({
-			  url : "/JqueryPro/MemberServlet" // 서블릿 가져오기
-			  ,type : "post"
-			  ,data : ""
-			  ,dataType : "json"
-			  ,success : function(data){
-				  console.log(data);
-		    	alert("성공");
-			  }
-		    ,error : function(xhr){
-		    	console.log(xhr);
-		    	alert("오류 발생");
-		    }
-		  });
-	  });
-});
-</script>
+<script src="../../js/member/memberList.js"></script>
 </head>
 <body>
 	<div>
@@ -32,27 +12,38 @@ $(document).ready(function(){
 	   <h4>검색조건</h4>
 	   <div class="row">
 	     <div class="search col-xs-5">
-	       <label>ID</label>
-	       <input type="text">
+	       <label for="userId">ID</label>
+	       <input type="text" id="userId">
+	     </div>
+	     <div class="search col-xs-5">
+	       <label for="userName">이름</label>
+	       <input type="text" id="userName">
 	     </div>
 	     <div class="srarch-btn col-xs-2">
-	       <button type="button">초기화</button>
+	       <button type="button" id="btnReset">초기화</button>
 	       <button type="button" id="btnSearch">검색</button>
 	     </div>
 	   </div>
 	 </div>
 	 <div class="result">
-	 목록
-	   <table style="border: 1px solid; width: 100%;">
+	 목록보기<br>
+	 <table style="border: 1px solid; width: 100%" id="tbResult">
+	   <colgroup><!-- 컬럼 그룹 (열 기준) -->
+	     <col style="width: 100px;">
+	     <col style="width: auto;">
+	   </colgroup>
+	   <thead>
 	     <tr>
-	       <td>ID</td>
-	       <td>이름</td>
+	       <th>ID</th>
+	       <th>이름</th>
 	     </tr>
+	   </thead>
+	   <tbody>
 	     <tr>
-         <td>iu</td>
-         <td>아이유</td>
+         <td colspan="2">검색 버튼을 클릭하세요.</td>
        </tr>
-     </table>
+	   </tbody>
+	 </table>
 	 </div>
 	 <div class="bottom">
 	 <button type="button">신규등록</button>

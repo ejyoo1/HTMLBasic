@@ -15,9 +15,22 @@ public class MemberService {
 			dao = new MemberDao();
 	}
 	
+	
+	
 	public List<MemberVO> retrieveMemberList(MemberVO memberVo) throws SQLException {
 		List<MemberVO> list = dao.retrieveMemberList(memberVo);
 		return list;
 	}
-	
+
+	public void createMember(MemberVO memberVo) throws SQLException {
+		// 1. 등록 전 유효성 체크
+		//  1) 중복된 ID인지 체크
+		MemberVO resultVo = dao.retrieveMember(memberVo.getMemId());
+		if(resultVo != null)
+		return; 
+		//  2) ID, Password 등 유효한 값인지 체크
+		
+		// 2. DB에 insert
+		dao.createMember(memberVo);
+	}
 }

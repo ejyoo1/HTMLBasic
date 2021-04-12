@@ -20,15 +20,53 @@ public class MemberServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		super.doGet(req, resp); // 서버를 Debug모드로 돌리면 마우스 갖다댔을 때, 그 값이 뭔지 나옴(sysout 안찍어도 됨)
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 //		super.doPost(req, resp); // 지워야함 : extends한 HttpServlet 의 doPost를 호출하는 것이기 때문에 현재 클래스의 doPost를 사용할 수 없음
+		String flag = req.getParameter("flag"); // 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get
+		try {
+			//flag.equals("C")를 쓰면 flag가 null일 때 오류가 난다. 이때, "L".equals(flag)이렇게 사용하면 null 처리를 따로 하지 않아도 된다.
+			if("L".equals(flag)) { // 목록 조회
+				List<MemberVO> list = retrieveMemberList(req);
+				
+				req.setAttribute("list", list); // 브라우저로 전달할 결과를 request에 attribute로 세팅
+				
+				RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp"); // 결과를 받을 url 세팅
+				disp.forward(req, resp);
+				
+			} else if(flag.equals("C")) { // 등록
+				createMember(req);
+			} else if(flag.equals("R")) { // 단건 조회
+				
+			} else if(flag.equals("U")) { // 수정
+				
+			} else if(flag.equals("D")) { // 삭제
+				
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void createMember(HttpServletRequest req) throws SQLException {
+		String memId = req.getParameter("memId");
+		String memName = req.getParameter("memName");
+		// 그 외 정보들...
 		
+		MemberVO memberVo = new MemberVO();
+		memberVo.setMemId(memId);
+		memberVo.setMemName(memName);
+		// 그 외 정보들 VO에 세팅
+		
+		MemberService service = new MemberService();
+		service.createMember(memberVo);
+		
+	}
+
+	private List<MemberVO> retrieveMemberList(HttpServletRequest req) throws SQLException {
 		// 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get.
 		String memId = req.getParameter("memId");
 		String memName = req.getParameter("memName");
@@ -41,23 +79,7 @@ public class MemberServlet extends HttpServlet {
 		
 		//회원 목록 조회
 		MemberService service = new MemberService();
-		try {
-			List<MemberVO> list = service.retrieveMemberList(memberVo);
-			
-			// 브라우저로 전달할 결과를 request에 attribute로 세팅
-			req.setAttribute("list", list);
-			
-			// 결과를 받을 url 세팅
-//			RequestDispatcher  disp = req.getRequestDispatcher("/MemberPj/html/member/memberListResult.jsp"); // <== contextroot 포함하면 안됨!
-			RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
-			disp.forward(req, resp);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+		List<MemberVO> list = service.retrieveMemberList(memberVo);
+		return list;
 	}
-	
 }
