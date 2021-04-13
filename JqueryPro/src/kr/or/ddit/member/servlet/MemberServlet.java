@@ -25,7 +25,7 @@ public class MemberServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		super.doPost(req, resp); // 지워야함 : extends한 HttpServlet 의 doPost를 호출하는 것이기 때문에 현재 클래스의 doPost를 사용할 수 없음
+//		super.doPost(req, resp); // 지워야함 : extends한 HttpServlet 의 doPost를 호출하는 것이기 때문에 현재 클래스의 doPost를 사용할 수 없음 ==> RequestDispatcher 이 객체를 사용할 때 원하는 페이지로 이동할 수 없음.
 		String flag = req.getParameter("flag"); // 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get
 		try {
 			//flag.equals("C")를 쓰면 flag가 null일 때 오류가 난다. 이때, "L".equals(flag)이렇게 사용하면 null 처리를 따로 하지 않아도 된다.
@@ -37,18 +37,33 @@ public class MemberServlet extends HttpServlet {
 				RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp"); // 결과를 받을 url 세팅
 				disp.forward(req, resp);
 				
-			} else if(flag.equals("C")) { // 등록
+			} else if("C".equals(flag)) { // 등록
 				createMember(req);
-			} else if(flag.equals("R")) { // 단건 조회
+			} else if("R".equals(flag)) { // 단건 조회
 				
-			} else if(flag.equals("U")) { // 수정
+			} else if("U".equals(flag)) { // 수정
 				
-			} else if(flag.equals("D")) { // 삭제
+			} else if("D".equals(flag)) { // 삭제
 				
+			} else if("CHKID".equals(flag)) { //ID검사
+				MemberVO memberVo = checkMemberId(req);
+				
+				req.setAttribute("memberVo", memberVo);
+				RequestDispatcher  disp = req.getRequestDispatcher("/html/member/idCheckResult.jsp"); // 결과를 받을 url 세팅(jsp 만들어서 데이터 받아서 처리)
+				disp.forward(req, resp);
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private MemberVO checkMemberId(HttpServletRequest req) throws SQLException {
+		String memId = req.getParameter("memId");
+		
+		MemberService service = new MemberService();
+		MemberVO memberVo = service.retrieveMember(memId);
+		
+		return memberVo;
 	}
 
 	private void createMember(HttpServletRequest req) throws SQLException {

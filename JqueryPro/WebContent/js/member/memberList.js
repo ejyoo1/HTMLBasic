@@ -41,8 +41,15 @@ $(document).ready(function(){
 		  if(data.length > 0){
 			  for(var i = 0 ; i < data.length ; i++){
 				  str += "<tr>"
-					  + "<td>" + data[i].id + "</td>"
-					  + "<td>" + data[i].name + "</td>"
+					  + "<td>" + (i + 1) + "</td>"
+					  + "<td>" + data[i].memId + "</td>"
+					  + "<td>" + data[i].memName + "</td>"
+					  + "<td>" + data[i].memPass + "</td>"
+					  + "<td>" + data[i].memBir + "</td>"
+					  + "<td>" + data[i].memHp + "</td>" // 01012341234
+//					  + "<td>" + formatHp(data[i].memHp) + "</td>" // 포맷하여 번호 변경
+					  + "<td>" + data[i].memMail + "</td>"
+					  + "<td>" + data[i].memJobName + "</td>"
 					  + "</tr>";
 			  }
 			  console.log("str : " + str);
@@ -51,5 +58,14 @@ $(document).ready(function(){
 		  }
 		  
 		  $("#tbResult tbody").html(str);
+	  }
+	  
+	  function formatHp(val){
+//		  val : 01012341234, 010-1234-1234, 010-12341234, 0101234-1234, 010 1234 1234, 010 12341234, 0101234 1234
+		  
+		  val = val.replaceAll("-", "").replaceAll(" ", "");
+		  // 010-123-1234, 010-1234-1234
+		  val = val.replace(/(\d{3})(\d{3,4})(\d{4})/, $1-$2-$3);
+		  return val;
 	  }
 });

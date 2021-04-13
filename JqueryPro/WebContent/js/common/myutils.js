@@ -21,7 +21,7 @@ function loadJQuery() {
  * @param strKey 추출하고자하는 키값
  * @returns strKey의 값
  */
-function getValue(strUrl, strKey){
+function getValue1(strUrl, strKey){
 	var params = url.substr(url.indexOf("?")+1);
 	var arrparams = params.split("&");
 	var result = "";
@@ -32,6 +32,20 @@ function getValue(strUrl, strKey){
 	});
 	result = result.split("=")[1];
 	return result;
+}
+
+function getValue2(url, key){
+	var idx = url.indexOf("?");
+	if(idx > -1){
+		url = url.substr(idx + 1);
+		var arr = url.split("&");
+		for(var i = 0 ; i < arr.length ; i++){
+			var tmp = arr[i].split("=");
+			if(tmp[0] == key){
+				return tmp[1];
+			}
+		}
+	}
 }
 
 /**
@@ -66,9 +80,9 @@ function isBlank(){}
 
 /**
  * 빈값 검사
- * @returns [false:공백임, true:공백아님]
+ * @returns [false:공백이 아님, true:공백임]
  */
-function isEmpty(param){
+function isEmpty(val){
 	if(val == undefined) return true;
 	if(val == null) return true;
 	if(val == "null") return true;
@@ -195,6 +209,8 @@ function checkRRN(){
  * @param type 변경할 유형
  * @returns
  * hpno(휴대전화) : [★DB 저장 시 : 01012341234, 그외 : 010-1234-1234, 010-12341234, 010 1234 1234]
+ * val : 01012341234, 010-1234-1234, 010-12341234, 0101234-1234, 010 1234 1234, 010 12341234, 0101234 1234
+ * 
  * dateNo(날짜) : [93-12-16, 93/12/06 , 2020/04/08 , 2020-04-08, 2020년 04월 08일 931206(6자), 19931206(8자), 그외 변경안함.]
  */
 
@@ -206,7 +222,7 @@ function format(){
 	var hpNumtype 	= "hpNo";
 	var datetype 	= "dataNo";
 	
-	var hpNumExp 	= "/(\d{3})(\d{3,4})(\d{4})/";
+	var hpNumExp 	= "/(\d{3})(\d{3,4})(\d{4})/"; //(1)(2)(3)
 	var dateExp		= "//";	
 	
 	var hpNumFormat = "$1-$2-$3";
@@ -226,7 +242,7 @@ function format(){
 		if(val.length == 6 || val.length == 8){
 			val.replace(dateExp,dateFormat);
 		}else{
-			console.log("변경불가");
+			console.log("변경불가. 관리자에게 문의하세요");
 			return val;
 		}
 	}
@@ -238,3 +254,18 @@ function format(){
  * 필요기능 : 성공 count
  */
 function fomatAll(){}
+
+
+/**
+ * 핸드폰 번호 포맷
+ * @param val
+ * @returns
+ */
+function formatHp(val){
+//		  val : 01012341234, 010-1234-1234, 010-12341234, 0101234-1234, 010 1234 1234, 010 12341234, 0101234 1234
+		  
+		  val = val.replaceAll("-", "").replaceAll(" ", "");
+		  // 010-123-1234, 010-1234-1234
+		  val = val.replace(/(\d{3})(\d{3,4})(\d{4})/, $1-$2-$3);
+		  return val;
+}

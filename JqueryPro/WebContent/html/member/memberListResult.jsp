@@ -22,13 +22,25 @@ for(int i = 0 ; i < list.size() ; i++){
 	String memId = vo.getMemId();
 	String memName = vo.getMemName();
 	
-	//json 타입으로 만들기 시작 ==> {"name" : "~", "id" : "~"}
+	System.out.println("★★★memJobName : " + vo.getMemJobName());
+	
+	// json 타입으로 만들기 시작 ==> {"name" : "~", "id" : "~"}
+	
+	// 번호, id, 이름, 생년월일, 전화번호, 직업
+	// 번호, id, 이름, 비밀번호, 생년월일, 전화번호, 메일, 직업
 	if(i>0){
 		%>,<%
 	}
  %>
-  {"name" : "<%=memName%>", "id" : "<%=memId%>"}
-  
+  {
+    "memName" : "<%=memName %>"
+    , "memId" : "<%=memId %>"
+    , "memPass" : "<%=vo.getMemPass() %>"
+    , "memBir" : "<%=vo.getMemBir() %>"
+    , "memHp" : "<%=vo.getMemHp() %>"
+    , "memMail" : "<%=vo.getMemMail() %>"
+    , "memJobName" : "<%=vo.getMemJobName() %>"
+  }
 <%
 }
 %>
