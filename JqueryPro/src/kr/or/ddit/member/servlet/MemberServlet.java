@@ -46,10 +46,17 @@ public class MemberServlet extends HttpServlet {
 			} else if("D".equals(flag)) { // 삭제
 				
 			} else if("CHKID".equals(flag)) { //ID검사
+				System.out.println("★★★★★★CHKID로 옴");
+				
 				MemberVO memberVo = checkMemberId(req);
 				
-				req.setAttribute("memberVo", memberVo);
-				RequestDispatcher  disp = req.getRequestDispatcher("/html/member/idCheckResult.jsp"); // 결과를 받을 url 세팅(jsp 만들어서 데이터 받아서 처리)
+				int resultCnt = 0;
+				if(memberVo != null) {
+					resultCnt = 1; // 중복된 ID가 있음
+				}
+				
+				req.setAttribute("resultCnt", resultCnt);
+				RequestDispatcher  disp = req.getRequestDispatcher("/html/common/checkResult.jsp"); // 결과를 받을 url 세팅(jsp 만들어서 데이터 받아서 처리)
 				disp.forward(req, resp);
 			}
 		}catch (SQLException e) {

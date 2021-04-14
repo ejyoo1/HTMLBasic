@@ -18,5 +18,6 @@
 	
 <!-- 	<sqlMap resource="kr/or/ddit/common/dao/code.xml"/> -->
 	<sqlMap resource="kr/or/ddit/member/dao/member.xml"/>
+	<sqlMap resource="kr/or/ddit/common/dao/code.xml"/>
 	
 </sqlMapConfig>

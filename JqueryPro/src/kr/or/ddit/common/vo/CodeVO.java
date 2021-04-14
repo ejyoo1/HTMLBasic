@@ -50,6 +50,11 @@ public class CodeVO {
 	public void setUseYn(String useYn) {
 		this.useYn = useYn;
 	}
+	@Override
+	public String toString() {
+		return "CodeVO [groupCode=" + groupCode + ", groupCodeName=" + groupCodeName + ", code=" + code + ", codeName="
+				+ codeName + ", description=" + description + ", useYn=" + useYn + "]";
+	}
 	
 	
 }
