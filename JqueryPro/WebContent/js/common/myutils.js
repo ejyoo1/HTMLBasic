@@ -5,6 +5,7 @@ loadJQuery();
 
 /**
  * 현재 위치에 JQuery 추가하는 메서드
+ * 또는 이문법 사용 가능 : val = jQuery.trim(val);
  */
 function loadJQuery() {
     var oScript = document.createElement("script");
@@ -34,6 +35,8 @@ function getValue1(strUrl, strKey){
 	return result;
 }
 
+
+
 function getValue2(url, key){
 	var idx = url.indexOf("?");
 	if(idx > -1){
@@ -46,6 +49,11 @@ function getValue2(url, key){
 			}
 		}
 	}
+}
+
+function changeEmptyVal(val) {
+	if(isEmpty(val)) return "";
+	else return val;
 }
 
 /**
