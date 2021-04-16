@@ -16,8 +16,8 @@ public class MemberService {
 	}
 	
 	public MemberVO retrieveMember(String memberId) throws SQLException {
-		MemberVO memberVo = dao.retrieveMember(memberId);
-		return memberVo;
+		// 검증 작업
+		return dao.retrieveMember(memberId);
 	}
 	
 	public List<MemberVO> retrieveMemberList(MemberVO memberVo) throws SQLException {
@@ -26,11 +26,16 @@ public class MemberService {
 	}
 
 	public void createMember(MemberVO memberVo) throws SQLException {
+		// t사용자 입력값 포맷 변경
+		String memHp = memberVo.getMemHp().replaceAll("-", "");
+		memberVo.setMemHp(memHp);
+		
+		
 		// 1. 등록 전 유효성 체크
 		//  1) 중복된 ID인지 체크
-		MemberVO resultVo = dao.retrieveMember(memberVo.getMemId());
-		if(resultVo != null)
-		return; 
+//		MemberVO resultVo = dao.retrieveMember(memberVo.getMemId());
+//		if(resultVo != null)
+//		return; 
 		//  2) ID, Password 등 유효한 값인지 체크
 		
 		// 2. DB에 insert

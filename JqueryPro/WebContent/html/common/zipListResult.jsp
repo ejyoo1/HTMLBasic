@@ -18,8 +18,6 @@ for(int i=0 ; i<list.size() ; i++) {
   String bunji = vo.getBunji();
   String zipcode = vo.getZipcode();
   
-  System.out.println("★★★★★★"+sido+","+gugun+","+dong+","+bunji+","+zipcode);
-  
   %>
   {
     "sido" : "<%=sido %>"

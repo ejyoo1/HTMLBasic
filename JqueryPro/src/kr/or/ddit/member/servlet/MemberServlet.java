@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.vo.MemberVO;
 
@@ -39,6 +41,10 @@ public class MemberServlet extends HttpServlet {
 				
 			} else if("C".equals(flag)) { // 등록
 				createMember(req);
+				
+				req.setAttribute("resultCnt",1);
+				RequestDispatcher  disp = req.getRequestDispatcher("/html/common/checkResult.jsp"); // 결과를 받을 url 세팅
+				disp.forward(req, resp);
 			} else if("R".equals(flag)) { // 단건 조회
 				
 			} else if("U".equals(flag)) { // 수정
@@ -59,7 +65,7 @@ public class MemberServlet extends HttpServlet {
 				RequestDispatcher  disp = req.getRequestDispatcher("/html/common/checkResult.jsp"); // 결과를 받을 url 세팅(jsp 만들어서 데이터 받아서 처리)
 				disp.forward(req, resp);
 			}
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -73,15 +79,21 @@ public class MemberServlet extends HttpServlet {
 		return memberVo;
 	}
 
-	private void createMember(HttpServletRequest req) throws SQLException {
-		String memId = req.getParameter("memId");
-		String memName = req.getParameter("memName");
+	private void createMember(HttpServletRequest req) throws Exception {
+		// 기존 방법
+//		String memId = req.getParameter("memId");
+//		String memName = req.getParameter("memName");
+//		MemberVO memberVo = new MemberVO();
+//		memberVo.setMemId(memId);
+//		memberVo.setMemName(memName);
+//		// 그 외 정보들 VO에 세팅
 		// 그 외 정보들...
 		
+		// 맵으로 가져와 BeanUtils 를 사용하는 방법
 		MemberVO memberVo = new MemberVO();
-		memberVo.setMemId(memId);
-		memberVo.setMemName(memName);
-		// 그 외 정보들 VO에 세팅
+		//Map형태로 가져와 memberVO에 저장
+		BeanUtils.populate(memberVo, req.getParameterMap()); // req.getParameterMap() request 에 원래 Map으로 들어와 있는것을 req.getParameter 로 가져옴. 
+		System.out.println("★★★★★" + memberVo.getMemJob() + ", " + memberVo.getMemJobName());
 		
 		MemberService service = new MemberService();
 		service.createMember(memberVo);
