@@ -20,11 +20,6 @@ public class MemberService {
 		return dao.retrieveMember(memberId);
 	}
 	
-	public List<MemberVO> retrieveMemberList(MemberVO memberVo) throws SQLException {
-		List<MemberVO> list = dao.retrieveMemberList(memberVo);
-		return list;
-	}
-
 	public void createMember(MemberVO memberVo) throws SQLException {
 		// t사용자 입력값 포맷 변경
 		String memHp = memberVo.getMemHp().replaceAll("-", "");

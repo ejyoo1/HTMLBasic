@@ -29,33 +29,15 @@ public class ZipServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 그룹코드로 코드테이블 조회
 		try {
-			
 			ZipService zipService = new ZipService();
-			List<ZipVO> list = new ArrayList<ZipVO>();
-			String flag = req.getParameter("flag");
 			
-			if("GU".equals(flag)) {
-				ZipVO zipVo = new ZipVO();
-				zipVo.setSido(req.getParameter("sido"));
-				list = zipService.retrieveGugunList(zipVo);
-			} else if("DONG".equals(flag)) {
-				ZipVO zipVo = new ZipVO();
-				zipVo.setSido(req.getParameter("sido"));
-				zipVo.setGugun(req.getParameter("gugun"));
-				list = zipService.retrieveDongList(zipVo);
-			} else if("SEARCH".equals(flag)){
-				ZipVO zipVo = new ZipVO();
-				zipVo.setSido(req.getParameter("sido"));
-				zipVo.setGugun(req.getParameter("gugun"));
-				zipVo.setDong(req.getParameter("dong"));
-				list = zipService.retrieveZipList(zipVo);
-			}else {
-				list = zipService.retrieveSidoList();
-			}
+			ZipVO zipVo = new ZipVO();
+			zipVo.setDong(req.getParameter("dong"));
+			List<ZipVO> list = zipService.retrieveZipList(zipVo);
 			
 			req.setAttribute("list", list);
 			
-			RequestDispatcher disp = req.getRequestDispatcher("/html/common/zipListResult.jsp");
+			RequestDispatcher disp = req.getRequestDispatcher("/jsp/common/zipListResult.jsp");
 			disp.forward(req, resp);
 			
 		} catch (SQLException e) {

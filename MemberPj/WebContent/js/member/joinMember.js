@@ -9,8 +9,6 @@ var idFlag = false;
 var runIdCheckFlag = false;
 var runZipCheckFlag = false;
 $(document).ready(function(){
-	 initCitySelect();
-	 
 	 $("#tbZipResult").on("dblclick", "tbody tr", function(){ // 파라미터를 더 주어 자식요소 필터링
 		 console.log("바인딩");
 		 runZipCheckFlag = true;
@@ -64,7 +62,7 @@ function chkId(){
     }
     
     $.ajax({ // DB에서 중복검사 수행 
-      url : "/JqueryPro/MemberServlet" // 서블릿 가져오기(jsp 통째로 넘어온 것)
+      url : "/MemberPj/MemberServlet" // 서블릿 가져오기(jsp 통째로 넘어온 것)
       ,type : "post"
       ,data : {"memId" : memId, "flag" : "CHKID"} // 서블릿에게 행할 행위 명령
       ,dataType : "json"
@@ -89,107 +87,12 @@ function chkId(){
 }
 
 function openZip(){
-	// 시 셀렉트 박스 조회하고 초기화
-	initCitySelect();
 	// 테이블 초기화
 	$("#tbZipResult tbody").empty();
 	// 주소창(모달창) 열기 - 부트스트랩의 모달 창 호출
 	$("#zipModal").modal();
 }
 
-function initCitySelect(){
-	$.ajax({
-		url : "/JqueryPro/ZipServlet"
-			,type : "post"
-				,dataType : "json"
-					,success : function(data){
-						makeCitySelect(data);
-					}
-	,error : function(xhr){
-		console.log(xhr);
-		alert("오류");
-	}
-	});
-}
-
-function makeCitySelect(data){
-	var strHtml = "<option value=''>선택하세요</option>";
-	for(var i=0 ; i<data.length ; i++){
-		strHtml += '<option value="' + data[i].sido +'">' + data[i].sido + '</option>';
-	}
-	$("#city").html(strHtml);
-	
-	setGu();
-	
-	// 방법 2)
-	// setGu();
-	// 방법 3)
-	// trigger로 change 이벤트 호출
-}
-
-function setGu(){
-	var param = {
-			'sido' : $("#city").val()
-			,'flag' : 'GU'
-			};
-	
-	$.ajax({
-		url : "/JqueryPro/ZipServlet"
-		,type : "post"
-		,data : param
-		,dataType : "json"
-		,success : function(data){
-			makeGugunSelect(data);
-		}
-		,error : function(xhr){
-			console.log(xhr);
-			alert("오류");
-		}
-	});
-	
-}
-
-function makeGugunSelect(data){
-	var strHtml = "<option value=''>선택하세요</option>";
-	for(var i=0 ; i<data.length ; i++){
-		strHtml += '<option value="' + data[i].gugun +'">' + data[i].gugun + '</option>';
-	}
-	$("#gu").html(strHtml);
-	$("#gu").prop("disabled", false);
-	
-	setDong(); // 동 초기화
-}
-
-function setDong(){
-	var param = {
-		'sido' : $("#city").val()
-		,'gugun' : $("#gu").val()
-		,'flag' : 'DONG'
-	};
-	
-	$.ajax({
-		url : "/JqueryPro/ZipServlet"
-		,type : "post"
-		,data : param
-		,dataType : "json"
-		,success : function(data){
-			makeDongSelect(data);
-		}
-		,error : function(xhr){
-			console.log(xhr);
-			alert("오류");
-		}	
-	});
-}
-
-function makeDongSelect(data){
-	var strHtml = "<option value=''>선택하세요</option>";
-	for(var i=0 ; i<data.length ; i++){
-		strHtml += '<option value="' + data[i].dong +'">' + data[i].dong + '</option>';
-	}
-	$("#dong").html(strHtml);
-	$("#dong").prop("disabled", false);
-}
 
 function searchZipCode(){
 	var sido = $("#city").val();
@@ -203,7 +106,7 @@ function searchZipCode(){
 			,'flag' : 'SEARCH'
 		};
 	$.ajax({
-		url : "/JqueryPro/ZipServlet"
+		url : "/MemberPj/ZipServlet"
 		,type : "post"
 		,data : param
 		,dataType : "json"
@@ -275,6 +178,22 @@ function save(){
 		$("#memZipBtn").focus();
 		return;
 	}
+	
+	$("#formFlag").val("C");
+	$.ajax({
+		url : "/MemberPj/MemberServlet"
+		,type : "post"
+		,data : $("#fm").serialize()
+		,dataType : "json"
+		,success : function(data){
+			alert("저장되었습니다.");
+			reset();
+		}
+		, error : function(xhr){ // 사용자가 잘못한 것이 아니라 관리자가 처리해야 하는 오류
+			alert("실패하였습니다. \n관리자에게 문의하세요.");
+			console.log(xhr);
+		}
+	});
 }
 
 function formSeting(str,spanId,focusId){
@@ -285,6 +204,7 @@ function formSeting(str,spanId,focusId){
 }
 
 function validate(){ // 저장 버튼 클릭 시 유효성 검사
+	$("#spMemId").hide();
 	$("#spMemName").hide();
 	$("#spMemBir").hide();
 	$("#spMemPass").hide();
@@ -321,14 +241,12 @@ function validate(){ // 저장 버튼 클릭 시 유효성 검사
     
     if(isEmpty(val)){ // 빈 값 체크
     	var str = "생년월일은 필수 정보 입니다.";
-    	alert(str);
     	formSeting(str,"#spMemBir","#memBir");
         return false;
     }
     
     if(checkRegExp(userBirExp, val)){ // 정규식 체크(길이, 공백, 올바른 입력)
     	var str = "올바른 생년월일을 입력하세요. (1993-12-06)";
-    	alert(str);
     	formSeting(str,"#spMemBir","#memBir");
         return false;
     }
@@ -344,7 +262,6 @@ function validate(){ // 저장 버튼 클릭 시 유효성 검사
     
     if ((currdate - mydate) < 0){
     	var str = "가입할 수 없는 연령입니다.";
-        alert(str);
         formSeting(str,"#spMemBir","#memBir");
         return false;
     }
@@ -354,14 +271,12 @@ function validate(){ // 저장 버튼 클릭 시 유효성 검사
     
 	if(isEmpty(val)){ // 빈 값 체크
 		var str = "비밀번호는 필수 정보 입니다.";
-    	alert(str);
     	formSeting(str,"#spMemPass","#memPass");
         return false;
     }
 	
     if(checkRegExp(userPwExp, val)){ // 정규식 체크(길이, 공백, 올바른 입력)
     	var str = "영문 대소문자, 숫자, 특수문자 -_. 조합으로 8~12자를 입력해주세요.";
-    	alert(str);
     	formSeting(str,"#spMemPass","#memPass");
         return false;
     }
@@ -371,14 +286,12 @@ function validate(){ // 저장 버튼 클릭 시 유효성 검사
     
 	if(isEmpty(val)){ // 빈 값 체크
 		var str = "휴대전화는 필수 정보 입니다.";
-    	alert(str);
     	formSeting(str,"#spMemHp","#memHp");
         return false;
     }
 	
     if(checkRegExp(userPhoneExp, val)){ // 정규식 체크(길이, 공백, 올바른 입력)
     	var str = "숫자로 구성된 올바른 휴대전화 번호를 입력해주세요.(000-0000-0000)";
-    	alert(str);
     	formSeting(str,"#spMemHp","#memHp");
         return false;
     }
@@ -388,14 +301,12 @@ function validate(){ // 저장 버튼 클릭 시 유효성 검사
     
 	if(isEmpty(val)){ // 빈 값 체크
 		var str = "이메일은 필수 정보입니다.";
-    	alert(str);
     	formSeting(str,"#spMemMail","#memMail");
         return false;
     }
 	
     if(checkRegExp(userEmailExp, val)){ // 정규식 체크(길이, 공백, 올바른 입력)
     	var str = "올바른 이메일 형식을 입력해주세요.";
-    	alert(str);
     	formSeting(str,"#spMemMail","#memMail");
         return false;
     }
@@ -405,7 +316,6 @@ function validate(){ // 저장 버튼 클릭 시 유효성 검사
     
 	if(isEmpty(val)){ // 빈 값 체크
 		var str = "상세주소는 필수 정보입니다.";
-    	alert(str);
     	formSeting(str,"#spMemAdd2","#spMemAdd2");
         return false;
     }
@@ -413,5 +323,7 @@ function validate(){ // 저장 버튼 클릭 시 유효성 검사
 	if(!idFlag){
 		alert("아이디 중복검사를 진행해주세요.");
 	}
+	
+	return true;
 }
 

@@ -25,11 +25,6 @@ public class MemberDao extends BaseDao {
 	public MemberVO retrieveMember(String memId) throws SQLException {
 		return (MemberVO) smc.queryForObject("member.retrieveMember", memId); // queryForObject : 단 건 조회
 	}
-	
-	public List<MemberVO> retrieveMemberList(MemberVO memberVo) throws SQLException {
-		return smc.queryForList("member.retrieveMemberList", memberVo); // queryForList : 여러 건 조회
-	}
-
 
 	public void createMember(MemberVO memberVo) throws SQLException {
 		smc.insert("member.createMember", memberVo);

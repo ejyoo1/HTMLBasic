@@ -15,7 +15,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/MemberPj/js/common/myutils.js"></script>
-  <script type="text/javascript" src="/MemberPj/js/member/memberList.js"></script>
   <script type="text/javascript" src="/MemberPj/js/member/joinMember.js"></script>
 </head>
 <body>
@@ -23,8 +22,6 @@
   <div class="container">
     <h2>회원 등록 페이지</h2>
     <form class="form-horizontal" id="fm">
-    
-    
       <div class="form-group"><!-- start ID DIV -->
         <label class="control-label col-sm-2" for="memId">아이디 : </label>
         <div class="col-sm-10 form-inline">
@@ -80,32 +77,32 @@
         </div>
       </div><!-- close 이메일 DIV -->
       
-      
-      
-      
-      
       <div class="form-group"><!-- 주소 시작 -->
         <label class="control-label col-sm-2 required" for="memZip">우편번호 </label>
         <div class="col-sm-10 form-inline">
           <input type="text" class="form-control form-inline-zip1" id="memZip" name="memZip" readonly="readonly" required>
-          
           <!-- 모달 자동 오픈 메서드 적용 한 것 -->
           <button type="button" class="btn btn-info btn-sm" id=memZipBtn" onclick="openZip()">번호검색</button>
-          <br>
-          <label class="control-label col-sm-2 required" for="memAdd1">주소 : </label>
-          <input type="text" class="form-control form-inline-zip2" id="memAdd1" name="memAdd1" readonly="readonly" required> 
-          <br>
-          <div class="form-group-inner-down">
-          <label class="control-label col-sm-2 required" for="memAdd1">상세주소 : </label>
-          <input type="text" class="form-control" id="memAdd2" name="memAdd2" placeholder="상세주소를 입력하세요" required>
-          <span id="spMemAdd2" style="display: none;">주소가 올바르지 않습니다.</span>
-          </div>
+        </div>
+      </div><!-- close 우편번호 -->
+      
+      <div class="form-group"><!-- 주소1 시작 -->
+        <label class="control-label col-sm-2 required" for="memAdd1">주소 : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-inline-zip2" id="memAdd1" name="memAdd1" readonly="readonly" required>
         </div>
       </div>
+           
+      <div class="form-group"><!-- 주소2 시작 -->
+        <label class="control-label col-sm-2 required" for="memAdd2">상세주소 : </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control col-sm-8" id="memAdd2" name="memAdd2" placeholder="상세주소를 입력하세요" required>
+          <span id="spMemAdd2" style="display: none;">주소가 올바르지 않습니다.</span>
+        </div>
+      </div>
+      <input type="hidden" name="flag" id="formFlag">
     </form>
     
-    <!-- submit을 하지않고 ajax로 보낼것임 -->
-    <!-- submit은 서버로 전송하고 바로 페이지를 변경하므로, 성공여부 실패 여부를 따지기 위해 ajax로 사용할것임. -->
     <div class="form-button text-center">
       <button type="button" class="btn btn-primary" onclick="save()">저장</button>
       <button type="button" class="btn btn-default" onclick="reset()">초기화</button>
@@ -123,15 +120,8 @@
           <h5 class="modal-title">주소 검색</h5>
         </div>
         <div class="modal-body">
-          시: <select id="city" onchange="setGu()">
-<!--             <option value="대전">대전</option> -->
-          </select>
-          구: <select id="gu" onchange="setDong()" disabled="disabled">
-            <option>선택하세요</option>
-          </select>
-          동: <select id="dong" disabled="disabled">
-            <option>선택하세요</option>
-          </select>
+          <label for="dong">동 : </label>
+          <input type="text" class="form-control" id="dong" placeholder="동을입력하세요." name="dong" required>
           <button type="button" onclick="searchZipCode()" id="btnZip">검색</button>
           <hr>
           <div id="divZipResult" style="display: none;">

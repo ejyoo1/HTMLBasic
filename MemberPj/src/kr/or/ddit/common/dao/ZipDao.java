@@ -15,15 +15,6 @@ private SqlMapClient smc;
 		smc = super.getSqlMapClient();
 	}
 
-	public List<ZipVO> retrieveSidoList() throws SQLException {
-		return smc.queryForList("zip.retrieveSidoList"); // queryForList : 여러 건 조회
-	}
-	public List<ZipVO> retrieveGugunList(ZipVO zipVO) throws SQLException {
-		return smc.queryForList("zip.retrieveGugunList", zipVO); // queryForList : 여러 건 조회
-	}
-	public List<ZipVO> retrieveDongList(ZipVO zipVO) throws SQLException {
-		return smc.queryForList("zip.retrieveDongList", zipVO); // queryForList : 여러 건 조회
-	}
 	public List<ZipVO> retrieveZipList(ZipVO zipVO) throws SQLException {
 		return smc.queryForList("zip.retrieveZipList", zipVO); // queryForList : 여러 건 조회
 	}
